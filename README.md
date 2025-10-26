@@ -1,4 +1,4 @@
 # Mathew-Dony-Portfolio
-My Portfolio website developed using Next.js
+Portfolio website + blog developed using Next.js
 
 https://mathewdony.com
