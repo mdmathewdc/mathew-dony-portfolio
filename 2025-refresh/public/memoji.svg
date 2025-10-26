@@ -1,0 +1,34 @@
+<svg width="512" height="512" viewBox="0 0 512 512" xmlns="http://www.w3.org/2000/svg" role="img" aria-labelledby="title desc">
+  <title id="title">Meditating avatar illustration</title>
+  <desc id="desc">Stylised character with closed eyes and hands together in a meditative pose.</desc>
+  <defs>
+    <radialGradient id="bgGradient" cx="50%" cy="10%" r="75%">
+      <stop offset="0%" stop-color="#2b2b2b" stop-opacity="0.75" />
+      <stop offset="65%" stop-color="#141414" stop-opacity="0.95" />
+      <stop offset="100%" stop-color="#050505" />
+    </radialGradient>
+    <linearGradient id="skinGradient" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#f6c99f" />
+      <stop offset="100%" stop-color="#e0a878" />
+    </linearGradient>
+    <linearGradient id="robeGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#2f2f2f" />
+      <stop offset="100%" stop-color="#1a1a1a" />
+    </linearGradient>
+    <filter id="shadow" x="-20%" y="-20%" width="140%" height="140%">
+      <feDropShadow dx="0" dy="16" stdDeviation="24" flood-color="#000" flood-opacity="0.45" />
+    </filter>
+  </defs>
+  <rect width="512" height="512" rx="120" fill="url(#bgGradient)" />
+  <g filter="url(#shadow)">
+    <path d="M256 388c-54 0-116 26-116 58 0 10 8 18 18 18h196c10 0 18-8 18-18 0-32-62-58-116-58z" fill="#0d0d0d" opacity="0.75" />
+    <path d="M356 358c-44 24-156 24-200 0 12-62 28-114 100-114s88 52 100 114z" fill="url(#robeGradient)" />
+    <path d="M256 136c-64 0-108 50-108 128 0 64 46 116 108 116s108-52 108-116c0-78-44-128-108-128z" fill="url(#skinGradient)" />
+    <path d="M256 116c-64 0-120 38-120 110 0 8 2 16 4 24 0 0 32-30 116-30s116 30 116 30c2-8 4-16 4-24 0-72-56-110-120-110z" fill="#1f1f1f" />
+    <path d="M198 238c-10 0-18 8-18 18s8 18 18 18 18-8 18-18-8-18-18-18zm116 0c-10 0-18 8-18 18s8 18 18 18 18-8 18-18-8-18-18-18z" fill="#1a1a1a" />
+    <path d="M230 306c8 10 18 16 26 16s18-6 26-16" stroke="#1f1f1f" stroke-width="10" stroke-linecap="round" fill="none" />
+    <path d="M246 352c-18 26-66 28-66 72h152c0-44-48-46-66-72l-20-28-20 28z" fill="#0f0f0f" />
+    <path d="M206 388c-20 0-36 16-36 36h172c0-20-16-36-36-36H206z" fill="#131313" />
+    <path d="M214 356c-10 0-18 8-18 18v10c0 10 8 18 18 18s18-8 18-18v-10c0-10-8-18-18-18zm84 0c-10 0-18 8-18 18v10c0 10 8 18 18 18s18-8 18-18v-10c0-10-8-18-18-18z" fill="#0a0a0a" />
+  </g>
+</svg>
