@@ -1,4 +1,4 @@
-import Image from "next/image";
+import FaultyTerminal from "./components/FaultyTerminal";
 import type { ComponentProps, ReactElement } from "react";
 
 type SocialLink = {
@@ -85,8 +85,26 @@ export default function Home() {
           </p>
         </section>
 
-        <aside className="relative hidden md:flex w-full items-center justify-center  overflow-hidden rounded-[32px] border border-[#ffffff1a] p-10 md:max-w-sm">
-          <div className="absolute inset-0 rounded-[32px]" />
+        <aside className="relative hidden md:flex w-full items-center justify-center  overflow-hidden rounded-[32px] border border-[#ffffff1a] md:max-w-sm">
+          <FaultyTerminal
+            scale={2}
+            gridMul={[2, 1]}
+            digitSize={3}
+            timeScale={1}
+            pause={false}
+            scanlineIntensity={1}
+            glitchAmount={1}
+            flickerAmount={1}
+            noiseAmp={1}
+            chromaticAberration={0}
+            dither={0}
+            curvature={0}
+            tint="#3852c81a"
+            mouseReact={true}
+            mouseStrength={0.5}
+            pageLoadAnimation={false}
+            brightness={1}
+          />
         </aside>
       </div>
     </main>
