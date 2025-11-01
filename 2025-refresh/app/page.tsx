@@ -41,7 +41,7 @@ export default function Home() {
   return (
     <main className="flex min-h-80vh items-center justify-center bg-[#0a0a0a] px-6 py-16 text-white sm:px-10">
       <div className="mx-auto flex w-full max-w-6xl flex-col gap-6 font-[var(--font-geist-sans)] md:flex-row">
-        <section className="relative flex flex-1 flex-col gap-12 rounded-[32px] border bg-[#0d0d0d] p-8 shadow-[0_24px_80px_rgba(0,0,0,0.55)] border-[#ffffff1a] sm:p-12">
+        <section className="relative flex flex-1 flex-col gap-12 rounded-[32px] border bg-black p-8 shadow-[0_24px_80px_rgba(0,0,0,0.55)] border-[#ffffff1a] sm:p-12">
           <header className="relative flex items-start gap-4">
             <div className="flex-1 space-y-1">
               <p className="text-base font-medium text-white text-lg">
