@@ -41,17 +41,31 @@ export default function Home() {
   return (
     <main className="flex min-h-80vh items-center justify-center bg-[#0a0a0a] px-6 py-16 text-white sm:px-10">
       <div className="mx-auto flex w-full max-w-6xl flex-col gap-6 font-[var(--font-geist-sans)] md:flex-row">
-        <section className="relative flex flex-1 flex-col gap-12 rounded-[32px] border bg-black p-8 shadow-[0_24px_80px_rgba(0,0,0,0.55)] border-[#ffffff1a] sm:p-12">
-          <header className="relative flex items-start gap-4">
+        <section className="relative flex flex-1 flex-col gap-10 rounded-[32px] border bg-black p-8 shadow-[0_24px_80px_rgba(0,0,0,0.55)] border-[#ffffff1a] sm:p-12">
+          <header className="relative flex flex-col md:flex-row items-start gap-4">
             <div className="flex-1 space-y-1">
               <p className="text-base font-medium text-white text-lg">
-                Hey, I&apos;m Mathew.
+                Hey, I&apos;m Mathew Dony.
               </p>
               <p className="text-xs text-zinc-400 sm:text-sm">
                 Software Engineer
               </p>
             </div>
-            <div className="flex items-center gap-3 ml-auto">
+            <div className="flex md:hidden items-center gap-3">
+              {socialLinks.map(({ href, label, icon: Icon }) => (
+                <a
+                  key={href}
+                  href={href}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  aria-label={label}
+                  className="group grid h-10 w-10 place-items-center rounded-[14px] border border-white/20 transition hover:border-white/40 hover:bg-white/5"
+                >
+                  <Icon className="h-5 w-5 text-white transition group-hover:text-white" />
+                </a>
+              ))}
+            </div>
+            <div className="hidden md:flex items-center gap-3 ml-auto">
               {socialLinks.map(({ href, label, icon: Icon }) => (
                 <a
                   key={href}
