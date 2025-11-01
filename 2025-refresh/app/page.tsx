@@ -52,7 +52,7 @@ export default function Home() {
         <section className="relative flex flex-1 flex-col gap-12 rounded-[32px] border bg-[#0d0d0d] p-8 shadow-[0_24px_80px_rgba(0,0,0,0.55)] border-[#ffffff1a] sm:p-12">
           <header className="relative flex items-start gap-4">
             <div className="flex-1 space-y-1">
-              <p className="text-base font-medium text-white sm:text-lg">
+              <p className="text-base font-medium text-white text-lg">
                 Hey, I&apos;m Mathew.
               </p>
               <p className="text-xs text-zinc-400 sm:text-sm">
