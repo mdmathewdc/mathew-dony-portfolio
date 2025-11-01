@@ -47,9 +47,7 @@ export default function Home() {
               <p className="text-base font-medium text-white text-lg">
                 Hey, I&apos;m Mathew Dony.
               </p>
-              <p className="text-sm text-zinc-400">
-                Software Engineer
-              </p>
+              <p className="text-sm text-zinc-400">Software Engineer</p>
             </div>
             <div className="flex md:hidden items-center gap-3">
               {socialLinks.map(({ href, label, icon: Icon }) => (
@@ -81,8 +79,14 @@ export default function Home() {
             </div>
           </header>
 
-          <h1 className="relative text-3xl font-medium leading-tight text-white">
-            Obsessed with creating <span className="italic">timeless</span>{" "}
+          <h1 className="relative text-3xl font-sm text-white">
+            Obsessed with creating{" "}
+            <span
+              style={{ fontFamily: "var(--font-source-serif-4)" }}
+              className="text-md"
+            >
+              timeless
+            </span>{" "}
             solutions with code.
           </h1>
 
