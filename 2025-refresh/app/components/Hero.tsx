@@ -40,19 +40,22 @@ const socialLinks: SocialLink[] = [
 
 export const Hero = () => {
   return (
-    <div className="mx-auto flex w-full max-w-6xl flex-col gap-6 font-[var(--font-geist-sans)] md:flex-row">
-      <section className="relative flex flex-1 flex-col gap-10 rounded-[32px] border bg-black p-8 shadow-[0_24px_80px_rgba(0,0,0,0.55)] border-white/20 sm:p-12">
+    <div className="mx-auto flex w-full max-w-6xl flex-col gap-6 md:flex-row">
+      <section className="relative flex flex-1 flex-col gap-6 rounded-[32px] border bg-black p-8 shadow-[0_24px_80px_rgba(0,0,0,0.55)] border-white/20 sm:p-12">
         <header className="relative flex flex-col md:flex-row items-start gap-4">
           <div className="flex items-center gap-2 flex-1">
             <Image
               src="/mathew-genmoji.png"
               alt="Mathew Dony"
-              width={45}
-              height={45}
+              width={40}
+              height={40}
               className="rounded-full shrink-0"
             />
             <div>
-              <p className="text-lg font-medium text-white">
+              <p
+                className="text-sm font-medium text-white"
+                style={{ fontFamily: "var(--font-satoshi-regular)" }}
+              >
                 Hey, I&apos;m Mathew Dony.
               </p>
               <p className="text-sm text-zinc-400">Software Engineer</p>
@@ -88,10 +91,16 @@ export const Hero = () => {
           </div>
         </header>
 
-        <h1 className="relative text-3xl font-sm text-white">
+        <h1
+          className="relative text-3xl font-sm text-white"
+          style={{ fontFamily: "var(--font-satoshi-regular)" }}
+        >
           Obsessed with creating{" "}
           <span
-            style={{ fontFamily: "var(--font-source-serif-4)" }}
+            style={{
+              fontFamily: "var(--font-instrument-serif)",
+              fontStyle: "italic",
+            }}
             className="text-md"
           >
             timeless
@@ -99,7 +108,7 @@ export const Hero = () => {
           solutions with code.
         </h1>
 
-        <p className="relative text-md text-zinc-400">
+        <p className="relative text-sm text-zinc-400">
           Based in Sydney, Australia.
         </p>
       </section>
