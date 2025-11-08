@@ -108,8 +108,18 @@ export const Hero = () => {
           solutions with code.
         </h1>
 
-        <p className="relative text-sm text-zinc-400">
-          Based in Sydney, Australia.
+        <p className="relative text-sm text-zinc-400 inline-flex items-center gap-1.5">
+          Based in{" "}
+          <span className="inline-flex items-center gap-1 pb-2">
+            <Image
+              src="/sydney-opera-house.png"
+              alt="Sydney Opera House"
+              width={32}
+              height={32}
+              className="inline-block"
+            />
+          </span>
+          Australia.
         </p>
       </section>
 
