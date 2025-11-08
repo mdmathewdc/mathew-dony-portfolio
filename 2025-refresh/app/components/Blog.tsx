@@ -5,31 +5,25 @@ const sampleArticles = [
     title: "Building Scalable React Applications",
     caption:
       "Exploring patterns and best practices for creating maintainable React applications that scale with your team.",
+    views: 1247,
   },
   {
     title: "The Future of Web Development",
     caption:
       "A deep dive into emerging technologies and trends shaping the future of web development.",
+    views: 2156,
   },
   {
     title: "TypeScript Tips for Better Code",
     caption:
       "Practical TypeScript tips and tricks to improve type safety and developer experience.",
+    views: 892,
   },
   {
     title: "Optimizing Performance in Next.js",
     caption:
       "Learn how to optimize your Next.js applications for better performance and user experience.",
-  },
-  {
-    title: "Design Systems in Practice",
-    caption:
-      "How to build and maintain design systems that work for both designers and developers.",
-  },
-  {
-    title: "Testing Strategies for Modern Apps",
-    caption:
-      "Comprehensive guide to testing strategies that ensure quality and confidence in your codebase.",
+    views: 1834,
   },
 ];
 
@@ -55,45 +49,42 @@ export const Blog = () => {
         </div>
       </div>
 
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
         {sampleArticles.map((article, index) => (
           <article key={index} className="flex flex-col gap-4">
-            <h3
-              className="text-lg font-medium text-white"
-              style={{ fontFamily: "var(--font-satoshi-regular)" }}
-            >
-              {article.title}
-            </h3>
+            <div className="flex flex-col md:flex-row md:items-center md:justify-between gap-2">
+              <h3
+                className="text-lg font-medium text-white"
+                style={{ fontFamily: "var(--font-satoshi-regular)" }}
+              >
+                {article.title}
+              </h3>
+              <span className="text-xs text-zinc-500 whitespace-nowrap">
+                {article.views.toLocaleString()} views
+              </span>
+            </div>
             <p className="text-sm text-zinc-400 flex-1">{article.caption}</p>
-            <button
-              className="px-6 py-3 rounded-[14px] border border-white/20 bg-white/5 text-white text-sm font-medium transition hover:border-white/40 hover:bg-white/10 w-fit"
-              style={{ fontFamily: "var(--font-satoshi-regular)" }}
-            >
-              Read more
-            </button>
           </article>
         ))}
       </div>
 
-      <div className="flex justify-center pt-4">
+      <div className="flex justify-start pt-4">
         <Link
           href="/blog"
-          className="text-sm text-zinc-400 hover:text-white transition inline-flex items-center gap-2"
+          className="text-sm text-zinc-400 hover:text-white transition inline-flex items-center gap-1"
           style={{ fontFamily: "var(--font-satoshi-regular)" }}
         >
           View all articles
           <svg
-            className="w-4 h-4"
+            className="w-4 h-4 pt-0.5"
+            viewBox="0 0 24 24"
             fill="none"
             stroke="currentColor"
-            viewBox="0 0 24 24"
+            strokeWidth={2}
+            strokeLinecap="round"
+            strokeLinejoin="round"
           >
-            <path
-              strokeLinecap="round"
-              strokeLinejoin="round"
-              strokeWidth={2}
-              d="M9 5l7 7-7 7"
-            />
+            <path d="M5 12H19M19 12L13 6M19 12L13 18" />
           </svg>
         </Link>
       </div>
