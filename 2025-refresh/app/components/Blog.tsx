@@ -30,7 +30,7 @@ const sampleArticles = [
 export const Blog = () => {
   return (
     <div className="mx-auto flex w-full max-w-6xl flex-col gap-8">
-      <div className="flex flex-col gap-2 pl-8 sm:pl-12">
+      <div className="flex flex-col gap-2 pl-10 sm:pl-8">
         <h2
           className="text-2xl font-medium text-white"
           style={{ fontFamily: "var(--font-satoshi-regular)" }}
@@ -46,7 +46,7 @@ export const Blog = () => {
         {sampleArticles.map((article, index) => (
           <article
             key={index}
-            className="flex flex-col gap-4 pl-8 sm:pl-12"
+            className="flex flex-col gap-4 pl-8"
           >
             <h3
               className="text-lg font-medium text-white"
