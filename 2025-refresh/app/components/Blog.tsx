@@ -1,4 +1,7 @@
+"use client";
+
 import Link from "next/link";
+import { motion } from "framer-motion";
 
 const sampleArticles = [
   {
@@ -30,7 +33,12 @@ const sampleArticles = [
 export const Blog = () => {
   return (
     <div className="mx-auto flex w-full max-w-6xl flex-col gap-8 pl-5 sm:pl-10">
-      <div className="flex flex-col gap-2">
+      <motion.div
+        initial={{ opacity: 0, y: 20 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.6, delay: 0.6, ease: "easeOut" }}
+        className="flex flex-col gap-2"
+      >
         <div className="relative inline-block">
           <h2
             className="text-2xl font-medium text-white"
@@ -47,11 +55,17 @@ export const Blog = () => {
             </svg>
           </div>
         </div>
-      </div>
+      </motion.div>
 
       <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
         {sampleArticles.map((article, index) => (
-          <article key={index} className="flex flex-col gap-4">
+          <motion.article
+            key={index}
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6, delay: 0.8 + index * 0.1, ease: "easeOut" }}
+            className="flex flex-col gap-4"
+          >
             <div className="flex flex-col md:flex-row md:items-center md:justify-between gap-2">
               <h3
                 className="text-lg font-medium text-white"
@@ -71,7 +85,7 @@ export const Blog = () => {
             >
               Read more
             </Link>
-          </article>
+          </motion.article>
         ))}
       </div>
 

@@ -1,5 +1,8 @@
+"use client";
+
 import type { ComponentProps, ReactElement } from "react";
 import Image from "next/image";
+import { motion } from "framer-motion";
 import FaultyTerminal from "./FaultyTerminal";
 
 type SocialLink = {
@@ -42,7 +45,12 @@ export const Hero = () => {
   return (
     <div className="mx-auto flex w-full max-w-6xl flex-col gap-6 md:flex-row">
       <section className="relative flex flex-1 flex-col gap-6 rounded-[32px] border bg-black p-6 shadow-[0_24px_80px_rgba(0,0,0,0.55)] border-white/20 sm:p-10">
-        <header className="relative flex flex-col md:flex-row items-start gap-4">
+        <motion.header
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.6, ease: "easeOut" }}
+          className="relative flex flex-col md:flex-row items-start gap-4"
+        >
           <div className="flex items-center gap-2 flex-1">
             <Image
               src="/mathew-genmoji.png"
@@ -89,9 +97,12 @@ export const Hero = () => {
               </a>
             ))}
           </div>
-        </header>
+        </motion.header>
 
-        <h1
+        <motion.h1
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.6, delay: 0.2, ease: "easeOut" }}
           className="relative text-3xl font-sm text-white"
           style={{ fontFamily: "var(--font-satoshi-regular)" }}
         >
@@ -106,9 +117,14 @@ export const Hero = () => {
             timeless
           </span>{" "}
           solutions with code.
-        </h1>
+        </motion.h1>
 
-        <p className="relative text-sm text-zinc-400 inline-flex items-center gap-1.5">
+        <motion.p
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.6, delay: 0.4, ease: "easeOut" }}
+          className="relative text-sm text-zinc-400 inline-flex items-center gap-1.5"
+        >
           Based in{" "}
           <span className="inline-flex items-center gap-1 pb-2">
             <Image
@@ -120,7 +136,7 @@ export const Hero = () => {
             />
           </span>
           Australia.
-        </p>
+        </motion.p>
       </section>
 
       <aside className="relative hidden md:flex w-full items-center justify-center overflow-hidden rounded-[32px] border border-white/20 md:max-w-sm">
