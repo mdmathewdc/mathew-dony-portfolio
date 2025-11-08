@@ -64,6 +64,26 @@ export const Blog = () => {
               </span>
             </div>
             <p className="text-sm text-zinc-400 flex-1">{article.caption}</p>
+            <Link
+              href="#"
+              className="text-xs text-zinc-400 hover:text-white transition w-fit inline-flex items-center gap-1 group"
+              style={{ fontFamily: "var(--font-satoshi-regular)" }}
+            >
+              Read more
+              <svg
+                className="w-3 h-3 opacity-0 group-hover:opacity-100 transition-opacity shrink-0 py"
+                fill="none"
+                stroke="currentColor"
+                viewBox="0 0 24 24"
+              >
+                <path
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  strokeWidth={2}
+                  d="M9 5l7 7-7 7"
+                />
+              </svg>
+            </Link>
           </article>
         ))}
       </div>
@@ -76,7 +96,7 @@ export const Blog = () => {
         >
           View all articles
           <svg
-            className="w-4 h-4 pt-0.5"
+            className="w-5 h-5 pt-0.5"
             viewBox="0 0 24 24"
             fill="none"
             stroke="currentColor"
