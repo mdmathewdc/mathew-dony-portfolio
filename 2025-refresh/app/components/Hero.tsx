@@ -1,4 +1,5 @@
 import type { ComponentProps, ReactElement } from "react";
+import Image from "next/image";
 import FaultyTerminal from "./FaultyTerminal";
 
 type SocialLink = {
@@ -42,11 +43,20 @@ export const Hero = () => {
     <div className="mx-auto flex w-full max-w-6xl flex-col gap-6 font-[var(--font-geist-sans)] md:flex-row">
       <section className="relative flex flex-1 flex-col gap-10 rounded-[32px] border bg-black p-8 shadow-[0_24px_80px_rgba(0,0,0,0.55)] border-white/20 sm:p-12">
         <header className="relative flex flex-col md:flex-row items-start gap-4">
-          <div className="flex-1 space-y-0.5">
-            <p className="text-base font-medium text-white text-lg">
-              Hey, I&apos;m Mathew Dony.
-            </p>
-            <p className="text-sm text-zinc-400">Software Engineer</p>
+          <div className="flex items-center gap-2 flex-1">
+            <Image
+              src="/mathew-genmoji.png"
+              alt="Mathew Dony"
+              width={45}
+              height={45}
+              className="rounded-full shrink-0"
+            />
+            <div>
+              <p className="text-lg font-medium text-white">
+                Hey, I&apos;m Mathew Dony.
+              </p>
+              <p className="text-sm text-zinc-400">Software Engineer</p>
+            </div>
           </div>
           <div className="flex md:hidden items-center gap-3">
             {socialLinks.map(({ href, label, icon: Icon }) => (
