@@ -2,33 +2,9 @@
 
 import Link from "next/link";
 import { motion } from "framer-motion";
+import { articles } from "../data/articles";
 
-const sampleArticles = [
-  {
-    title: "Building Scalable React Applications",
-    caption:
-      "Exploring patterns and best practices for creating maintainable React applications that scale with your team.",
-    views: 1247,
-  },
-  {
-    title: "The Future of Web Development",
-    caption:
-      "A deep dive into emerging technologies and trends shaping the future of web development.",
-    views: 2156,
-  },
-  {
-    title: "TypeScript Tips for Better Code",
-    caption:
-      "Practical TypeScript tips and tricks to improve type safety and developer experience.",
-    views: 892,
-  },
-  {
-    title: "Optimizing Performance in Next.js",
-    caption:
-      "Learn how to optimize your Next.js applications for better performance and user experience.",
-    views: 1834,
-  },
-];
+const sampleArticles = articles.slice(0, 4);
 
 export const Blog = () => {
   return (
