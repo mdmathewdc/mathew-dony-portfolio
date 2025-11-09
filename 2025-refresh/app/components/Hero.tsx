@@ -44,7 +44,7 @@ const socialLinks: SocialLink[] = [
 export const Hero = () => {
   return (
     <div className="mx-auto flex w-full max-w-6xl flex-col gap-6 md:flex-row">
-      <section className="relative flex flex-1 flex-col gap-6 rounded-[32px] border bg-black p-6 shadow-[0_24px_80px_rgba(0,0,0,0.55)] border-white/20 sm:p-10">
+      <section className="relative flex flex-1 flex-col gap-6 rounded-[32px] border bg-black p-6 border-white/20 sm:p-10">
         <motion.header
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
