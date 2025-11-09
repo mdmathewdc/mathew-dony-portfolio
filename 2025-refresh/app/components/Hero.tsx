@@ -170,14 +170,14 @@ export const Hero = () => {
                 carShiftX: [-0.8, 0.8],
                 carFloorSeparation: [0, 5],
                 colors: {
-                  roadColor: 0x080808,
-                  islandColor: 0x0a0a0a,
+                  roadColor: 0x000000,
+                  islandColor: 0x000000,
                   background: 0x000000,
                   shoulderLines: 0xffffff,
                   brokenLines: 0xffffff,
-                  leftCars: [0xd856bf, 0x6750a2, 0xc247ac],
-                  rightCars: [0x03b3c3, 0x0e5ea5, 0x324555],
-                  sticks: 0x03b3c3,
+                  leftCars: [0x418a1f, 0xffffff, 0xbfff00],
+                  rightCars: [0xffffff, 0xff4444, 0x418a1f],
+                  sticks: 0xffffff, // white
                 },
               }}
             />
