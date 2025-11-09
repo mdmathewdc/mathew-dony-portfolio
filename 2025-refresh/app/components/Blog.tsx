@@ -1,7 +1,7 @@
 "use client";
 
 import Link from "next/link";
-import { motion } from "framer-motion";
+import { motion } from "motion/react";
 import { articles } from "../data/articles";
 
 const sampleArticles = articles.slice(0, 4);
