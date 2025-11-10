@@ -6,7 +6,7 @@ import { articles } from "../data/articles";
 
 const sampleArticles = articles.slice(0, 4);
 
-export const Blog = () => {
+export const Articles = () => {
   return (
     <div className="mx-auto flex w-full max-w-6xl flex-col gap-8 pl-5 sm:pl-10">
       <motion.div
