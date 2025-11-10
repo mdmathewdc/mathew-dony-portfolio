@@ -1,6 +1,7 @@
 "use client";
 
 import type { ComponentProps, ReactElement } from "react";
+import { useState } from "react";
 import Image from "next/image";
 import { motion } from "motion/react";
 
@@ -41,6 +42,13 @@ const socialLinks: SocialLink[] = [
 ];
 
 export const Hero = () => {
+  const [isAnimating, setIsAnimating] = useState(false);
+
+  const handleImageClick = () => {
+    setIsAnimating(true);
+    setTimeout(() => setIsAnimating(false), 400);
+  };
+
   return (
     <div className="mx-auto flex w-full max-w-6xl flex-col gap-6 md:flex-row">
       <section className="relative flex flex-1 flex-col gap-6 rounded-[32px] border bg-black p-6 border-white/20 sm:p-10">
@@ -126,13 +134,29 @@ export const Hero = () => {
         >
           Based in{" "}
           <span className="inline-flex items-center gap-1 pb-2">
-            <Image
-              src="/sydney-opera-house.png"
-              alt="Sydney Opera House"
-              width={32}
-              height={32}
-              className="inline-block"
-            />
+            <motion.div
+              onClick={handleImageClick}
+              className="cursor-pointer inline-block"
+              animate={
+                isAnimating
+                  ? {
+                      scale: [1, 0.85, 1.1, 1],
+                    }
+                  : { scale: 1 }
+              }
+              transition={{
+                duration: 0.5,
+                ease: [0.34, 1.56, 0.64, 1],
+              }}
+            >
+              <Image
+                src="/sydney-opera-house.png"
+                alt="Sydney Opera House"
+                width={32}
+                height={32}
+                className="inline-block"
+              />
+            </motion.div>
           </span>
           Australia.
         </motion.p>
