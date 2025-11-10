@@ -134,7 +134,7 @@ export const Hero = () => {
         >
           Based in{" "}
           <span className="inline-flex items-center gap-1 pb-2">
-            <motion.div
+            <motion.span
               onClick={handleImageClick}
               className="cursor-pointer inline-block"
               animate={
@@ -156,7 +156,7 @@ export const Hero = () => {
                 height={32}
                 className="inline-block"
               />
-            </motion.div>
+            </motion.span>
           </span>
           Australia.
         </motion.p>
