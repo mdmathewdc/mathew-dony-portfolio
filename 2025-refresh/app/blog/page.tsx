@@ -26,7 +26,12 @@ export default function BlogPage() {
   return (
     <main className="flex min-h-80vh flex-col items-center justify-center bg-[#0a0a0a] px-5 py-12 text-white sm:px-10">
       <div className="mx-auto flex w-full max-w-6xl flex-col gap-4">
-        <div className="flex justify-start pb-4">
+        <motion.div
+          initial={{ opacity: 0, x: 12 }}
+          animate={{ opacity: 1, x: 0 }}
+          transition={{ duration: 0.6, delay: 0.8, ease: "easeOut" }}
+          className="flex justify-start pb-4"
+        >
           <Link
             href="/"
             className="text-sm text-zinc-400 hover:text-white transition inline-flex items-center gap-1"
@@ -45,7 +50,7 @@ export default function BlogPage() {
             </svg>
             Home
           </Link>
-        </div>
+        </motion.div>
         <div className="flex flex-col md:flex-row gap-8">
           <div className="flex-1 order-1">
             <div className="grid grid-cols-1 gap-6">

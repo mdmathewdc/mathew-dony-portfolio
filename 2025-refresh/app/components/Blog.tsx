@@ -65,7 +65,12 @@ export const Blog = () => {
         ))}
       </div>
 
-      <div className="flex justify-start pt-4">
+      <motion.div
+        initial={{ opacity: 0, x: -12 }}
+        animate={{ opacity: 1, x: 0 }}
+        transition={{ duration: 0.6, delay: 1.6, ease: "easeOut" }}
+        className="flex justify-start pt-4"
+      >
         <Link
           href="/blog"
           className="text-sm text-zinc-400 hover:text-white transition inline-flex items-center gap-1"
@@ -84,7 +89,7 @@ export const Blog = () => {
             <path d="M5 12H19M19 12L13 6M19 12L13 18" />
           </svg>
         </Link>
-      </div>
+      </motion.div>
     </div>
   );
 };
