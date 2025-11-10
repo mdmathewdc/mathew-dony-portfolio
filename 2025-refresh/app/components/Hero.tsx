@@ -140,7 +140,7 @@ export const Hero = () => {
               animate={
                 isAnimating
                   ? {
-                      scale: [1, 0.85, 1.1, 1],
+                      scale: [1, 0.9, 1.05, 1],
                     }
                   : { scale: 1 }
               }
