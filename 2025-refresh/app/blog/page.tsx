@@ -119,7 +119,7 @@ export default function BlogPage() {
                       delay: 0.3 + index * 0.05,
                       ease: "easeOut",
                     }}
-                    className="px-4 py-1.5 text-sm text-zinc-400 bg-zinc-900/50 hover:bg-zinc-800 hover:text-white rounded-full border border-zinc-800 hover:border-zinc-700 transition-all"
+                    className="px-4 py-1.5 text-sm text-zinc-400 bg-zinc-900/50 cursor-pointer hover:bg-zinc-800 hover:text-white rounded-full border border-zinc-800 hover:border-zinc-700 transition-all"
                     style={{ fontFamily: "var(--font-instrument-serif)" }}
                   >
                     {category}
