@@ -3,7 +3,6 @@
 import type { ComponentProps, ReactElement } from "react";
 import Image from "next/image";
 import { motion } from "motion/react";
-import Hyperspeed from "./Hyperspeed";
 
 type SocialLink = {
   href: string;
@@ -138,52 +137,6 @@ export const Hero = () => {
           Australia.
         </motion.p>
       </section>
-
-      <aside className="relative hidden md:flex w-full items-center justify-center overflow-hidden rounded-[32px] border border-white/20 md:max-w-sm">
-        <div className="w-full h-73 overflow-hidden">
-          <div className="w-full h-full -translate-y-[25%]">
-            <Hyperspeed
-              effectOptions={{
-                onSpeedUp: () => {},
-                onSlowDown: () => {},
-                distortion: "turbulentDistortion",
-                length: 400,
-                roadWidth: 10,
-                islandWidth: 2,
-                lanesPerRoad: 4,
-                fov: 90,
-                fovSpeedUp: 150,
-                speedUp: 2,
-                carLightsFade: 0.4,
-                totalSideLightSticks: 20,
-                lightPairsPerRoadWay: 40,
-                shoulderLinesWidthPercentage: 0.05,
-                brokenLinesWidthPercentage: 0.1,
-                brokenLinesLengthPercentage: 0.5,
-                lightStickWidth: [0.12, 0.5],
-                lightStickHeight: [1.3, 1.7],
-                movingAwaySpeed: [60, 80],
-                movingCloserSpeed: [-120, -160],
-                carLightsLength: [400 * 0.03, 400 * 0.2],
-                carLightsRadius: [0.05, 0.14],
-                carWidthPercentage: [0.3, 0.5],
-                carShiftX: [-0.8, 0.8],
-                carFloorSeparation: [0, 5],
-                colors: {
-                  roadColor: 0x000000,
-                  islandColor: 0x000000,
-                  background: 0x000000,
-                  shoulderLines: 0xffffff,
-                  brokenLines: 0xffffff,
-                  leftCars: [0x418a1f, 0xffffff, 0xbfff00],
-                  rightCars: [0xffffff, 0xff4444, 0x418a1f],
-                  sticks: 0xffffff, // white
-                },
-              }}
-            />
-          </div>
-        </div>
-      </aside>
     </div>
   );
 };
