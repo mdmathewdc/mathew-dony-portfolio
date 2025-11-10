@@ -1,5 +1,5 @@
 import { Hero } from "./components/Hero";
-import { Blog } from "./components/Blog";
+import { Blog } from "./components/Articles";
 
 export default function Home() {
   return (
