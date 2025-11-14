@@ -1,6 +1,7 @@
 "use client";
 
 import { motion } from "motion/react";
+import Link from "next/link";
 
 interface BlogPostLayoutProps {
   title: string;
@@ -25,7 +26,7 @@ export const BlogPostLayout = ({
 }: BlogPostLayoutProps) => {
   return (
     <main className="flex min-h-screen flex-col items-center justify-start bg-[#0a0a0a] px-5 py-14 text-white sm:px-10">
-      <div className="mx-auto flex w-full max-w-4xl flex-col gap-8">
+      <div className="mx-auto flex w-full max-w-4xl flex-col gap-6">
         <motion.header
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
@@ -38,6 +39,12 @@ export const BlogPostLayout = ({
           >
             {title}
           </h1>
+          <p className="text-sm text-zinc-400">
+            by{" "}
+            <Link href="/" className="hover:text-white hover:underline transition">
+              Mathew Dony
+            </Link>
+          </p>
           <div className="flex flex-wrap items-center gap-3 text-sm text-zinc-400">
             <time dateTime={date}>{formatDate(date)}</time>
             <span>•</span>
