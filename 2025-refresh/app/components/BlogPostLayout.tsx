@@ -27,34 +27,8 @@ export const BlogPostLayout = ({
   children,
 }: BlogPostLayoutProps) => {
   return (
-    <main className="flex min-h-screen flex-col items-center justify-start bg-[#0a0a0a] px-5 py-12 text-white sm:px-10">
+    <main className="flex min-h-screen flex-col items-center justify-start bg-[#0a0a0a] px-5 py-14 text-white sm:px-10">
       <div className="mx-auto flex w-full max-w-4xl flex-col gap-8">
-        <motion.div
-          initial={{ opacity: 0, x: -12 }}
-          animate={{ opacity: 1, x: 0 }}
-          transition={{ duration: 0.6, delay: 0.2, ease: "easeOut" }}
-          className="flex justify-start"
-        >
-          <Link
-            href="/blog"
-            className="text-sm text-zinc-400 hover:text-white transition inline-flex items-center gap-1"
-            style={{ fontFamily: "var(--font-satoshi-regular)" }}
-          >
-            <svg
-              className="w-5 h-5 pt-0.5"
-              viewBox="0 0 24 24"
-              fill="none"
-              stroke="currentColor"
-              strokeWidth={2}
-              strokeLinecap="round"
-              strokeLinejoin="round"
-            >
-              <path d="M19 12H5M5 12L11 6M5 12L11 18" />
-            </svg>
-            Back to Blog
-          </Link>
-        </motion.div>
-
         <motion.header
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
@@ -62,7 +36,7 @@ export const BlogPostLayout = ({
           className="flex flex-col gap-4 border-b border-zinc-800 pb-8"
         >
           <h1
-            className="text-4xl md:text-5xl font-medium text-white"
+            className="text-4xl md:text-4xl font-medium"
             style={{ fontFamily: "var(--font-satoshi-regular)" }}
           >
             {title}
@@ -89,34 +63,7 @@ export const BlogPostLayout = ({
         >
           {children}
         </motion.article>
-
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6, delay: 0.8, ease: "easeOut" }}
-          className="flex justify-start border-t border-zinc-800 pt-8"
-        >
-          <Link
-            href="/blog"
-            className="text-sm text-zinc-400 hover:text-white transition inline-flex items-center gap-1"
-            style={{ fontFamily: "var(--font-satoshi-regular)" }}
-          >
-            <svg
-              className="w-5 h-5 pt-0.5"
-              viewBox="0 0 24 24"
-              fill="none"
-              stroke="currentColor"
-              strokeWidth={2}
-              strokeLinecap="round"
-              strokeLinejoin="round"
-            >
-              <path d="M19 12H5M5 12L11 6M5 12L11 18" />
-            </svg>
-            Back to Blog
-          </Link>
-        </motion.div>
       </div>
     </main>
   );
 };
-

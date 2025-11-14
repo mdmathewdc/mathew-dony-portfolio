@@ -13,7 +13,7 @@ export const MDXComponents = {
   ),
   h2: ({ children, ...props }: React.HTMLAttributes<HTMLHeadingElement>) => (
     <h2
-      className="text-3xl font-medium text-white mb-4 mt-8"
+      className="text-2xl font-medium text-white mb-4 mt-8"
       style={{ fontFamily: "var(--font-satoshi-regular)" }}
       {...props}
     >
@@ -40,7 +40,7 @@ export const MDXComponents = {
   ),
   p: ({ children, ...props }: React.HTMLAttributes<HTMLParagraphElement>) => (
     <p
-      className="text-base text-zinc-300 mb-4 leading-relaxed"
+      className="text-md text-zinc-300 mb-4 leading-relaxed"
       style={{ fontFamily: "var(--font-satoshi-light)" }}
       {...props}
     >
