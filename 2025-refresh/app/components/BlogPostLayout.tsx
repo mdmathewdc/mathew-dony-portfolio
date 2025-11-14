@@ -1,12 +1,10 @@
 "use client";
 
-import Link from "next/link";
 import { motion } from "motion/react";
 
 interface BlogPostLayoutProps {
   title: string;
   date: string;
-  category: string;
   views: number;
   children: React.ReactNode;
 }
@@ -22,7 +20,6 @@ const formatDate = (date: string): string => {
 export const BlogPostLayout = ({
   title,
   date,
-  category,
   views,
   children,
 }: BlogPostLayoutProps) => {
@@ -36,19 +33,12 @@ export const BlogPostLayout = ({
           className="flex flex-col gap-4 border-b border-zinc-800 pb-8"
         >
           <h1
-            className="text-4xl md:text-4xl font-medium"
+            className="text-3xl"
             style={{ fontFamily: "var(--font-satoshi-regular)" }}
           >
             {title}
           </h1>
           <div className="flex flex-wrap items-center gap-3 text-sm text-zinc-400">
-            <span
-              className="px-3 py-1 bg-zinc-900/50 rounded-full border border-zinc-800"
-              style={{ fontFamily: "var(--font-instrument-serif)" }}
-            >
-              {category}
-            </span>
-            <span>•</span>
             <time dateTime={date}>{formatDate(date)}</time>
             <span>•</span>
             <span>{views.toLocaleString()} views</span>

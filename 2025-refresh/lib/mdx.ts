@@ -9,7 +9,6 @@ export interface BlogPost {
   frontmatter: {
     title: string;
     date: string;
-    category: string;
     views: number;
     caption: string;
   };
@@ -27,7 +26,6 @@ export async function getBlogPost(slug: string): Promise<BlogPost | null> {
       frontmatter: {
         title: data.title,
         date: data.date,
-        category: data.category,
         views: data.views,
         caption: data.caption,
       },
@@ -60,7 +58,6 @@ export function getAllBlogPosts(): BlogPost[] {
           frontmatter: {
             title: data.title,
             date: data.date,
-            category: data.category,
             views: data.views,
             caption: data.caption,
           },

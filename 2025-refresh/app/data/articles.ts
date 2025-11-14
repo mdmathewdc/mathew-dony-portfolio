@@ -4,7 +4,6 @@ export interface Article {
   views: number;
   publishedDate: Date;
   slug: string;
-  category: string;
 }
 
 export const articles: Article[] = [
@@ -15,6 +14,5 @@ export const articles: Article[] = [
     views: 1247,
     publishedDate: new Date("2024-01-15"),
     slug: "building-scalable-react-applications",
-    category: "React",
   },
 ];

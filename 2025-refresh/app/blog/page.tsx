@@ -95,41 +95,6 @@ export default function BlogPage() {
               ))}
             </div>
           </div>
-          <div className="w-full md:w-1/3 order-2">
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6, delay: 0.2, ease: "easeOut" }}
-              className="flex flex-col gap-4"
-            >
-              <h3
-                className="text-lg font-medium text-white"
-                style={{
-                  fontFamily: "var(--font-satoshi-light)",
-                }}
-              >
-                Browse by Category
-              </h3>
-              <div className="flex flex-wrap gap-2">
-                {categories.map((category, index) => (
-                  <motion.button
-                    key={category}
-                    initial={{ opacity: 0, scale: 0.9 }}
-                    animate={{ opacity: 1, scale: 1 }}
-                    transition={{
-                      duration: 0.3,
-                      delay: 0.3 + index * 0.05,
-                      ease: "easeOut",
-                    }}
-                    className="px-4 py-1.5 text-sm text-zinc-400 bg-zinc-900/50 cursor-pointer hover:bg-zinc-800 hover:text-white rounded-full border border-zinc-800 hover:border-zinc-700 transition-all"
-                    style={{ fontFamily: "var(--font-instrument-serif)" }}
-                  >
-                    {category}
-                  </motion.button>
-                ))}
-              </div>
-            </motion.div>
-          </div>
         </div>
       </div>
     </main>
