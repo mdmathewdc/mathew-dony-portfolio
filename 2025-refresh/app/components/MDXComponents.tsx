@@ -42,7 +42,7 @@ export const MDXComponents = {
     return (
       <h2
         id={id}
-        className="text-2xl font-medium text-white mb-4 mt-8 group scroll-mt-20 relative"
+        className="text-2xl font-medium text-white mb-4 mt-10 group scroll-mt-20 relative"
         style={{ fontFamily: "var(--font-satoshi-regular)" }}
         {...props}
       >
