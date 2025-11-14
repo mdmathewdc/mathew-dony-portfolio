@@ -83,7 +83,7 @@ export default function BlogPage() {
                     {article.caption}
                   </p>
                   <Link
-                    href="#"
+                    href={`/blog/${article.slug}`}
                     className="text-xs text-zinc-400 hover:text-white hover:underline transition w-fit inline-flex items-center gap-1 group"
                     style={{ fontFamily: "var(--font-satoshi-regular)" }}
                   >

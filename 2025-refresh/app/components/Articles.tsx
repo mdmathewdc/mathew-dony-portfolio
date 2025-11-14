@@ -55,7 +55,7 @@ export const Articles = () => {
             </div>
             <p className="text-sm text-zinc-400 flex-1">{article.caption}</p>
             <Link
-              href="#"
+              href={`/blog/${article.slug}`}
               className="text-xs text-zinc-400 hover:text-white hover:underline transition w-fit inline-flex items-center gap-1 group"
               style={{ fontFamily: "var(--font-satoshi-regular)" }}
             >

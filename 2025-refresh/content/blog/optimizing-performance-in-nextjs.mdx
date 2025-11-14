@@ -1,0 +1,393 @@
+---
+title: "Optimizing Performance in Next.js"
+date: "2024-04-05"
+category: "Node.js"
+views: 1834
+caption: "Learn how to optimize your Next.js applications for better performance and user experience."
+---
+
+Performance isn't just a feature—it's a fundamental aspect of user experience. Slow applications frustrate users and hurt your business metrics. Let's explore practical strategies for optimizing Next.js applications.
+
+## Understanding Next.js Rendering Modes
+
+Next.js offers multiple rendering strategies. Choosing the right one is crucial:
+
+### Static Site Generation (SSG)
+
+Best for content that doesn't change frequently:
+
+```jsx
+// This page is pre-rendered at build time
+export async function getStaticProps() {
+  const posts = await fetchPosts();
+  
+  return {
+    props: { posts },
+    revalidate: 3600, // Regenerate every hour
+  };
+}
+
+export default function Blog({ posts }) {
+  return <PostList posts={posts} />;
+}
+```
+
+**Benefits:**
+- Fastest possible load times
+- Great for SEO
+- Reduced server load
+
+### Server-Side Rendering (SSR)
+
+For personalized or frequently changing content:
+
+```jsx
+export async function getServerSideProps(context) {
+  const userId = context.req.cookies.userId;
+  const recommendations = await fetchRecommendations(userId);
+  
+  return {
+    props: { recommendations },
+  };
+}
+```
+
+**Use SSR when:**
+- Content must be up-to-date
+- Pages are personalized per user
+- You need request-time data
+
+### Incremental Static Regeneration (ISR)
+
+The best of both worlds:
+
+```jsx
+export async function getStaticProps() {
+  const data = await fetchData();
+  
+  return {
+    props: { data },
+    revalidate: 60, // Regenerate at most once per minute
+  };
+}
+```
+
+ISR serves cached pages while regenerating stale content in the background.
+
+## Image Optimization
+
+Images often account for most of a page's weight. Next.js Image component handles optimization automatically:
+
+```jsx
+import Image from 'next/image';
+
+function ProductCard({ product }) {
+  return (
+    <div>
+      <Image
+        src={product.imageUrl}
+        alt={product.name}
+        width={400}
+        height={300}
+        placeholder="blur"
+        blurDataURL={product.blurDataUrl}
+        loading="lazy"
+      />
+    </div>
+  );
+}
+```
+
+**Image optimization features:**
+- Automatic format selection (WebP, AVIF)
+- Responsive images
+- Lazy loading by default
+- Blur placeholders
+
+### Remote Images
+
+For external images, configure domains in `next.config.js`:
+
+```javascript
+module.exports = {
+  images: {
+    remotePatterns: [
+      {
+        protocol: 'https',
+        hostname: 'cdn.example.com',
+        pathname: '/images/**',
+      },
+    ],
+  },
+};
+```
+
+## Code Splitting and Bundle Optimization
+
+### Dynamic Imports
+
+Load components only when needed:
+
+```jsx
+import dynamic from 'next/dynamic';
+
+// This component is loaded only when rendered
+const HeavyChart = dynamic(() => import('@/components/HeavyChart'), {
+  loading: () => <ChartSkeleton />,
+  ssr: false, // Disable SSR for client-only components
+});
+
+function Dashboard() {
+  const [showChart, setShowChart] = useState(false);
+  
+  return (
+    <div>
+      <button onClick={() => setShowChart(true)}>Show Chart</button>
+      {showChart && <HeavyChart />}
+    </div>
+  );
+}
+```
+
+### Analyze Your Bundle
+
+Use the bundle analyzer to identify large dependencies:
+
+```bash
+npm install @next/bundle-analyzer
+```
+
+```javascript
+// next.config.js
+const withBundleAnalyzer = require('@next/bundle-analyzer')({
+  enabled: process.env.ANALYZE === 'true',
+});
+
+module.exports = withBundleAnalyzer({
+  // Your config
+});
+```
+
+Run with: `ANALYZE=true npm run build`
+
+## Font Optimization
+
+Next.js 13+ includes automatic font optimization with `next/font`:
+
+```jsx
+import { Inter, Roboto_Mono } from 'next/font/google';
+
+const inter = Inter({
+  subsets: ['latin'],
+  display: 'swap',
+  variable: '--font-inter',
+});
+
+const robotoMono = Roboto_Mono({
+  subsets: ['latin'],
+  display: 'swap',
+  variable: '--font-roboto-mono',
+});
+
+export default function RootLayout({ children }) {
+  return (
+    <html lang="en" className={`${inter.variable} ${robotoMono.variable}`}>
+      <body>{children}</body>
+    </html>
+  );
+}
+```
+
+**Benefits:**
+- No layout shift
+- Self-hosted fonts (no external requests)
+- Optimal loading strategy
+
+## API Routes Optimization
+
+### Edge API Routes
+
+For low-latency responses, use Edge Runtime:
+
+```typescript
+// app/api/hello/route.ts
+export const runtime = 'edge';
+
+export async function GET(request: Request) {
+  return new Response('Hello from the edge!', {
+    headers: {
+      'content-type': 'text/plain',
+      'cache-control': 'public, max-age=3600',
+    },
+  });
+}
+```
+
+Edge routes run globally, closer to your users.
+
+### Database Connection Pooling
+
+Use connection pooling to avoid overwhelming your database:
+
+```typescript
+import { PrismaClient } from '@prisma/client';
+
+// Singleton pattern for Prisma client
+const globalForPrisma = global as unknown as { prisma: PrismaClient };
+
+export const prisma = globalForPrisma.prisma || new PrismaClient();
+
+if (process.env.NODE_ENV !== 'production') {
+  globalForPrisma.prisma = prisma;
+}
+```
+
+## Caching Strategies
+
+Implement aggressive caching:
+
+```jsx
+// Static data that rarely changes
+export const revalidate = 3600; // 1 hour
+
+// Per-request caching
+export async function getPost(id: string) {
+  const post = await fetch(`https://api.example.com/posts/${id}`, {
+    next: { revalidate: 60 }, // Cache for 60 seconds
+  });
+  return post.json();
+}
+
+// No caching for dynamic data
+const user = await fetch(`https://api.example.com/user`, {
+  cache: 'no-store',
+});
+```
+
+## React Performance Patterns
+
+### Memoization
+
+Prevent unnecessary re-renders:
+
+```jsx
+import { memo, useMemo, useCallback } from 'react';
+
+const ExpensiveComponent = memo(({ data, onUpdate }) => {
+  // Only re-renders if data or onUpdate changes
+  return <div>{/* Complex rendering */}</div>;
+});
+
+function Parent() {
+  const [count, setCount] = useState(0);
+  
+  // Memoize expensive computations
+  const processedData = useMemo(() => {
+    return heavyComputation(data);
+  }, [data]);
+  
+  // Memoize callbacks to prevent child re-renders
+  const handleUpdate = useCallback(() => {
+    updateData();
+  }, []);
+  
+  return <ExpensiveComponent data={processedData} onUpdate={handleUpdate} />;
+}
+```
+
+### Lazy Loading Below the Fold
+
+Load content visible in viewport first:
+
+```jsx
+import { useInView } from 'react-intersection-observer';
+
+function LazySection() {
+  const { ref, inView } = useInView({
+    triggerOnce: true,
+    rootMargin: '200px', // Load before it enters viewport
+  });
+  
+  return (
+    <div ref={ref}>
+      {inView ? <HeavyContent /> : <Placeholder />}
+    </div>
+  );
+}
+```
+
+## Monitoring Performance
+
+### Web Vitals
+
+Track Core Web Vitals in production:
+
+```jsx
+// app/_app.js
+export function reportWebVitals(metric) {
+  if (metric.label === 'web-vital') {
+    console.log(metric); // Send to analytics
+    
+    // Example: send to Google Analytics
+    window.gtag('event', metric.name, {
+      value: Math.round(metric.value),
+      event_label: metric.id,
+      non_interaction: true,
+    });
+  }
+}
+```
+
+### Real User Monitoring
+
+Use tools like:
+- **Vercel Analytics**: Built-in for Vercel deployments
+- **Sentry**: Error tracking and performance monitoring
+- **New Relic**: Comprehensive APM
+
+## Production Checklist
+
+Before deploying, ensure you've:
+
+- [ ] Enabled Image Optimization
+- [ ] Implemented proper caching strategies
+- [ ] Used appropriate rendering modes
+- [ ] Optimized fonts with `next/font`
+- [ ] Split code with dynamic imports
+- [ ] Analyzed and optimized bundle size
+- [ ] Set up performance monitoring
+- [ ] Configured proper cache headers
+- [ ] Optimized database queries
+- [ ] Enabled compression (gzip/brotli)
+
+## Performance Budget
+
+Set performance budgets to prevent regression:
+
+```javascript
+// next.config.js
+module.exports = {
+  webpack: (config, { isServer }) => {
+    if (!isServer) {
+      config.performance = {
+        maxAssetSize: 512000,      // 500 KB
+        maxEntrypointSize: 512000, // 500 KB
+      };
+    }
+    return config;
+  },
+};
+```
+
+## Conclusion
+
+Performance optimization is an ongoing process, not a one-time task. Measure, optimize, and monitor continuously. Remember:
+
+> Users don't care about your tech stack. They care about fast, smooth experiences.
+
+Start with the basics—proper rendering modes, image optimization, and caching—then iterate based on real-world metrics.
+
+---
+
+*What performance optimizations have made the biggest impact for you? Share your experiences!*
+
