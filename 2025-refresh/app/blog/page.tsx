@@ -67,12 +67,14 @@ export default function BlogPage() {
                   className="flex flex-col gap-4"
                 >
                   <div className="flex flex-col gap-2">
-                    <h2
-                      className="text-lg font-medium text-white"
-                      style={{ fontFamily: "var(--font-satoshi-regular)" }}
-                    >
-                      {article.title}
-                    </h2>
+                    <Link href={`/blog/${article.slug}`}>
+                      <h2
+                        className="text-lg font-medium text-white hover:underline transition cursor-pointer"
+                        style={{ fontFamily: "var(--font-satoshi-regular)" }}
+                      >
+                        {article.title}
+                      </h2>
+                    </Link>
                     <div className="flex flex-wrap items-center gap-2 text-xs text-zinc-500">
                       <span>{formatDate(article.publishedDate)}</span>
                       <span>•</span>

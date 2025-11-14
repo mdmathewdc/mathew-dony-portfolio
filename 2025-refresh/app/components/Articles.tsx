@@ -43,12 +43,14 @@ export const Articles = () => {
             className="flex flex-col gap-4"
           >
             <div className="flex flex-col md:flex-row md:items-center md:justify-between gap-2">
-              <h3
-                className="text-lg font-medium text-white"
-                style={{ fontFamily: "var(--font-satoshi-regular)" }}
-              >
-                {article.title}
-              </h3>
+              <Link href={`/blog/${article.slug}`}>
+                <h3
+                  className="text-lg font-medium text-white hover:underline transition cursor-pointer"
+                  style={{ fontFamily: "var(--font-satoshi-regular)" }}
+                >
+                  {article.title}
+                </h3>
+              </Link>
               <span className="text-xs text-zinc-500 whitespace-nowrap">
                 {article.views.toLocaleString()} views
               </span>
