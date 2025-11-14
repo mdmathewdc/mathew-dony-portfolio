@@ -25,7 +25,7 @@ export const BlogPostLayout = ({
   children,
 }: BlogPostLayoutProps) => {
   return (
-    <main className="flex min-h-screen flex-col items-center justify-start bg-[#0a0a0a] px-5 py-14 text-white sm:px-10">
+    <main className="flex min-h-screen flex-col items-center justify-start bg-[#0a0a0a] px-5 py-12 text-white sm:px-10">
       <div className="mx-auto flex w-full max-w-4xl flex-col">
         <motion.header
           initial={{ opacity: 0, y: 20 }}
