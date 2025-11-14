@@ -12,7 +12,7 @@ export const Articles = () => {
       <motion.div
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.6, delay: 0.6, ease: "easeOut" }}
+        transition={{ duration: 0.5, delay: 0.6, ease: "easeOut" }}
         className="flex flex-col gap-2"
       >
         <div className="relative inline-block">
@@ -39,7 +39,7 @@ export const Articles = () => {
             key={index}
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6, delay: 0.8 + index * 0.1, ease: "easeOut" }}
+            transition={{ duration: 0.5, delay: 0.8 + index * 0.1, ease: "easeOut" }}
             className="flex flex-col gap-4"
           >
             <div className="flex flex-col md:flex-row md:items-center md:justify-between gap-2">
@@ -70,7 +70,7 @@ export const Articles = () => {
       <motion.div
         initial={{ opacity: 0, x: -8 }}
         animate={{ opacity: 1, x: 0 }}
-        transition={{ duration: 0.6, delay: 1.6, ease: "easeOut" }}
+        transition={{ duration: 0.5, delay: 1.6, ease: "easeOut" }}
         className="flex justify-start pt-4"
       >
         <Link

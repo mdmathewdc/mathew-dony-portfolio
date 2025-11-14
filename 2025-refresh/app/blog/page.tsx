@@ -29,7 +29,7 @@ export default function BlogPage() {
         <motion.div
           initial={{ opacity: 0, x: 8 }}
           animate={{ opacity: 1, x: 0 }}
-          transition={{ duration: 0.6, delay: 0.8, ease: "easeOut" }}
+          transition={{ duration: 0.5, delay: 0.8, ease: "easeOut" }}
           className="flex justify-start pb-4"
         >
           <Link
@@ -60,7 +60,7 @@ export default function BlogPage() {
                   initial={{ opacity: 0, y: 20 }}
                   animate={{ opacity: 1, y: 0 }}
                   transition={{
-                    duration: 0.6,
+                    duration: 0.5,
                     delay: 0.4 + index * 0.1,
                     ease: "easeOut",
                   }}
