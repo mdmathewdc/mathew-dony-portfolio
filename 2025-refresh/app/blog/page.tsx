@@ -27,7 +27,7 @@ export default function BlogPage() {
     <main className="flex min-h-80vh flex-col items-center justify-center bg-[#0a0a0a] px-5 py-12 text-white sm:px-10">
       <div className="mx-auto flex w-full max-w-6xl flex-col gap-4">
         <motion.div
-          initial={{ opacity: 0, x: 12 }}
+          initial={{ opacity: 0, x: 8 }}
           animate={{ opacity: 1, x: 0 }}
           transition={{ duration: 0.6, delay: 0.8, ease: "easeOut" }}
           className="flex justify-start pb-4"

@@ -68,7 +68,7 @@ export const Articles = () => {
       </div>
 
       <motion.div
-        initial={{ opacity: 0, x: -12 }}
+        initial={{ opacity: 0, x: -8 }}
         animate={{ opacity: 1, x: 0 }}
         transition={{ duration: 0.6, delay: 1.6, ease: "easeOut" }}
         className="flex justify-start pt-4"
