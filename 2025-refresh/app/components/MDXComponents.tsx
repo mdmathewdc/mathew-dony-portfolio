@@ -1,6 +1,30 @@
 import React from "react";
 import Link from "next/link";
 
+// Utility function to generate slug from heading text
+const slugify = (text: string): string => {
+  return text
+    .toString()
+    .toLowerCase()
+    .trim()
+    .replace(/\s+/g, "-")
+    .replace(/[^\w\-]+/g, "")
+    .replace(/\-\-+/g, "-");
+};
+
+// Extract text content from React children
+const getTextContent = (children: React.ReactNode): string => {
+  if (typeof children === "string") return children;
+  if (Array.isArray(children)) return children.map(getTextContent).join("");
+  if (React.isValidElement(children)) {
+    const props = children.props as { children?: React.ReactNode };
+    if (props.children) {
+      return getTextContent(props.children);
+    }
+  }
+  return "";
+};
+
 export const MDXComponents = {
   h1: ({ children, ...props }: React.HTMLAttributes<HTMLHeadingElement>) => (
     <h1
@@ -11,18 +35,29 @@ export const MDXComponents = {
       {children}
     </h1>
   ),
-  h2: ({ children, ...props }: React.HTMLAttributes<HTMLHeadingElement>) => (
-    <h2
-      className="text-2xl font-medium text-white mb-4 mt-8"
-      style={{ fontFamily: "var(--font-satoshi-regular)" }}
-      {...props}
-    >
-      {children}
-    </h2>
-  ),
+  h2: ({ children, ...props }: React.HTMLAttributes<HTMLHeadingElement>) => {
+    const textContent = getTextContent(children);
+    const id = slugify(textContent);
+    
+    return (
+      <h2
+        id={id}
+        className="text-2xl font-medium text-white mb-4 mt-8 group scroll-mt-20 relative"
+        style={{ fontFamily: "var(--font-satoshi-regular)" }}
+        {...props}
+      >
+        <a href={`#${id}`} className="no-underline">
+          <span className="absolute -left-5 top-1/2 -translate-y-1/2 opacity-0 group-hover:opacity-100 transition-opacity text-zinc-500 text-xl">
+            #
+          </span>
+          {children}
+        </a>
+      </h2>
+    );
+  },
   h3: ({ children, ...props }: React.HTMLAttributes<HTMLHeadingElement>) => (
     <h3
-      className="text-2xl font-medium text-white mb-3 mt-6"
+      className="text-xl font-medium text-white mb-3 mt-6"
       style={{ fontFamily: "var(--font-satoshi-regular)" }}
       {...props}
     >

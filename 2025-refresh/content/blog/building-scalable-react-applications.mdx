@@ -13,8 +13,6 @@ Building applications that scale isn't just about handling more users—it's abo
 
 As your application grows, the way you structure components becomes critical. A common mistake is creating components that are too large or too tightly coupled. Let's look at a better approach.
 
-### Composition Over Configuration
-
 Instead of creating monolithic components with dozens of props, break them into smaller, composable pieces:
 
 ```jsx
@@ -46,8 +44,6 @@ This approach provides more flexibility and makes the component easier to extend
 
 State management is often where complexity spirals out of control. Here are some principles to keep in mind:
 
-### Colocate State
-
 Keep state as close to where it's used as possible. Not everything needs to be in global state:
 
 ```jsx
@@ -61,8 +57,6 @@ Keep state as close to where it's used as possible. Not everything needs to be i
 // - UI toggles
 // - Local filters
 ```
-
-### Server State vs Client State
 
 Distinguish between server state (data fetched from APIs) and client state (UI-specific data). Tools like React Query or SWR excel at managing server state:
 
