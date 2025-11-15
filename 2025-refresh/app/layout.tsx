@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import localFont from "next/font/local";
 import "./globals.css";
+import { Analytics } from "@vercel/analytics/next"
 
 const satoshiLight = localFont({
   src: "../fonts/Satoshi-Light.woff2",
@@ -52,6 +53,7 @@ export default function RootLayout({
         className={`${satoshiLight.variable} ${satoshiRegular.variable} ${instrumentSerif.variable} antialiased`}
       >
         {children}
+        <Analytics />
       </body>
     </html>
   );
