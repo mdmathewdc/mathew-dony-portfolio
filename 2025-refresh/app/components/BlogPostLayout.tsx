@@ -52,7 +52,7 @@ export const BlogPostLayout = ({
             </Link>
           </p>
           <div className="flex flex-wrap items-center gap-3 text-sm text-zinc-400">
-            <time dateTime={date}>{formatDate(date)}</time>
+            <time dateTime={date} className="mr-[9px]">{formatDate(date)}</time>
             <span>•</span>
             <LikeButton slug={slug} initialLikes={initialLikes} />
           </div>
