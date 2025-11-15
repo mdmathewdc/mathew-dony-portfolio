@@ -83,13 +83,14 @@ const HeartButton = React.forwardRef<HTMLDivElement, HeartButtonProps>(
         
         osc.type = "sine";
         osc.frequency.setValueAtTime(300, now);
-        osc.frequency.exponentialRampToValueAtTime(80, now + 0.12);
+        osc.frequency.exponentialRampToValueAtTime(80, now + 0.1);
         
         gain.gain.setValueAtTime(0.12, now);
-        gain.gain.exponentialRampToValueAtTime(0.001, now + 0.12);
+        gain.gain.exponentialRampToValueAtTime(0.01, now + 0.08);
+        gain.gain.linearRampToValueAtTime(0, now + 0.12);
         
         osc.start(now);
-        osc.stop(now + 0.15);
+        osc.stop(now + 0.13);
       } else {
         // Regular heartbeat sound
         // Pitch increases with each click (1.0 to 1.5x)
@@ -117,7 +118,8 @@ const HeartButton = React.forwardRef<HTMLDivElement, HeartButtonProps>(
           // Volume envelope for thump effect
           gainNode.gain.setValueAtTime(0.001, startTime);
           gainNode.gain.linearRampToValueAtTime(0.1, startTime + 0.01);
-          gainNode.gain.exponentialRampToValueAtTime(0.001, startTime + 0.08);
+          gainNode.gain.exponentialRampToValueAtTime(0.01, startTime + 0.06);
+          gainNode.gain.linearRampToValueAtTime(0, startTime + 0.09);
           
           oscillator.start(startTime);
           oscillator.stop(startTime + 0.1);
