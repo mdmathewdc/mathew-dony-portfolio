@@ -47,6 +47,7 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
     <BlogPostLayout
       title={post.frontmatter.title}
       date={post.frontmatter.date}
+      slug={slug}
     >
       <MDXRemote
         source={post.content}

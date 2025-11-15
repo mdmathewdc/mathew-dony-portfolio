@@ -3,6 +3,7 @@
 import Link from "next/link";
 import { motion } from "motion/react";
 import { articles } from "../data/articles";
+import { ClientLikeCount } from "./ClientLikeCount";
 
 const sampleArticles = articles.slice(0, 4);
 
@@ -56,7 +57,7 @@ export const Articles = () => {
                 </h3>
               </Link>
               <span className="text-xs text-zinc-500 whitespace-nowrap">
-                6969 likes
+                <ClientLikeCount slug={article.slug} />
               </span>
             </div>
             <p className="text-sm text-zinc-400 flex-1">{article.caption}</p>

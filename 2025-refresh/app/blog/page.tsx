@@ -3,6 +3,7 @@
 import Link from "next/link";
 import { motion } from "motion/react";
 import { articles } from "../data/articles";
+import { ClientLikeCount } from "../components/ClientLikeCount";
 
 const formatDate = (date: Date): string => {
   return new Intl.DateTimeFormat("en-US", {
@@ -78,7 +79,7 @@ export default function BlogPage() {
                     <div className="flex flex-wrap items-center gap-2 text-xs text-zinc-500">
                       <span>{formatDate(article.publishedDate)}</span>
                       <span>•</span>
-                      <span>6969 likes</span>
+                      <span><ClientLikeCount slug={article.slug} /></span>
                     </div>
                   </div>
                   <p className="text-sm text-zinc-400 flex-1">
