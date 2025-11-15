@@ -115,12 +115,12 @@ const HeartButton = React.forwardRef<HTMLDivElement, HeartButtonProps>(
           );
           
           // Volume envelope for thump effect
-          gainNode.gain.setValueAtTime(0, startTime);
+          gainNode.gain.setValueAtTime(0.001, startTime);
           gainNode.gain.linearRampToValueAtTime(0.1, startTime + 0.01);
-          gainNode.gain.exponentialRampToValueAtTime(0.01, startTime + 0.08);
+          gainNode.gain.exponentialRampToValueAtTime(0.001, startTime + 0.08);
           
           oscillator.start(startTime);
-          oscillator.stop(startTime + 0.08);
+          oscillator.stop(startTime + 0.1);
         };
         
         // First beat (lub) - lower frequency
