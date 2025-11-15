@@ -3,7 +3,7 @@
 import * as React from "react";
 import { Heart } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
-import { Button, type ButtonProps } from "@/app/components/ui/button";
+import { Button } from "@/app/components/ui/button";
 import { cn } from "@/lib/utils";
 
 type HeartButtonProps = {
@@ -54,6 +54,19 @@ const HeartButton = React.forwardRef<HTMLDivElement, HeartButtonProps>(
 
     const [clickCount, setClickCount] = React.useState(initialCount);
 
+    // Generate random spectrometer-like animation keyframes once on mount
+    const [randomFillKeyframes] = React.useState(() => {
+      const frames = [];
+      for (let i = 0; i < 15; i++) {
+        // Random fill between 5% and 50% for organic feel
+        const randomFill = 100 - (Math.random() * 45 + 5);
+        frames.push(`inset(${randomFill}% 0 0 0)`);
+      }
+      // End at empty
+      frames.push("inset(100% 0 0 0)");
+      return frames;
+    });
+
     const fillPercentage = Math.min(100, (clickCount / maxClicks) * 100);
     const isActive = clickCount > 0;
     const isCompleted = clickCount >= maxClicks;
@@ -100,24 +113,18 @@ const HeartButton = React.forwardRef<HTMLDivElement, HeartButtonProps>(
               >
                 <motion.div
                   animate={{
-                    clipPath: [
-                      "inset(100% 0 0 0)",
-                      "inset(75% 0 0 0)",
-                      "inset(50% 0 0 0)",
-                      "inset(75% 0 0 0)",
-                      "inset(100% 0 0 0)",
-                    ],
+                    clipPath: randomFillKeyframes,
                   }}
                   transition={{
-                    duration: 4,
+                    duration: 3,
                     repeat: Infinity,
-                    repeatDelay: 4,
-                    ease: "anticipate",
+                    repeatDelay: 1,
+                    ease: "linear",
                   }}
                   className="absolute inset-0"
                 >
                   <Heart
-                    className="text-red-500 fill-red-500"
+                    className="text-red-500 fill-red-500 opacity-80"
                     size={24}
                     aria-hidden="true"
                   />
