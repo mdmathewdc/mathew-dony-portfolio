@@ -78,7 +78,7 @@ const HeartButton = React.forwardRef<HTMLDivElement, HeartButtonProps>(
           onClick={handleClick}
           aria-pressed={isActive}
           aria-label={isCompleted ? "Maximum hearts given" : "Give heart"}
-          className="relative"
+          className="relative cursor-pointer hover:bg-zinc-800/50 transition-colors"
           {...restProps}
         >
           <motion.div
