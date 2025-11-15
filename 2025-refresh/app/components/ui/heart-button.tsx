@@ -83,13 +83,13 @@ const HeartButton = React.forwardRef<HTMLDivElement, HeartButtonProps>(
         
         osc.type = "sine";
         osc.frequency.setValueAtTime(300, now);
-        osc.frequency.exponentialRampToValueAtTime(80, now + 0.1);
+        osc.frequency.exponentialRampToValueAtTime(80, now + 0.12);
         
         gain.gain.setValueAtTime(0.12, now);
-        gain.gain.exponentialRampToValueAtTime(0.01, now + 0.1);
+        gain.gain.exponentialRampToValueAtTime(0.001, now + 0.12);
         
         osc.start(now);
-        osc.stop(now + 0.1);
+        osc.stop(now + 0.15);
       } else {
         // Regular heartbeat sound
         // Pitch increases with each click (1.0 to 1.5x)
