@@ -9,7 +9,7 @@ interface LikeButtonProps {
   initialLikes: number;
 }
 
-const BATCH_DELAY = 500; // milliseconds
+const BATCH_DELAY = 1000; // milliseconds
 const MAX_CLICKS = 6;
 
 export const LikeButton = ({ slug, initialLikes }: LikeButtonProps) => {

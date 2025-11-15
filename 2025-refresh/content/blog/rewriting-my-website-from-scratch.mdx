@@ -28,7 +28,7 @@ public class AuthService {
 ```
 
 - **Tracking post likes**: This was the hardest part to implement! If you look at the HTML payload for this blog page, you can see that the like count is part of the HTML because it's pre-rendered on the server during build time. I used Redis to store the like counts along with optimistic updates with batching - when you click the like button multiple times quickly,
-  it waits 500ms before sending all those likes to the server in a single request.
+  it waits 1s before sending all those likes to the server in a single request.
   The pages use ISR (Incremental Static Regeneration) with revalidation intervals, so
   the like counts stay relatively fresh while still being statically generated at build time.
 
