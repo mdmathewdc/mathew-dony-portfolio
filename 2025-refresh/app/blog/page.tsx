@@ -13,16 +13,6 @@ const formatDate = (date: Date): string => {
   }).format(date);
 };
 
-const categories = [
-  "React",
-  "Career",
-  "General",
-  "CSS",
-  "Java",
-  "Node.js",
-  "AI",
-];
-
 export default function BlogPage() {
   return (
     <main className="flex min-h-80vh flex-col items-center justify-center bg-[#0a0a0a] px-5 py-12 text-white sm:px-10">
