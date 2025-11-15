@@ -155,7 +155,7 @@ const HeartButton = React.forwardRef<HTMLDivElement, HeartButtonProps>(
         
         // Vibrate on supported devices
         if (navigator.vibrate) {
-          navigator.vibrate(20); // 20ms gentle vibration
+          navigator.vibrate(10); // 10ms very subtle vibration
         }
         
         playSound(newCount);
