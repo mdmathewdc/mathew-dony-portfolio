@@ -1,7 +1,7 @@
 import { Hero } from "./components/Hero";
 import { Articles } from "./components/Articles";
 import { articles } from "./data/articles";
-import { getLikes } from "./actions/likes";
+import { getLikes } from "@/lib/likes";
 
 export default async function Home() {
   // Fetch likes for all articles on the server

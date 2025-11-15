@@ -1,5 +1,5 @@
 import { articles } from "../data/articles";
-import { getLikes } from "../actions/likes";
+import { getLikes } from "@/lib/likes";
 import BlogPageClient from "./BlogPageClient";
 
 export default async function BlogPage() {

@@ -4,7 +4,7 @@ import { motion } from "motion/react";
 import Link from "next/link";
 import { LikeButton } from "./LikeButton";
 import { useEffect, useState } from "react";
-import { getLikes } from "@/app/actions/likes";
+import { getLikes } from "@/lib/likes";
 
 interface BlogPostLayoutProps {
   title: string;
