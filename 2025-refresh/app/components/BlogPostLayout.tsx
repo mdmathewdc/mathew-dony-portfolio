@@ -41,7 +41,7 @@ export const BlogPostLayout = ({
             by{" "}
             <Link
               href="/"
-              className="hover:text-white hover:underline transition"
+              className="hover:text-white underline transition"
             >
               Mathew Dony
             </Link>
