@@ -10,7 +10,7 @@ interface LikeButtonProps {
 }
 
 const BATCH_DELAY = 500; // milliseconds
-const MAX_CLICKS = 9;
+const MAX_CLICKS = 6;
 
 export const LikeButton = ({ slug, initialLikes }: LikeButtonProps) => {
   const [likes, setLikes] = useState(initialLikes);

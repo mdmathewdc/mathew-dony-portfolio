@@ -53,6 +53,63 @@ const HeartButton = React.forwardRef<HTMLDivElement, HeartButtonProps>(
     } = props;
 
     const [clickCount, setClickCount] = React.useState(initialCount);
+    const audioContextRef = React.useRef<AudioContext | null>(null);
+
+    // Initialize audio context on mount
+    React.useEffect(() => {
+      if (typeof window !== "undefined") {
+        const AudioContextClass =
+          window.AudioContext ||
+          (window as typeof window & { webkitAudioContext: typeof AudioContext })
+            .webkitAudioContext;
+        audioContextRef.current = new AudioContextClass();
+      }
+    }, []);
+
+    const playSound = (clickNumber: number) => {
+      if (!audioContextRef.current) return;
+
+      const audioContext = audioContextRef.current;
+      
+      // Pitch increases with each click (1.0 to 1.5x)
+      const pitchMultiplier = 1 + (clickNumber / maxClicks) * 0.5;
+      
+      // Create "lub-dub" heartbeat sound
+      const createBeat = (startTime: number, baseFreq: number) => {
+        const oscillator = audioContext.createOscillator();
+        const gainNode = audioContext.createGain();
+        
+        oscillator.connect(gainNode);
+        gainNode.connect(audioContext.destination);
+        
+        // Use sine wave for a softer, more organic sound
+        oscillator.type = "sine";
+        
+        // Low frequency for deep heartbeat sound
+        const frequency = baseFreq * pitchMultiplier;
+        oscillator.frequency.setValueAtTime(frequency, startTime);
+        oscillator.frequency.exponentialRampToValueAtTime(
+          frequency * 0.7,
+          startTime + 0.08
+        );
+        
+        // Volume envelope for thump effect
+        gainNode.gain.setValueAtTime(0, startTime);
+        gainNode.gain.linearRampToValueAtTime(0.4, startTime + 0.01);
+        gainNode.gain.exponentialRampToValueAtTime(0.01, startTime + 0.08);
+        
+        oscillator.start(startTime);
+        oscillator.stop(startTime + 0.08);
+      };
+      
+      const now = audioContext.currentTime;
+      
+      // First beat (lub) - lower frequency
+      createBeat(now, 150);
+      
+      // Second beat (dub) - slightly higher frequency, happens quickly after
+      createBeat(now + 0.1, 180);
+    };
 
     // Generate random spectrometer-like animation keyframes once on mount
     const [randomFillKeyframes] = React.useState(() => {
@@ -75,6 +132,7 @@ const HeartButton = React.forwardRef<HTMLDivElement, HeartButtonProps>(
     const handleClick = () => {
       if (clickCount < maxClicks) {
         const newCount = clickCount + 1;
+        playSound(newCount);
         setClickCount(newCount);
         onChange?.(newCount);
       }
