@@ -70,45 +70,65 @@ const HeartButton = React.forwardRef<HTMLDivElement, HeartButtonProps>(
       if (!audioContextRef.current) return;
 
       const audioContext = audioContextRef.current;
-      
-      // Pitch increases with each click (1.0 to 1.5x)
-      const pitchMultiplier = 1 + (clickNumber / maxClicks) * 0.5;
-      
-      // Create "lub-dub" heartbeat sound
-      const createBeat = (startTime: number, baseFreq: number) => {
-        const oscillator = audioContext.createOscillator();
-        const gainNode = audioContext.createGain();
-        
-        oscillator.connect(gainNode);
-        gainNode.connect(audioContext.destination);
-        
-        // Use sine wave for a softer, more organic sound
-        oscillator.type = "sine";
-        
-        // Low frequency for deep heartbeat sound
-        const frequency = baseFreq * pitchMultiplier;
-        oscillator.frequency.setValueAtTime(frequency, startTime);
-        oscillator.frequency.exponentialRampToValueAtTime(
-          frequency * 0.7,
-          startTime + 0.08
-        );
-        
-        // Volume envelope for thump effect
-        gainNode.gain.setValueAtTime(0, startTime);
-        gainNode.gain.linearRampToValueAtTime(0.4, startTime + 0.01);
-        gainNode.gain.exponentialRampToValueAtTime(0.01, startTime + 0.08);
-        
-        oscillator.start(startTime);
-        oscillator.stop(startTime + 0.08);
-      };
-      
       const now = audioContext.currentTime;
+      const isLastClick = clickNumber >= maxClicks;
       
-      // First beat (lub) - lower frequency
-      createBeat(now, 150);
-      
-      // Second beat (dub) - slightly higher frequency, happens quickly after
-      createBeat(now + 0.1, 180);
+      if (isLastClick) {
+        // Simple pop sound
+        const osc = audioContext.createOscillator();
+        const gain = audioContext.createGain();
+        
+        osc.connect(gain);
+        gain.connect(audioContext.destination);
+        
+        osc.type = "sine";
+        osc.frequency.setValueAtTime(300, now);
+        osc.frequency.exponentialRampToValueAtTime(80, now + 0.1);
+        
+        gain.gain.setValueAtTime(0.5, now);
+        gain.gain.exponentialRampToValueAtTime(0.01, now + 0.1);
+        
+        osc.start(now);
+        osc.stop(now + 0.1);
+      } else {
+        // Regular heartbeat sound
+        // Pitch increases with each click (1.0 to 1.5x)
+        const pitchMultiplier = 1 + (clickNumber / maxClicks) * 0.5;
+        
+        // Create "lub-dub" heartbeat sound
+        const createBeat = (startTime: number, baseFreq: number) => {
+          const oscillator = audioContext.createOscillator();
+          const gainNode = audioContext.createGain();
+          
+          oscillator.connect(gainNode);
+          gainNode.connect(audioContext.destination);
+          
+          // Use sine wave for a softer, more organic sound
+          oscillator.type = "sine";
+          
+          // Low frequency for deep heartbeat sound
+          const frequency = baseFreq * pitchMultiplier;
+          oscillator.frequency.setValueAtTime(frequency, startTime);
+          oscillator.frequency.exponentialRampToValueAtTime(
+            frequency * 0.7,
+            startTime + 0.08
+          );
+          
+          // Volume envelope for thump effect
+          gainNode.gain.setValueAtTime(0, startTime);
+          gainNode.gain.linearRampToValueAtTime(0.4, startTime + 0.01);
+          gainNode.gain.exponentialRampToValueAtTime(0.01, startTime + 0.08);
+          
+          oscillator.start(startTime);
+          oscillator.stop(startTime + 0.08);
+        };
+        
+        // First beat (lub) - lower frequency
+        createBeat(now, 150);
+        
+        // Second beat (dub) - slightly higher frequency, happens quickly after
+        createBeat(now + 0.1, 180);
+      }
     };
 
     // Generate random spectrometer-like animation keyframes once on mount
