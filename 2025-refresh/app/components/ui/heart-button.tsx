@@ -118,7 +118,7 @@ const HeartButton = React.forwardRef<HTMLDivElement, HeartButtonProps>(
                   transition={{
                     duration: 3,
                     repeat: Infinity,
-                    repeatDelay: 2,
+                    repeatDelay: 4,
                     ease: "linear",
                   }}
                   className="absolute inset-0"
