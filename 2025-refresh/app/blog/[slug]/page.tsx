@@ -7,6 +7,9 @@ import { getLikes } from "@/lib/likes";
 import remarkGfm from "remark-gfm";
 import rehypeHighlight from "rehype-highlight";
 
+// Enable ISR with revalidation every 60 seconds
+export const revalidate = 60;
+
 interface BlogPostPageProps {
   params: Promise<{
     slug: string;

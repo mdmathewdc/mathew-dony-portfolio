@@ -3,6 +3,9 @@ import { Articles } from "./components/Articles";
 import { articles } from "./data/articles";
 import { getLikes } from "@/lib/likes";
 
+// Enable ISR with revalidation every 60 seconds
+export const revalidate = 60;
+
 export default async function Home() {
   // Fetch likes for all articles on the server
   const articlesWithLikes = await Promise.all(
