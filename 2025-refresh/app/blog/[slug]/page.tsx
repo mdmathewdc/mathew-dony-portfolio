@@ -47,7 +47,7 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
     notFound();
   }
 
-  // Fetch likes on the server
+  // Fetch likes on the server 
   const initialLikes = await getLikes(slug);
 
   return (
