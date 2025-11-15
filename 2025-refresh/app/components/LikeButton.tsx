@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 import { addLike } from "@/app/actions/likes";
 
 interface LikeButtonProps {
@@ -9,11 +9,14 @@ interface LikeButtonProps {
 }
 
 const MAX_LIKES_PER_POST = 12;
+const BATCH_DELAY = 500; // milliseconds
 
 export const LikeButton = ({ slug, initialLikes }: LikeButtonProps) => {
   const [likes, setLikes] = useState(initialLikes);
   const [userLikes, setUserLikes] = useState(0);
   const [isLiking, setIsLiking] = useState(false);
+  const [pendingLikes, setPendingLikes] = useState(0);
+  const batchTimerRef = useRef<NodeJS.Timeout | null>(null);
 
   // Load user's like count from sessionStorage on mount
   useEffect(() => {
@@ -28,39 +31,61 @@ export const LikeButton = ({ slug, initialLikes }: LikeButtonProps) => {
     }
   }, [slug]);
 
-  const handleLike = async () => {
-    if (userLikes >= MAX_LIKES_PER_POST || isLiking) return;
+  // Batch API call effect
+  useEffect(() => {
+    if (pendingLikes > 0) {
+      // Clear any existing timer
+      if (batchTimerRef.current) {
+        clearTimeout(batchTimerRef.current);
+      }
 
-    setIsLiking(true);
+      // Set new timer to batch the request
+      batchTimerRef.current = setTimeout(async () => {
+        setIsLiking(true);
+        const result = await addLike(slug, pendingLikes);
+
+        if (result.success) {
+          // Update with the actual count from server
+          setLikes(result.likes);
+        } else {
+          // Revert on error
+          setLikes((prev) => prev - pendingLikes);
+          setUserLikes((prev) => prev - pendingLikes);
+          
+          const storedLikes = sessionStorage.getItem("post-likes");
+          const likesData = storedLikes ? JSON.parse(storedLikes) : {};
+          likesData[slug] = Math.max(0, (likesData[slug] || 0) - pendingLikes);
+          sessionStorage.setItem("post-likes", JSON.stringify(likesData));
+        }
+
+        setPendingLikes(0);
+        setIsLiking(false);
+      }, BATCH_DELAY);
+    }
+
+    // Cleanup timer on unmount
+    return () => {
+      if (batchTimerRef.current) {
+        clearTimeout(batchTimerRef.current);
+      }
+    };
+  }, [pendingLikes, slug]);
+
+  const handleLike = () => {
+    if (userLikes >= MAX_LIKES_PER_POST) return;
 
     // Optimistic update
     const newUserLikes = userLikes + 1;
     const newTotalLikes = likes + 1;
     setLikes(newTotalLikes);
     setUserLikes(newUserLikes);
+    setPendingLikes((prev) => prev + 1);
 
     // Update sessionStorage
     const storedLikes = sessionStorage.getItem("post-likes");
     const likesData = storedLikes ? JSON.parse(storedLikes) : {};
     likesData[slug] = newUserLikes;
     sessionStorage.setItem("post-likes", JSON.stringify(likesData));
-
-    // Call server action
-    const result = await addLike(slug);
-
-    if (result.success) {
-      // Update with the actual count from server
-      setLikes(result.likes);
-    } else {
-      // Revert on error
-      setLikes(likes);
-      setUserLikes(userLikes);
-      const revertData = storedLikes ? JSON.parse(storedLikes) : {};
-      revertData[slug] = userLikes;
-      sessionStorage.setItem("post-likes", JSON.stringify(revertData));
-    }
-
-    setIsLiking(false);
   };
 
   const remainingLikes = MAX_LIKES_PER_POST - userLikes;

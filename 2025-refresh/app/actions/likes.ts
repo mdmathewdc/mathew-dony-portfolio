@@ -12,9 +12,9 @@ export async function getLikes(slug: string): Promise<number> {
   }
 }
 
-export async function addLike(slug: string): Promise<{ success: boolean; likes: number }> {
+export async function addLike(slug: string, count: number = 1): Promise<{ success: boolean; likes: number }> {
   try {
-    const newLikes = await incrementLikes(slug);
+    const newLikes = await incrementLikes(slug, count);
     return { success: true, likes: newLikes };
   } catch (error) {
     console.error("Error adding like:", error);

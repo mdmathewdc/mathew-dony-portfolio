@@ -13,8 +13,8 @@ export async function getLikesFromRedis(slug: string): Promise<number> {
 }
 
 // Helper function to increment likes for a post
-export async function incrementLikes(slug: string): Promise<number> {
-  const newLikes = await redis.incr(`post:likes:${slug}`);
+export async function incrementLikes(slug: string, count: number = 1): Promise<number> {
+  const newLikes = await redis.incrby(`post:likes:${slug}`, count);
   return newLikes;
 }
 
