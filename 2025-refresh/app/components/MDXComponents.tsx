@@ -193,7 +193,7 @@ export const MDXComponents = {
   ),
   em: ({ children, ...props }: React.HTMLAttributes<HTMLElement>) => (
     <em
-      className="italic text-zinc-300"
+      className="not-italic text-zinc-300"
       style={{ fontFamily: "var(--font-instrument-serif)" }}
       {...props}
     >
