@@ -85,7 +85,7 @@ const HeartButton = React.forwardRef<HTMLDivElement, HeartButtonProps>(
         osc.frequency.setValueAtTime(300, now);
         osc.frequency.exponentialRampToValueAtTime(80, now + 0.1);
         
-        gain.gain.setValueAtTime(0.5, now);
+        gain.gain.setValueAtTime(0.12, now);
         gain.gain.exponentialRampToValueAtTime(0.01, now + 0.1);
         
         osc.start(now);
@@ -116,7 +116,7 @@ const HeartButton = React.forwardRef<HTMLDivElement, HeartButtonProps>(
           
           // Volume envelope for thump effect
           gainNode.gain.setValueAtTime(0, startTime);
-          gainNode.gain.linearRampToValueAtTime(0.4, startTime + 0.01);
+          gainNode.gain.linearRampToValueAtTime(0.1, startTime + 0.01);
           gainNode.gain.exponentialRampToValueAtTime(0.01, startTime + 0.08);
           
           oscillator.start(startTime);
