@@ -6,129 +6,37 @@ caption: "It was time to add a blog!"
 ---
 
 ---
-The last version of my portfolio website was built in 2022. Plus, I felt compelled to add a blog to share my thoughts and experiences about the software engineering world.
-Also, it was the perfect opportunity to utilize my new Cursor license.
+
+The previous version of my portfolio website was built in 2022, so it was long overdue for a refresh. I also wanted a proper blog space to share my thoughts and experiences from the software engineering world. I recently got a Cursor license, so this felt like a great project to try it out on.
 
 ## The Stack
-1. **Next.js**: I migrated from the Next.js 12 `pages` router to Next.js 16 which has the new and shiny `app` router.
-2. **Styling**: Use `useMemo` and `useCallback` judiciously
-3. **Virtual scrolling**: For long lists, use libraries like `react-virtual`
-4. **Optimize re-renders**: Use React DevTools Profiler to identify bottlenecks
 
-As your application grows, the way you structure components becomes critical. A common mistake is creating components that are too large or too tightly coupled. Let's look at a better approach.
+- **Next.js**: I moved from the old Next.js 12 `pages` router to Next.js 16 with the `app` router. React Server Components (RSC) are the future!
+- **CSS**: I used to love `styled-components` since it allowed me to write raw CSS. But with the project entering maintenance mode after the React 19 Context API deprecation, I had to switch to `tailwindcss`. I was skeptical at first because I thought memorizing all the utility classes would be annoying. Turns out I was completely wrong - Tailwind made styling faster, simpler and way more enjoyable. No more coming up with silly tag names like `<StyledButtonWithRadius />` and passing props into it.
+- **Blog**: I went with MDX which lets me mix Markdown and JSX. This way I can embed code snippets or interactive components whenever I need to like this:
 
-Instead of creating monolithic components with dozens of props, break them into smaller, composable pieces:
-
-```jsx
-// Instead of this
-<DataTable
-  data={users}
-  columns={columns}
-  pagination={true}
-  sorting={true}
-  filtering={true}
-  onRowClick={handleRowClick}
-/>
-
-// Prefer this
-<DataTable data={users}>
-  <DataTable.Header>
-    <DataTable.Column sortable>Name</DataTable.Column>
-    <DataTable.Column sortable>Email</DataTable.Column>
-    <DataTable.Column>Actions</DataTable.Column>
-  </DataTable.Header>
-  <DataTable.Body onRowClick={handleRowClick} />
-  <DataTable.Pagination />
-</DataTable>
+```tsx
+// Example: Custom MDX component in my blog
+export const Callout = ({ children, type = 'info' }: CalloutProps) => {
+  const styles = {
+    info: 'bg-blue-50 border-blue-200 text-blue-900',
+    warning: 'bg-yellow-50 border-yellow-200 text-yellow-900',
+    error: 'bg-red-50 border-red-200 text-red-900',
+  };
+  
+  return (
+    <div className={`border-l-4 p-4 my-4 ${styles[type]}`}>
+      {children}
+    </div>
+  );
+};
 ```
 
-This approach provides more flexibility and makes the component easier to extend without modifying existing code.
+- **Tracking post views**: Under progress.
+- **Like counter**: Under progress.
 
-## State Management at Scale
-
-State management is often where complexity spirals out of control. Here are some principles to keep in mind:
-
-Keep state as close to where it's used as possible. Not everything needs to be in global state:
-
-```jsx
-// Global state (Redux, Zustand, etc.)
-// - Authentication status
-// - User preferences
-// - Theme settings
-
-// Component state (useState, useReducer)
-// - Form inputs
-// - UI toggles
-// - Local filters
-```
-
-Distinguish between server state (data fetched from APIs) and client state (UI-specific data). Tools like React Query or SWR excel at managing server state:
-
-```jsx
-import { useQuery } from '@tanstack/react-query';
-
-function UserProfile({ userId }) {
-  const { data, isLoading, error } = useQuery({
-    queryKey: ['user', userId],
-    queryFn: () => fetchUser(userId),
-  });
-
-  if (isLoading) return <Spinner />;
-  if (error) return <Error message={error.message} />;
-
-  return <Profile user={data} />;
-}
-```
-
-## Code Organization
-
-A well-organized codebase is easier to navigate and maintain. Here's a structure that scales well:
-
-```
-src/
-├── features/
-│   ├── auth/
-│   │   ├── components/
-│   │   ├── hooks/
-│   │   ├── api/
-│   │   └── types/
-│   ├── dashboard/
-│   └── settings/
-├── shared/
-│   ├── components/
-│   ├── hooks/
-│   └── utils/
-└── lib/
-    ├── api-client.ts
-    └── config.ts
-```
-
-**Feature-based organization** keeps related code together, making it easier to understand and modify features in isolation.
-
-## Performance Considerations
-
-As your app grows, performance becomes critical:
-
-1. **Lazy load routes**: Use `React.lazy()` and code splitting
-2. **Memoize expensive computations**: Use `useMemo` and `useCallback` judiciously
-3. **Virtual scrolling**: For long lists, use libraries like `react-virtual`
-4. **Optimize re-renders**: Use React DevTools Profiler to identify bottlenecks
-
-Focus on testing behavior, not implementation details. Your tests should give you confidence to refactor without breaking functionality.
-
-## Key Takeaways
-
-Building scalable React applications requires:
-
-- Thoughtful component composition
-- Smart state management decisions
-- Clear code organization
-- Performance optimization
-- Comprehensive testing
-
-Remember, scalability isn't just about handling more users—it's about building a codebase that your team can maintain and extend for years to come.
+I'm going to keep this first post short and simple :)
 
 ---
 
-*P.S: There are some Easter eggs that I've hidden throughout the website*
-
+_P.S. There are some Easter eggs that I've hidden throughout the website_

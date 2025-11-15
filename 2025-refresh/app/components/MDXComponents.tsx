@@ -99,12 +99,12 @@ export const MDXComponents = {
     );
   },
   ul: ({ children, ...props }: React.HTMLAttributes<HTMLUListElement>) => (
-    <ul className="list-disc list-inside text-zinc-300 mb-4 space-y-2 ml-4" {...props}>
+    <ul className="list-disc list-outside text-zinc-300 mb-4 space-y-2 pl-5" {...props}>
       {children}
     </ul>
   ),
   ol: ({ children, ...props }: React.HTMLAttributes<HTMLOListElement>) => (
-    <ol className="list-decimal list-inside text-zinc-300 mb-4 space-y-2 ml-4" {...props}>
+    <ol className="list-decimal list-outside text-zinc-300 mb-4 space-y-2 pl-5" {...props}>
       {children}
     </ol>
   ),
@@ -148,14 +148,14 @@ export const MDXComponents = {
   },
   pre: ({ children, ...props }: React.HTMLAttributes<HTMLPreElement>) => (
     <pre
-      className="bg-zinc-900 border border-zinc-800 rounded-lg p-4 overflow-x-auto mb-4 text-sm"
+      className="bg-zinc-900 border border-zinc-800 rounded-lg p-3 overflow-x-auto mb-4 text-sm"
       {...props}
     >
       {children}
     </pre>
   ),
   hr: ({ ...props }: React.HTMLAttributes<HTMLHRElement>) => (
-    <hr className="border-zinc-800 my-8" {...props} />
+    <hr className="border-zinc-800 my-6" {...props} />
   ),
   table: ({ children, ...props }: React.HTMLAttributes<HTMLTableElement>) => (
     <div className="overflow-x-auto mb-4">
