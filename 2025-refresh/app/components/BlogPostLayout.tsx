@@ -62,7 +62,7 @@ export const BlogPostLayout = ({
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.4, delay: 0.6, ease: "easeOut" }}
-          className="prose prose-invert prose-zinc max-w-none"
+          className="prose prose-invert prose-zinc max-w-none text-justify"
         >
           {children}
         </motion.article>
