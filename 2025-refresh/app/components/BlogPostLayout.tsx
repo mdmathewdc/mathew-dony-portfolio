@@ -49,7 +49,7 @@ export const BlogPostLayout = ({
           <div className="flex flex-wrap items-center gap-3 text-sm text-zinc-400">
             <time dateTime={date}>{formatDate(date)}</time>
             <span>•</span>
-            <span>6969 views</span>
+            <span>6969 likes</span>
           </div>
         </motion.header>
 

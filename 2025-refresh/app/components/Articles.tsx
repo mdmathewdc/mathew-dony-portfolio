@@ -56,7 +56,7 @@ export const Articles = () => {
                 </h3>
               </Link>
               <span className="text-xs text-zinc-500 whitespace-nowrap">
-                6969 views
+                6969 likes
               </span>
             </div>
             <p className="text-sm text-zinc-400 flex-1">{article.caption}</p>

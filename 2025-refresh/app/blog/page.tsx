@@ -78,7 +78,7 @@ export default function BlogPage() {
                     <div className="flex flex-wrap items-center gap-2 text-xs text-zinc-500">
                       <span>{formatDate(article.publishedDate)}</span>
                       <span>•</span>
-                      <span>6969 views</span>
+                      <span>6969 likes</span>
                     </div>
                   </div>
                   <p className="text-sm text-zinc-400 flex-1">
