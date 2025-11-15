@@ -1,11 +1,21 @@
 import { Hero } from "./components/Hero";
 import { Articles } from "./components/Articles";
+import { articles } from "./data/articles";
+import { getLikes } from "./actions/likes";
 
-export default function Home() {
+export default async function Home() {
+  // Fetch likes for all articles on the server
+  const articlesWithLikes = await Promise.all(
+    articles.slice(0, 4).map(async (article) => ({
+      ...article,
+      likes: await getLikes(article.slug),
+    }))
+  );
+
   return (
     <main className="flex min-h-80vh flex-col items-center justify-center bg-[#0a0a0a] px-5 py-12 text-white sm:px-10 gap-14">
       <Hero />
-      <Articles />
+      <Articles articlesWithLikes={articlesWithLikes} />
     </main>
   );
 }

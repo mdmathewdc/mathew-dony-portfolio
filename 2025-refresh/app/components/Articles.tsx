@@ -2,12 +2,13 @@
 
 import Link from "next/link";
 import { motion } from "motion/react";
-import { articles } from "../data/articles";
-import { ClientLikeCount } from "./ClientLikeCount";
+import { Article } from "../data/articles";
 
-const sampleArticles = articles.slice(0, 4);
+interface ArticlesProps {
+  articlesWithLikes: (Article & { likes: number })[];
+}
 
-export const Articles = () => {
+export const Articles = ({ articlesWithLikes }: ArticlesProps) => {
   return (
     <div className="mx-auto flex w-full max-w-6xl flex-col gap-8 pl-5 sm:pl-10">
       <motion.div
@@ -35,7 +36,7 @@ export const Articles = () => {
       </motion.div>
 
       <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-        {sampleArticles.map((article, index) => (
+        {articlesWithLikes.map((article, index) => (
           <motion.article
             key={index}
             initial={{ opacity: 0, y: 20 }}
@@ -57,7 +58,7 @@ export const Articles = () => {
                 </h3>
               </Link>
               <span className="text-xs text-zinc-500 whitespace-nowrap">
-                <ClientLikeCount slug={article.slug} />
+                {article.likes} likes
               </span>
             </div>
             <p className="text-sm text-zinc-400 flex-1">{article.caption}</p>
