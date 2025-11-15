@@ -3,6 +3,7 @@ import { MDXRemote } from "next-mdx-remote/rsc";
 import { getBlogPost, getAllBlogSlugs } from "@/lib/mdx";
 import { BlogPostLayout } from "@/app/components/BlogPostLayout";
 import { MDXComponents } from "@/app/components/MDXComponents";
+import { getLikes } from "@/lib/likes";
 import remarkGfm from "remark-gfm";
 import rehypeHighlight from "rehype-highlight";
 
@@ -43,11 +44,15 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
     notFound();
   }
 
+  // Fetch likes on the server
+  const initialLikes = await getLikes(slug);
+
   return (
     <BlogPostLayout
       title={post.frontmatter.title}
       date={post.frontmatter.date}
       slug={slug}
+      initialLikes={initialLikes}
     >
       <MDXRemote
         source={post.content}
