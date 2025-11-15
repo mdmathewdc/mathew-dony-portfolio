@@ -15,21 +15,17 @@ The previous version of my portfolio website was built in 2022, so it was long o
 - **CSS**: I used to love `styled-components` since it allowed me to write raw CSS. But with the project entering maintenance mode after the React 19 Context API deprecation, I had to switch to `tailwindcss`. I was skeptical at first because I thought memorizing all the utility classes would be annoying. Turns out I was completely wrong - Tailwind made styling faster, simpler and way more enjoyable. No more coming up with silly tag names like `<StyledButtonWithRadius />` and passing props into it.
 - **Blog**: I went with MDX which lets me mix Markdown and JSX. This way I can embed code snippets or interactive components whenever I need to like this:
 
-```tsx
-// Example: Custom MDX component in my blog
-export const Callout = ({ children, type = 'info' }: CalloutProps) => {
-  const styles = {
-    info: 'bg-blue-50 border-blue-200 text-blue-900',
-    warning: 'bg-yellow-50 border-yellow-200 text-yellow-900',
-    error: 'bg-red-50 border-red-200 text-red-900',
-  };
-  
-  return (
-    <div className={`border-l-4 p-4 my-4 ${styles[type]}`}>
-      {children}
-    </div>
-  );
-};
+```java
+// Example: Simple user authentication
+public class AuthService {
+    public boolean authenticate(String username, String password) {
+        User user = userRepository.findByUsername(username);
+        if (user == null) {
+            throw new UserNotFoundException("User not found");
+        }
+        return passwordEncoder.matches(password, user.getPasswordHash());
+    }
+}
 ```
 
 - **Tracking post views**: Under progress.
