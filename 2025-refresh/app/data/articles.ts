@@ -8,11 +8,11 @@ export interface Article {
 
 export const articles: Article[] = [
   {
-    title: "Building Scalable React Applications",
+    title: "Rewriting my website from scratch",
     caption:
-      "Exploring patterns and best practices for creating maintainable React applications that scale with your team.",
+      "It was time to add a blog!",
     views: 1247,
-    publishedDate: new Date("2024-01-15"),
-    slug: "building-scalable-react-applications",
+    publishedDate: new Date("2025-11-15"),
+    slug: "rewriting-my-website-from-scratch",
   },
 ];
