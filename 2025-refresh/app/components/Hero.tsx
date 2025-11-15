@@ -55,7 +55,7 @@ export const Hero = () => {
         <motion.header
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.5, ease: "easeOut" }}
+          transition={{ duration: 0.4, ease: "easeOut" }}
           className="relative flex flex-col md:flex-row items-start gap-4"
         >
           <div className="flex items-center gap-2 flex-1">
@@ -109,7 +109,7 @@ export const Hero = () => {
         <motion.h1
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.5, delay: 0.2, ease: "easeOut" }}
+          transition={{ duration: 0.4, delay: 0.2, ease: "easeOut" }}
           className="relative text-3xl font-sm text-white"
           style={{ fontFamily: "var(--font-satoshi-regular)" }}
         >
@@ -129,7 +129,7 @@ export const Hero = () => {
         <motion.p
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.5, delay: 0.4, ease: "easeOut" }}
+          transition={{ duration: 0.4, delay: 0.4, ease: "easeOut" }}
           className="relative text-sm text-zinc-400 inline-flex items-center gap-1.5"
         >
           Based in{" "}
@@ -145,7 +145,7 @@ export const Hero = () => {
                   : { scale: 1 }
               }
               transition={{
-                duration: 0.5,
+                duration: 0.4,
                 ease: [0.34, 1.56, 0.64, 1],
               }}
             >

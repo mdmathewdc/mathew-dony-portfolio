@@ -30,7 +30,7 @@ export const BlogPostLayout = ({
         <motion.header
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.5, delay: 0.4, ease: "easeOut" }}
+          transition={{ duration: 0.4, delay: 0.4, ease: "easeOut" }}
           className="flex flex-col gap-4"
         >
           <h1
@@ -58,7 +58,7 @@ export const BlogPostLayout = ({
         <motion.article
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.5, delay: 0.6, ease: "easeOut" }}
+          transition={{ duration: 0.4, delay: 0.6, ease: "easeOut" }}
           className="prose prose-invert prose-zinc max-w-none"
         >
           {children}
