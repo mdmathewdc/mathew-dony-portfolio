@@ -91,12 +91,49 @@ const HeartButton = React.forwardRef<HTMLDivElement, HeartButtonProps>(
           >
             <Heart className="opacity-60" size={24} aria-hidden="true" />
 
-            <Heart
-              className="absolute inset-0 text-red-500 fill-red-500 transition-all duration-300"
-              size={24}
-              aria-hidden="true"
-              style={{ clipPath: `inset(${100 - fillPercentage}% 0 0 0)` }}
-            />
+            {/* Pulsing hint animation when inactive */}
+            {!isActive && (
+              <motion.div
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                transition={{ delay: 0.5 }}
+              >
+                <motion.div
+                  animate={{
+                    clipPath: [
+                      "inset(100% 0 0 0)",
+                      "inset(75% 0 0 0)",
+                      "inset(50% 0 0 0)",
+                      "inset(75% 0 0 0)",
+                      "inset(100% 0 0 0)",
+                    ],
+                  }}
+                  transition={{
+                    duration: 4,
+                    repeat: Infinity,
+                    repeatDelay: 4,
+                    ease: "anticipate",
+                  }}
+                  className="absolute inset-0"
+                >
+                  <Heart
+                    className="text-red-500 fill-red-500"
+                    size={24}
+                    aria-hidden="true"
+                  />
+                </motion.div>
+              </motion.div>
+            )}
+
+            {/* Actual fill based on clicks */}
+            {isActive && (
+              <Heart
+                className="absolute inset-0 text-red-500 fill-red-500 transition-all duration-300"
+                size={24}
+                aria-hidden="true"
+                style={{ clipPath: `inset(${100 - fillPercentage}% 0 0 0)` }}
+              />
+            )}
 
             <AnimatePresence>
               {isCompleted && (
