@@ -8,7 +8,6 @@ interface LikeButtonProps {
   initialLikes: number;
 }
 
-const MAX_LIKES_PER_POST = 12;
 const BATCH_DELAY = 500; // milliseconds
 
 export const LikeButton = ({ slug, initialLikes }: LikeButtonProps) => {
@@ -54,8 +53,6 @@ export const LikeButton = ({ slug, initialLikes }: LikeButtonProps) => {
   }, [pendingLikes, slug]);
 
   const handleLike = () => {
-    if (userLikes >= MAX_LIKES_PER_POST) return;
-
     // Optimistic update
     const newUserLikes = userLikes + 1;
     const newTotalLikes = likes + 1;
@@ -64,19 +61,12 @@ export const LikeButton = ({ slug, initialLikes }: LikeButtonProps) => {
     setPendingLikes((prev) => prev + 1);
   };
 
-  const remainingLikes = MAX_LIKES_PER_POST - userLikes;
-  const isMaxReached = userLikes >= MAX_LIKES_PER_POST;
-
   return (
     <div className="flex items-center gap-3">
       <button
         onClick={handleLike}
-        disabled={isMaxReached || isLiking}
-        className={`flex items-center gap-2 text-sm transition ${
-          isMaxReached
-            ? "text-zinc-600 cursor-not-allowed"
-            : "text-zinc-400 hover:text-red-400 cursor-pointer"
-        }`}
+        disabled={isLiking}
+        className="flex items-center gap-2 text-sm transition text-zinc-400 hover:text-red-400 cursor-pointer disabled:opacity-50"
         aria-label="Like post"
       >
         <svg
@@ -91,14 +81,6 @@ export const LikeButton = ({ slug, initialLikes }: LikeButtonProps) => {
         </svg>
         <span>{likes} likes</span>
       </button>
-      {!isMaxReached && userLikes > 0 && (
-        <span className="text-xs text-zinc-500">
-          {remainingLikes} more
-        </span>
-      )}
-      {isMaxReached && (
-        <span className="text-xs text-zinc-500">Max reached</span>
-      )}
     </div>
   );
 };
