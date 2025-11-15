@@ -1,5 +1,6 @@
 import React from "react";
 import Link from "next/link";
+import { CodeBlock } from "./CodeBlock";
 
 // Utility function to generate slug from heading text
 const slugify = (text: string): string => {
@@ -147,12 +148,7 @@ export const MDXComponents = {
     );
   },
   pre: ({ children, ...props }: React.HTMLAttributes<HTMLPreElement>) => (
-    <pre
-      className="bg-zinc-900 border border-zinc-800 rounded-lg p-3 overflow-x-auto mb-4 text-sm"
-      {...props}
-    >
-      {children}
-    </pre>
+    <CodeBlock {...props}>{children}</CodeBlock>
   ),
   hr: ({ ...props }: React.HTMLAttributes<HTMLHRElement>) => (
     <hr className="border-zinc-800 my-6" {...props} />
