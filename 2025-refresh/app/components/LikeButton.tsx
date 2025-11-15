@@ -13,23 +13,23 @@ const BATCH_DELAY = 500; // milliseconds
 
 export const LikeButton = ({ slug, initialLikes }: LikeButtonProps) => {
   const [likes, setLikes] = useState(initialLikes);
-  const [userLikes, setUserLikes] = useState(0);
-  const [isLiking, setIsLiking] = useState(false);
-  const [pendingLikes, setPendingLikes] = useState(0);
-  const batchTimerRef = useRef<NodeJS.Timeout | null>(null);
-
-  // Load user's like count from sessionStorage on mount
-  useEffect(() => {
+  const [userLikes, setUserLikes] = useState(() => {
+    // Initialize from sessionStorage during mount
     const storedLikes = sessionStorage.getItem("post-likes");
     if (storedLikes) {
       try {
         const likesData = JSON.parse(storedLikes);
-        setUserLikes(likesData[slug] || 0);
+        return likesData[slug] || 0;
       } catch (error) {
         console.error("Error parsing likes from sessionStorage:", error);
+        return 0;
       }
     }
-  }, [slug]);
+    return 0;
+  });
+  const [isLiking, setIsLiking] = useState(false);
+  const [pendingLikes, setPendingLikes] = useState(0);
+  const batchTimerRef = useRef<NodeJS.Timeout | null>(null);
 
   // Batch API call effect
   useEffect(() => {
@@ -49,8 +49,8 @@ export const LikeButton = ({ slug, initialLikes }: LikeButtonProps) => {
           setLikes(result.likes);
         } else {
           // Revert on error
-          setLikes((prev) => prev - pendingLikes);
-          setUserLikes((prev) => prev - pendingLikes);
+          setLikes((prev: number) => prev - pendingLikes);
+          setUserLikes((prev: number) => prev - pendingLikes);
           
           const storedLikes = sessionStorage.getItem("post-likes");
           const likesData = storedLikes ? JSON.parse(storedLikes) : {};
