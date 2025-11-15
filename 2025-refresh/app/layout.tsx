@@ -36,6 +36,9 @@ const instrumentSerif = localFont({
 export const metadata: Metadata = {
   title: "Mathew Dony | Software Engineer",
   description: "Portfolio of Mathew Dony",
+  icons: {
+    icon: "/favicon.png",
+  },
 };
 
 export default function RootLayout({
