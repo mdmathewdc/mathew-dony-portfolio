@@ -46,11 +46,11 @@ export const MDXComponents = {
         style={{ fontFamily: "var(--font-satoshi-regular)" }}
         {...props}
       >
-        <a href={`#${id}`} className="no-underline">
-          <span className="absolute -left-5 top-1/2 -translate-y-1/2 opacity-0 group-hover:opacity-100 transition-opacity text-zinc-500 text-xl">
+        <a href={`#${id}`} className="no-underline inline-flex items-center">
+          {children}
+          <span className="ml-2 md:ml-0 md:absolute md:-left-5 md:top-1/2 md:-translate-y-1/2 opacity-0 group-hover:opacity-100 transition-opacity text-zinc-500 text-xl">
             #
           </span>
-          {children}
         </a>
       </h2>
     );
