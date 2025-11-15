@@ -152,6 +152,12 @@ const HeartButton = React.forwardRef<HTMLDivElement, HeartButtonProps>(
     const handleClick = () => {
       if (clickCount < maxClicks) {
         const newCount = clickCount + 1;
+        
+        // Vibrate on supported devices
+        if (navigator.vibrate) {
+          navigator.vibrate(20); // 20ms gentle vibration
+        }
+        
         playSound(newCount);
         setClickCount(newCount);
         onChange?.(newCount);
