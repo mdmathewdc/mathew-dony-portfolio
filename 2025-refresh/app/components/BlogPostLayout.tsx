@@ -6,7 +6,6 @@ import Link from "next/link";
 interface BlogPostLayoutProps {
   title: string;
   date: string;
-  views: number;
   children: React.ReactNode;
 }
 
@@ -21,7 +20,6 @@ const formatDate = (date: string): string => {
 export const BlogPostLayout = ({
   title,
   date,
-  views,
   children,
 }: BlogPostLayoutProps) => {
   return (
@@ -51,7 +49,7 @@ export const BlogPostLayout = ({
           <div className="flex flex-wrap items-center gap-3 text-sm text-zinc-400">
             <time dateTime={date}>{formatDate(date)}</time>
             <span>•</span>
-            <span>{views.toLocaleString()} views</span>
+            <span>6969 views</span>
           </div>
         </motion.header>
 

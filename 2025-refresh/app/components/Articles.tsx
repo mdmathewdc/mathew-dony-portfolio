@@ -39,7 +39,11 @@ export const Articles = () => {
             key={index}
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.4, delay: 0.8 + index * 0.1, ease: "easeOut" }}
+            transition={{
+              duration: 0.4,
+              delay: 0.8 + index * 0.1,
+              ease: "easeOut",
+            }}
             className="flex flex-col gap-4"
           >
             <div className="flex flex-col md:flex-row md:items-center md:justify-between gap-2">
@@ -52,7 +56,7 @@ export const Articles = () => {
                 </h3>
               </Link>
               <span className="text-xs text-zinc-500 whitespace-nowrap">
-                {article.views.toLocaleString()} views
+                6969 views
               </span>
             </div>
             <p className="text-sm text-zinc-400 flex-1">{article.caption}</p>
