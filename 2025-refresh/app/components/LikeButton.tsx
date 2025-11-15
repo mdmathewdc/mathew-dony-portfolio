@@ -2,6 +2,7 @@
 
 import { useState, useEffect, useRef } from "react";
 import { addLike } from "@/app/actions/likes";
+import { HeartButton } from "@/app/components/ui/heart-button";
 
 interface LikeButtonProps {
   slug: string;
@@ -9,6 +10,7 @@ interface LikeButtonProps {
 }
 
 const BATCH_DELAY = 500; // milliseconds
+const MAX_CLICKS = 7;
 
 export const LikeButton = ({ slug, initialLikes }: LikeButtonProps) => {
   const [likes, setLikes] = useState(initialLikes);
@@ -52,35 +54,23 @@ export const LikeButton = ({ slug, initialLikes }: LikeButtonProps) => {
     };
   }, [pendingLikes, slug]);
 
-  const handleLike = () => {
+  const handleLike = (count: number) => {
     // Optimistic update
-    const newUserLikes = userLikes + 1;
     const newTotalLikes = likes + 1;
     setLikes(newTotalLikes);
-    setUserLikes(newUserLikes);
+    setUserLikes(count);
     setPendingLikes((prev) => prev + 1);
   };
 
   return (
-    <div className="flex items-center gap-3">
-      <button
-        onClick={handleLike}
-        disabled={isLiking}
-        className="flex items-center gap-2 text-sm transition text-zinc-400 hover:text-red-400 cursor-pointer disabled:opacity-50"
-        aria-label="Like post"
-      >
-        <svg
-          xmlns="http://www.w3.org/2000/svg"
-          viewBox="0 0 24 24"
-          fill={userLikes > 0 ? "currentColor" : "none"}
-          stroke="currentColor"
-          strokeWidth={2}
-          className="w-5 h-5"
-        >
-          <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z" />
-        </svg>
-        <span>{likes} likes</span>
-      </button>
+    <div className="flex items-center">
+      <HeartButton
+        maxClicks={MAX_CLICKS}
+        initialCount={userLikes}
+        onChange={handleLike}
+        className="scale-90"
+      />
+      <span className="text-sm text-zinc-400">{likes}</span>
     </div>
   );
 };
