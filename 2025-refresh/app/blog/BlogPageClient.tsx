@@ -18,7 +18,7 @@ const formatDate = (date: Date): string => {
 
 export default function BlogPageClient({ articlesWithLikes }: BlogPageProps) {
   return (
-    <main className="flex min-h-screen flex-col items-center justify-center bg-[#0a0a0a] px-5 py-12 text-white sm:px-10">
+    <main className="flex min-h-screen flex-col items-center bg-[#0a0a0a] px-5 py-12 text-white sm:px-10">
       <div className="mx-auto flex w-full max-w-6xl flex-col gap-4">
         <motion.div
           initial={{ opacity: 0, x: 8 }}
