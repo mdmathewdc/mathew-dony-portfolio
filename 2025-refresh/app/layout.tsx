@@ -41,6 +41,25 @@ export const metadata: Metadata = {
   icons: {
     icon: "/favicon.png",
   },
+  openGraph: {
+    title: "Mathew Dony | Software Engineer",
+    description: "Portfolio of Mathew Dony",
+    images: [
+      {
+        url: "/og.png",
+        width: 1200,
+        height: 630,
+        alt: "Mathew Dony - Software Engineer",
+      },
+    ],
+    type: "website",
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Mathew Dony | Software Engineer",
+    description: "Portfolio of Mathew Dony",
+    images: ["/og.png"],
+  },
 };
 
 export default function RootLayout({
