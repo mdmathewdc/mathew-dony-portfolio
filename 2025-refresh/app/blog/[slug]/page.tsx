@@ -33,9 +33,23 @@ export async function generateMetadata({ params }: BlogPostPageProps) {
     };
   }
 
+  const ogImage = post.frontmatter.image || "/og.png";
+
   return {
     title: `${post.frontmatter.title} | Mathew Dony`,
     description: post.frontmatter.caption,
+    openGraph: {
+      title: `${post.frontmatter.title} | Mathew Dony`,
+      description: post.frontmatter.caption,
+      images: [ogImage],
+      type: "article",
+    },
+    twitter: {
+      card: "summary_large_image",
+      title: `${post.frontmatter.title} | Mathew Dony`,
+      description: post.frontmatter.caption,
+      images: [ogImage],
+    },
   };
 }
 
