@@ -1,6 +1,6 @@
 ---
 title: "Orchestrating AI Agents to Create Memes"
-date: "2024-12-04"
+date: "2025-12-04"
 caption: "Building an agent orchestrator system using Langchain and MCP servers"
 image: "/blog/orchestrating-ai-agents.png"
 ---
@@ -29,9 +29,9 @@ I think that's enough background. Let's build the meme generator.
 
 ## Creating the Meme MCP Server
 
-I started by building the MCP server itself. I used ImgFlip's caption_image API under the hood to generate memes. The server exposes a single tool that my Meme agent can call. I published it on npm as [imgflip-meme-mcp](https://www.npmjs.com/package/imgflip-meme-mcp). It exposes one tool — `generate_meme` — which takes a template id, captions, and API credentials. Simple and tidy.
+I started by building the MCP server itself. I used ImgFlip's caption_image API under the hood to generate memes. The server exposes a single tool that my Meme agent can call. I published it on npm as [imgflip-meme-mcp](https://www.npmjs.com/package/imgflip-meme-mcp). It exposes one tool `generate_meme` which takes a template id, captions, and API credentials. Simple and tidy.
 
-## The 3 Agent Squad
+## The 3 Agent squad
 
 {/* [flow diagram here] */}
 
@@ -44,7 +44,7 @@ Technically, I could have bundled everything into one giant agent with two tools
 
 But I split them up for three solid reasons:
 
-- Too many tools in one agent actually makes it worse
+- Too many tools in one agent actually makes it worse (add link here)
 - Specialised agents are easier to tune and scale up
 - I can mix and match cheap and expensive models depending on the job. For example, an agent that summarises text doesn't need the same model power as one that tries to be funny and creative.
 
@@ -84,7 +84,7 @@ const supervisorAgent = createAgent({
 
 The supervisor only sees high level tools like `summarizeEmotionTool` and `generateMemeTool`. It's not even aware of the low level `generateMemeTool` buried in the MCP server.
 
-Everything ends up neat, modular, and way easier to debug when something inevitably explodes.
+Everything ends up neat, modular, and way easier to debug when something inevitably goes wrong.
 
 ## Here's the agent in action
 
@@ -95,8 +95,8 @@ The workflow is simple: user sends a message, Supervisor does its magic, and the
 ## Links
 
 - [GitHub: AI Agents Orchestrator](https://github.com/mdmathewdc/ai-agents-orchestrator)
-- [NPM: imgflip-meme-mcp](https://www.npmjs.com/package/imgflip-meme-mcp)
+- [npm: imgflip-meme-mcp](https://npmjs.com/package/imgflip-meme-mcp)
 
 ---
 
-_If the agents become self aware, at least they'll have a sense of humor._
+_If these agents become self aware, at least they'll have a sense of humor._
