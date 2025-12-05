@@ -7,7 +7,7 @@ export interface Article {
 
 export const articles: Article[] = [
   {
-    title: "Orchestrating AI Agents to Create Memes",
+    title: "Orchestrating AI Agents to create Memes",
     caption:
       "Building an agent orchestrator system using Langchain and MCP servers",
     publishedDate: new Date("2025-12-05"),
