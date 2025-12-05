@@ -14,12 +14,18 @@ export function AgentFlowDiagram() {
     import("@joint/core").then((joint) => {
       const { dia, shapes, V } = joint;
 
+      const containerWidth = containerRef.current?.clientWidth || 800;
+      const diagramWidth = 880; // Total width of diagram content
+      const diagramHeight = 400;
+      const isMobile = containerWidth < 640;
+      const scale = isMobile ? Math.min(containerWidth / diagramWidth, 0.85) : 1;
+
       const graph = new dia.Graph({}, { cellNamespace: shapes });
       const paper = new dia.Paper({
         model: graph,
         cellViewNamespace: shapes,
-        width: "100%",
-        height: 400,
+        width: containerWidth,
+        height: diagramHeight,
         gridSize: 10,
         async: true,
         frozen: true,
@@ -42,6 +48,55 @@ export function AgentFlowDiagram() {
       });
 
       containerRef.current?.appendChild(paper.el);
+
+      // Enable panning
+      let isPanning = false;
+      let startX = 0;
+      let startY = 0;
+      let startTx = 0;
+      let startTy = 0;
+
+      const getEventCoords = (e: MouseEvent | TouchEvent) => {
+        if ("touches" in e) {
+          return { x: e.touches[0].clientX, y: e.touches[0].clientY };
+        }
+        return { x: e.clientX, y: e.clientY };
+      };
+
+      const onPointerDown = (e: MouseEvent | TouchEvent) => {
+        isPanning = true;
+        const coords = getEventCoords(e);
+        startX = coords.x;
+        startY = coords.y;
+        const translate = paper.translate();
+        startTx = translate.tx;
+        startTy = translate.ty;
+        if (containerRef.current) {
+          containerRef.current.style.cursor = "grabbing";
+        }
+      };
+
+      const onPointerMove = (e: MouseEvent | TouchEvent) => {
+        if (!isPanning) return;
+        const coords = getEventCoords(e);
+        const dx = coords.x - startX;
+        const dy = coords.y - startY;
+        paper.translate(startTx + dx, startTy + dy);
+      };
+
+      const onPointerUp = () => {
+        isPanning = false;
+        if (containerRef.current) {
+          containerRef.current.style.cursor = "grab";
+        }
+      };
+
+      paper.el.addEventListener("mousedown", onPointerDown);
+      paper.el.addEventListener("touchstart", onPointerDown, { passive: true });
+      document.addEventListener("mousemove", onPointerMove);
+      document.addEventListener("touchmove", onPointerMove, { passive: true });
+      document.addEventListener("mouseup", onPointerUp);
+      document.addEventListener("touchend", onPointerUp);
 
       // Add text styles
       paper.svg.prepend(
@@ -136,6 +191,21 @@ export function AgentFlowDiagram() {
 
       paper.unfreeze();
 
+      // Apply scale and center for mobile
+      paper.scale(scale, scale);
+      if (isMobile) {
+        // Center the diagram horizontally
+        const scaledWidth = diagramWidth * scale;
+        const offsetX = (containerWidth - scaledWidth) / 2;
+        const offsetY = 20 * scale; // Small top padding
+        paper.translate(offsetX, offsetY);
+      }
+
+      // Set initial cursor
+      if (containerRef.current) {
+        containerRef.current.style.cursor = "grab";
+      }
+
       // Animate dashes using JavaScript
       let offset = 0;
       const animationInterval = setInterval(() => {
@@ -148,6 +218,12 @@ export function AgentFlowDiagram() {
       // Cleanup
       return () => {
         clearInterval(animationInterval);
+        paper.el.removeEventListener("mousedown", onPointerDown);
+        paper.el.removeEventListener("touchstart", onPointerDown);
+        document.removeEventListener("mousemove", onPointerMove);
+        document.removeEventListener("touchmove", onPointerMove);
+        document.removeEventListener("mouseup", onPointerUp);
+        document.removeEventListener("touchend", onPointerUp);
         paper.remove();
         graph.clear();
       };
@@ -158,7 +234,7 @@ export function AgentFlowDiagram() {
     <div className="my-8 rounded-xl border border-zinc-800 bg-zinc-900/50 overflow-hidden">
       <div
         ref={containerRef}
-        className="w-full h-[400px] overflow-auto"
+        className="w-full h-[400px] overflow-hidden touch-none select-none"
         style={{ minHeight: 400 }}
       />
     </div>
