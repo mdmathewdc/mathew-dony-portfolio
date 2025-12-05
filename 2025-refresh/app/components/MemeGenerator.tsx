@@ -1,6 +1,14 @@
 "use client";
 
-import React, { useState } from "react";
+import React, { useState, useEffect, useRef } from "react";
+
+const placeholders = [
+  "What's happening with you?",
+  "How are you feeling today?",
+  "What's on your mind?",
+  "Tell me about your day...",
+  "What's the vibe right now?",
+];
 
 export function MemeGenerator() {
   const [feeling, setFeeling] = useState("");
@@ -8,6 +16,68 @@ export function MemeGenerator() {
   const [loading, setLoading] = useState(false);
   const [imageLoaded, setImageLoaded] = useState(false);
   const [error, setError] = useState<string | null>(null);
+  const [displayedPlaceholder, setDisplayedPlaceholder] = useState("");
+  const [placeholderIndex, setPlaceholderIndex] = useState(0);
+  const [isDeleting, setIsDeleting] = useState(false);
+  const [isFocused, setIsFocused] = useState(false);
+  const timeoutRef = useRef<NodeJS.Timeout | null>(null);
+
+  const shouldAnimate = !isFocused && !feeling;
+  const prevShouldAnimateRef = useRef(shouldAnimate);
+
+  // Reset animation state when starting fresh
+  useEffect(() => {
+    if (shouldAnimate && !prevShouldAnimateRef.current) {
+      setDisplayedPlaceholder("");
+      setPlaceholderIndex(0);
+      setIsDeleting(false);
+    }
+    prevShouldAnimateRef.current = shouldAnimate;
+  }, [shouldAnimate]);
+
+  useEffect(() => {
+    if (!shouldAnimate) {
+      if (timeoutRef.current) clearTimeout(timeoutRef.current);
+      return;
+    }
+
+    const currentPlaceholder = placeholders[placeholderIndex];
+    const typeSpeed = 80;
+    const deleteSpeed = 40;
+    const pauseBeforeDelete = 2000;
+    const pauseBeforeType = 300;
+
+    const animate = () => {
+      if (!isDeleting) {
+        if (displayedPlaceholder.length < currentPlaceholder.length) {
+          timeoutRef.current = setTimeout(() => {
+            setDisplayedPlaceholder(currentPlaceholder.slice(0, displayedPlaceholder.length + 1));
+          }, typeSpeed);
+        } else {
+          timeoutRef.current = setTimeout(() => {
+            setIsDeleting(true);
+          }, pauseBeforeDelete);
+        }
+      } else {
+        if (displayedPlaceholder.length > 0) {
+          timeoutRef.current = setTimeout(() => {
+            setDisplayedPlaceholder(displayedPlaceholder.slice(0, -1));
+          }, deleteSpeed);
+        } else {
+          timeoutRef.current = setTimeout(() => {
+            setIsDeleting(false);
+            setPlaceholderIndex((prev) => (prev + 1) % placeholders.length);
+          }, pauseBeforeType);
+        }
+      }
+    };
+
+    animate();
+
+    return () => {
+      if (timeoutRef.current) clearTimeout(timeoutRef.current);
+    };
+  }, [displayedPlaceholder, isDeleting, placeholderIndex, shouldAnimate]);
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -46,17 +116,28 @@ export function MemeGenerator() {
   return (
     <div className="my-8 rounded-xl border border-zinc-800 bg-zinc-900/50 p-6 overflow-hidden max-w-[600px] mx-auto">
       <form onSubmit={handleSubmit} className="space-y-4">
-        <div>
+        <div className="relative">
           <input
             id="feeling-input"
             type="text"
             value={feeling}
             onChange={(e) => setFeeling(e.target.value)}
-            placeholder="What's happening with you?"
+            onFocus={() => setIsFocused(true)}
+            onBlur={() => setIsFocused(false)}
+            placeholder={isFocused ? "What's happening with you?" : undefined}
             className="w-full px-4 py-3 bg-white border border-zinc-700 rounded-lg text-zinc-900 placeholder-zinc-500 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all"
             style={{ fontFamily: "var(--font-satoshi-light)" }}
             disabled={loading}
           />
+          {shouldAnimate && (
+            <span
+              className="absolute left-4 top-1/2 -translate-y-1/2 text-zinc-500 pointer-events-none"
+              style={{ fontFamily: "var(--font-satoshi-light)" }}
+            >
+              {displayedPlaceholder}
+              <span className="animate-pulse">|</span>
+            </span>
+          )}
         </div>
         <button
           type="submit"
