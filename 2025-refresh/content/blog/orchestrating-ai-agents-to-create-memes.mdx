@@ -71,18 +71,18 @@ const emotionAgent = createAgent({
 
 You might notice I used a stronger model for the Meme agent since creativity needs a bit more juice and a later knowledge cutoff. The Emotion agent is doing light work so I gave it something cheaper like GPT-3.
 
-Finally, the Supervisor agent - this one doesn't generate memes or analyse emotions itself. Instead, I wrapped the above agents as tools and gave it to the supervisor agent.
+Finally, the Supervisor agent - this one doesn't generate memes or analyse emotions itself. Instead, I wrapped the above agents as tools and gave it to the Supervisor agent:
 
 ```typescript
 const supervisorAgent = createAgent({
   model: "Gemini-3",
   tools: [summarizeEmotionTool, generateMemeTool],
   systemPrompt:
-    "You are a supervisor that is tasked with creating a meme based on the emotions of the user",
+    "You are a Supervisor that is tasked with creating a meme based on the emotions of the user",
 });
 ```
 
-The supervisor only sees high level tools like `summarizeEmotionTool` and `generateMemeTool`. It's not even aware of the low level `generateMemeTool` buried in the MCP server.
+The Supervisor only sees high level tools like `summarizeEmotionTool` and `generateMemeTool`. It's not even aware of the low level `generateMemeTool` buried in the MCP server.
 
 Everything ends up neat, modular, and way easier to debug when something inevitably goes wrong.
 
