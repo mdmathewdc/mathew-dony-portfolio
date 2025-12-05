@@ -15,8 +15,8 @@ export function AgentFlowDiagram() {
       const { dia, shapes, V } = joint;
 
       const containerWidth = containerRef.current?.clientWidth || 800;
+      const containerHeight = containerRef.current?.clientHeight || 400;
       const diagramWidth = 880; // Total width of diagram content
-      const diagramHeight = 400;
       const isMobile = containerWidth < 640;
       const scale = isMobile ? Math.min(containerWidth / diagramWidth, 0.85) : 1;
 
@@ -25,7 +25,7 @@ export function AgentFlowDiagram() {
         model: graph,
         cellViewNamespace: shapes,
         width: containerWidth,
-        height: diagramHeight,
+        height: containerHeight,
         gridSize: 10,
         async: true,
         frozen: true,
@@ -253,10 +253,10 @@ export function AgentFlowDiagram() {
       
       // Center the diagram in the container
       const scaledWidth = diagramWidth * scale;
-      const scaledHeight = 360 * scale; // Approximate content height
+      const scaledHeight = 220 * scale; // Approximate content height (nodes span ~y:90 to y:310)
       const offsetX = (containerWidth - scaledWidth) / 2;
-      const offsetY = (diagramHeight - scaledHeight) / 2;
-      paper.translate(offsetX > 0 ? offsetX : 0, offsetY > 0 ? offsetY : 0);
+      const offsetY = (containerHeight - scaledHeight) / 2 - 90 * scale; // Offset by top node position
+      paper.translate(offsetX > 0 ? offsetX : 0, offsetY);
 
       // Set initial cursor
       if (containerRef.current) {
@@ -291,8 +291,7 @@ export function AgentFlowDiagram() {
     <div className="my-8 rounded-xl border border-zinc-800 bg-zinc-900/50 overflow-hidden">
       <div
         ref={containerRef}
-        className="w-full h-[400px] overflow-hidden touch-none select-none"
-        style={{ minHeight: 400 }}
+        className="w-full h-[280px] sm:h-[400px] overflow-hidden touch-none select-none"
       />
     </div>
   );
