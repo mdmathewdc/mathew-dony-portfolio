@@ -53,18 +53,27 @@ export function AgentFlowDiagram() {
         `)
       );
 
-      // Single green color for all
-      const nodeColor = { fill: "#22c55e", stroke: "#4ade80" };
-      const linkColor = "#4ade80";
+      // Node colors
+      const colors = {
+        user: { fill: "#dc2626", stroke: "#ef4444" }, // Red
+        agent: { fill: "#2563eb", stroke: "#3b82f6" }, // Blue
+        mcp: { fill: "#9333ea", stroke: "#a855f7" }, // Purple
+      };
+      const linkColor = "#6b7280"; // Gray for links
 
-      function createNode(x: number, y: number, label: string) {
+      function createNode(
+        x: number,
+        y: number,
+        label: string,
+        color: { fill: string; stroke: string }
+      ) {
         const el = new shapes.standard.Rectangle({
           position: { x, y },
           size: { width: 140, height: 50 },
           attrs: {
             body: {
-              fill: nodeColor.fill,
-              stroke: nodeColor.stroke,
+              fill: color.fill,
+              stroke: color.stroke,
               strokeWidth: 2,
               rx: 12,
               ry: 12,
@@ -110,12 +119,12 @@ export function AgentFlowDiagram() {
         return l;
       }
 
-      // Create nodes
-      const userAgent = createNode(40, 175, "User");
-      const supervisorAgent = createNode(240, 175, "Supervisor Agent");
-      const emotionAgent = createNode(480, 90, "Emotion Agent");
-      const memeAgent = createNode(480, 260, "Meme Agent");
-      const mcpServer = createNode(700, 260, "MCP Server");
+      // Create nodes with different colors
+      const userAgent = createNode(40, 175, "User", colors.user);
+      const supervisorAgent = createNode(240, 175, "Supervisor Agent", colors.agent);
+      const emotionAgent = createNode(480, 90, "Emotion Agent", colors.agent);
+      const memeAgent = createNode(480, 260, "Meme Agent", colors.agent);
+      const mcpServer = createNode(700, 260, "MCP Server", colors.mcp);
 
       // Create links
       const links = [
