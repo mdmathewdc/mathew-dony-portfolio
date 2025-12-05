@@ -1,0 +1,106 @@
+---
+title: "Orchestrating AI Agents to create Memes"
+date: "2025-12-04"
+caption: "Building an agent orchestrator system using Langchain and MCP servers"
+image: "/blog/orchestrating-ai-agents.png"
+---
+
+---
+
+I've been diving deep into AI agents and MCP servers over the past few weeks. Practice makes perfect, so I wanted to build an agent orchestrator system where multiple agents can talk to each other based on what they're meant to do. One fun idea that came out of this was a setup that analyzes the user's emotions based on their answer to the question "What's happening with you?" with the help of a specialised agent, which then generates a meme that matches the vibe.
+
+## What even is an AI agent?
+
+At this point, you've probably used some kind of LLM powered application either directly or indirectly. If you haven't thought much about it, in simple words, an AI agent is just an application that uses an LLM as its brain.
+
+If you compare it to a human, the LLM is the thinking part of the mind. It takes whatever you see, hear, or feel, makes sense of it, and decides what to do next. In a human body, your eyes and ears gather information, your nerves send that information to the brain, the brain interprets it, and then your muscles carry out the action.
+
+An AI agent follows the same pattern. You have inputs from the user or the environment, some code that cleans and structures that input, the LLM that figures out what's happening, and functions that act on whatever decision it makes. The whole loop ends up feeling surprisingly close to how we operate every day.
+
+So the brain is the clever part - but just like in a real human body, the brain is basically useless without everything around it. A brain with no senses can't understand the world. A brain with no muscles can't act on anything it decides. Intelligence by itself can only go so far if it has no way to see, no way to move and no way to interact.
+
+This is exactly the limitation early LLMs ran into. They were smart on their own, but the moment you asked them something grounded in the real world, like the current weather, they had no way to actually go out and get that information. The thinking part was there, but the senses and the muscles weren't.
+
+### Enter tools.
+
+Tools were the missing pieces that enabled the LLM to actually do things. Think of the LLM as the brain and tools as the hands, sensors, and external abilities it never had. Once you connect tools to the brain, it can suddenly reach out, fetch data, take actions and handle tasks it previously couldn't even attempt.
+
+As tools became more common, it became clear that we needed a standard way for agents and LLMs to communicate with them. Anthropic introduced the [MCP protocol](https://modelcontextprotocol.io) to solve this, giving everyone a unified schema for defining and using tools.
+
+I think that's enough background. Let's build the meme generator.
+
+---
+
+## Creating the Meme MCP Server
+
+I started by building the MCP server itself. I used ImgFlip's caption_image API under the hood to generate memes. The server exposes a single tool that my Meme agent can call. I published it on npm as [imgflip-meme-mcp](https://www.npmjs.com/package/imgflip-meme-mcp) - it exposes a tool `generate_meme` which takes a template id, captions, and API credentials. Simple and tidy.
+
+## The 3 Agent squad
+
+<AgentFlowDiagram />
+
+The end user only talks to the Supervisor agent. They never interact with the Emotion agent or the Meme agent directly which keeps the experience clean and lets the chaos happen behind the curtain.
+
+Technically, I could have bundled everything into one giant agent with two tools:
+
+1. Summarise the user's emotions
+2. Generate a meme
+
+But I split them up for 3 solid reasons:
+
+- Too many tools in one agent actually [makes it worse](https://github.blog/ai-and-ml/github-copilot/how-were-making-github-copilot-smarter-with-fewer-tools/)
+- Specialised agents are easier to tune and scale up
+- I can mix and match cheap and expensive models depending on the job. For example, an agent that summarises text doesn't need the same model power as one that tries to be funny and creative.
+
+## Building the 3 Agents
+
+The Meme agent gets access to my remote MCP server so it can call the meme generator tool:
+
+```typescript
+const memeAgent = createAgent({
+  model: "GPT-5",
+  tools: [generateMemeTool],
+  systemPrompt: "Create a funny meme",
+});
+```
+
+Then we have the Emotion agent:
+
+```typescript
+const emotionAgent = createAgent({
+  model: "GPT-3.5",
+  systemPrompt: "Analyze what the user is feeling",
+});
+```
+
+You might have noticed that I used a stronger model for the Meme agent since creativity needs a bit more juice and a later knowledge cutoff. The Emotion agent is doing light work so I gave it something cheaper like GPT-3.5.
+
+Finally, the Supervisor agent - this one doesn't generate memes or analyse emotions itself. Instead, I wrapped the above agents as tools and gave it to the Supervisor agent:
+
+```typescript
+const supervisorAgent = createAgent({
+  model: "Gemini-3",
+  tools: [summarizeEmotionTool, generateMemeTool],
+  systemPrompt:
+    "You are a Supervisor that is tasked with creating a meme based on the emotions of the user",
+});
+```
+
+The Supervisor only sees high level tools like `summarizeEmotionTool` and `generateMemeTool`. It's not even aware of the low level `generateMemeTool` buried in the MCP server.
+
+Everything ends up neat, modular, and way easier to debug when something inevitably goes wrong.
+
+## Try out the Meme Agent 👇
+
+<MemeGenerator />
+
+## Links
+
+- [GitHub: ai-agents-orchestrator](https://github.com/mdmathewdc/ai-agents-orchestrator)
+- [npm: imgflip-meme-mcp](https://npmjs.com/package/imgflip-meme-mcp)
+- [Langchain](https://docs.langchain.com/)
+- [Model Context Protocol](https://modelcontextprotocol.io)
+
+---
+
+_If these agents become self aware, at least they'll have a sense of humor_

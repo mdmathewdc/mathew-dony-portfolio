@@ -1,6 +1,8 @@
 import React from "react";
 import Link from "next/link";
 import { CodeBlock } from "./CodeBlock";
+import { AgentFlowDiagram } from "./AgentFlowDiagram";
+import { MemeGenerator } from "./MemeGenerator";
 
 // Utility function to generate slug from heading text
 const slugify = (text: string): string => {
@@ -196,5 +198,7 @@ export const MDXComponents = {
       {children}
     </em>
   ),
+  AgentFlowDiagram,
+  MemeGenerator,
 };
 
