@@ -5,6 +5,8 @@ caption: "Building an agent orchestrator system using Langchain and MCP servers"
 image: "/blog/orchestrating-ai-agents.png"
 ---
 
+---
+
 I've been diving deep into AI agents and MCP servers over the past few weeks. Practice makes perfect, so I wanted to build an agent orchestrator system where multiple agents can talk to each other based on what they're meant to do. One fun idea that came out of this was a setup that analyzes the user's emotions based on their answer to the question "What's happening with you?" with the help of a specialised agent, which then generates a meme that matches the vibe.
 
 ## What even is an AI agent?
@@ -26,6 +28,8 @@ Tools were the missing pieces that enabled the LLM to actually do things. Think 
 As tools became more common, it became clear that we needed a standard way for agents and LLMs to communicate with them. Anthropic introduced the [MCP protocol](https://modelcontextprotocol.io) to solve this, giving everyone a unified schema for defining and using tools.
 
 I think that's enough background. Let's build the meme generator.
+
+---
 
 ## Creating the Meme MCP Server
 
