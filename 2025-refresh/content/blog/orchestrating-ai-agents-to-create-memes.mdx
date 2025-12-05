@@ -5,7 +5,7 @@ caption: "Building an agent orchestrator system using Langchain and MCP servers"
 image: "/blog/orchestrating-ai-agents.png"
 ---
 
-I've been diving deep into AI agents and MCP servers over the past few weeks. Practice makes perfect, so I wanted to build an agent orchestrator system where multiple agents can talk to each other based on what they're meant to do. One fun idea that came out of this was a setup that analyzes the user's emotions based on their answer to the question "What's happening with you?" with the help of a specialised agent, which then generates a meme that matches the vibe. It felt like the perfect use case for several specialised agents working together.
+I've been diving deep into AI agents and MCP servers over the past few weeks. Practice makes perfect, so I wanted to build an agent orchestrator system where multiple agents can talk to each other based on what they're meant to do. One fun idea that came out of this was a setup that analyzes the user's emotions based on their answer to the question "What's happening with you?" with the help of a specialised agent, which then generates a meme that matches the vibe.
 
 ## What even is an AI agent?
 
@@ -23,13 +23,13 @@ This is exactly the limitation early LLMs ran into. They were smart on their own
 
 Tools were the missing pieces that enabled the LLM to actually do things. Think of the LLM as the brain and tools as the hands, sensors, and external abilities it never had. Once you connect tools to the brain, it can suddenly reach out, fetch data, take actions and handle tasks it previously couldn't even attempt.
 
-As tools became more common, it became clear that we needed a standard way for agents and LLMs to communicate with them. Anthropic introduced the MCP protocol to solve this, giving everyone a unified schema for defining and using tools.
+As tools became more common, it became clear that we needed a standard way for agents and LLMs to communicate with them. Anthropic introduced the [MCP protocol](https://modelcontextprotocol.io) to solve this, giving everyone a unified schema for defining and using tools.
 
 I think that's enough background. Let's build the meme generator.
 
 ## Creating the Meme MCP Server
 
-I started by building the MCP server itself. I used ImgFlip's caption_image API under the hood to generate memes. The server exposes a single tool that my Meme agent can call. I published it on npm as [imgflip-meme-mcp](https://www.npmjs.com/package/imgflip-meme-mcp). It exposes one tool `generate_meme` which takes a template id, captions, and API credentials. Simple and tidy.
+I started by building the MCP server itself. I used ImgFlip's caption_image API under the hood to generate memes. The server exposes a single tool that my Meme agent can call. I published it on npm as [imgflip-meme-mcp](https://www.npmjs.com/package/imgflip-meme-mcp) - it exposes a tool `generate_meme` which takes a template id, captions, and API credentials. Simple and tidy.
 
 ## The 3 Agent squad
 
@@ -42,9 +42,9 @@ Technically, I could have bundled everything into one giant agent with two tools
 1. Summarise the user's emotions
 2. Generate a meme
 
-But I split them up for three solid reasons:
+But I split them up for 3 solid reasons:
 
-- Too many tools in one agent actually makes it worse (add link here)
+- Too many tools in one agent actually [makes it worse](https://github.blog/ai-and-ml/github-copilot/how-were-making-github-copilot-smarter-with-fewer-tools/)
 - Specialised agents are easier to tune and scale up
 - I can mix and match cheap and expensive models depending on the job. For example, an agent that summarises text doesn't need the same model power as one that tries to be funny and creative.
 
@@ -64,12 +64,12 @@ Then we have the Emotion agent:
 
 ```typescript
 const emotionAgent = createAgent({
-  model: "GPT-3",
+  model: "GPT-3.5",
   systemPrompt: "Analyze what the user is feeling",
 });
 ```
 
-You might notice I used a stronger model for the Meme agent since creativity needs a bit more juice and a later knowledge cutoff. The Emotion agent is doing light work so I gave it something cheaper like GPT-3.
+You might have noticed that I used a stronger model for the Meme agent since creativity needs a bit more juice and a later knowledge cutoff. The Emotion agent is doing light work so I gave it something cheaper like GPT-3.5.
 
 Finally, the Supervisor agent - this one doesn't generate memes or analyse emotions itself. Instead, I wrapped the above agents as tools and gave it to the Supervisor agent:
 
@@ -92,9 +92,11 @@ Everything ends up neat, modular, and way easier to debug when something inevita
 
 ## Links
 
-- [GitHub: AI Agents Orchestrator](https://github.com/mdmathewdc/ai-agents-orchestrator)
+- [GitHub: ai-agents-orchestrator](https://github.com/mdmathewdc/ai-agents-orchestrator)
 - [npm: imgflip-meme-mcp](https://npmjs.com/package/imgflip-meme-mcp)
+- [Langchain](https://js.langchain.com/docs/guides/agents/)
+- [Model Context Protocol](https://modelcontextprotocol.io)
 
 ---
 
-_If these agents become self aware, at least they'll have a sense of humor._
+_If these agents become self aware, at least they'll have a sense of humor_
