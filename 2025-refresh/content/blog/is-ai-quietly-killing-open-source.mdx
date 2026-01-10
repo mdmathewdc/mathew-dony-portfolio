@@ -1,0 +1,48 @@
+---
+title: "Is AI Quietly Killing Open Source?"
+description: "How LLMs are reshaping the open source business model and what comes next"
+date: "2026-01-11"
+---
+
+Open Source, both the free and the paid premium kind, is the backbone of modern software development. Personally, AI-assisted development has increased my enjoyment of coding by 10x. But I cannot help wondering whether LLMs are slowly pushing Open Source culture toward a quiet decline.
+
+## The Tailwind Situation
+
+If you have been anywhere near tech X/Twitter recently, you have probably seen the Tailwind drama. Tailwind CSS is a hugely popular utility-first CSS framework that lets you write styles inline. Since the AI boom, it has arguably become the default way to build quick web apps. Inline styles live right next to the markup, which makes them especially easy for AI to generate and modify. For vibe-coded apps, Tailwind feels like a perfect match.
+
+Despite this popularity, Tailwind recently [laid off around 75 percent of its team](https://github.com/tailwindlabs/tailwindcss.com/pull/2388#issuecomment-3717222957). This was not because the framework is failing. In fact, it is more popular than ever, with roughly 75 million downloads per month.
+
+The real issue is that AI tools have become so good at writing Tailwind that developers no longer need to visit the documentation as often. Those docs were the primary channel for promoting Tailwind's paid products. Fewer human eyeballs meant less revenue, even as usage continued to explode.
+
+## The Joy of Open Source
+
+Before AI, many Open Source projects started with a single developer scratching a personal itch. They solved a problem, realized others might benefit, and shared the solution as a GitHub repository. Over time, the library gained attention, contributors joined in, and an ecosystem formed around it.
+
+Even when multiple libraries solved the same problem, competition existed in a healthy way. Better APIs, better documentation or a more pleasant developer experience could make one project more popular than another. Developers chose their favorites and often contributed back. Sponsorships from individuals and organizations helped sustain projects because those libraries directly solved real pain points. Documentation was the central reference point. If you wanted to use the library, you had to read it.
+
+Then LLMs entered the picture.
+
+## When Attention Moves Elsewhere
+
+LLM-powered coding agents break this loop. Agents read the docs, not people. They integrate libraries in seconds, without attribution, without brand recognition, and without sending traffic back to the source. No one knows who built the tool. No one browses the docs. The funnel collapses.
+
+This is not hypothetical. Tailwind is already a concrete example. Massive adoption. Dramatically lower revenue. Documentation traffic down. Engineering teams laid off. Even proposals to optimize docs for LLMs were rejected, because doing so would further accelerate the erosion of the only remaining monetization channel. Optimizing for agents can feel like building the infrastructure for your own obsolescence.
+
+As someone who has contributed to multiple Open Source projects, this rings true for me. When I first started building with Tailwind, I constantly referred to the documentation just to remember utility class names. Now, I ask my AI tool instead. And when a library offers premium features behind a paywall, I often ask my agent to build something equivalent. I would rather spend money on tokens than pay for the feature itself - I suspect many other developers are doing the same.
+
+## The Cracks in the OSS Business Model
+
+Two of the most common Open Source monetization strategies have been:
+
+- **Open core**: Give away the core library, then sell premium features or hosted offerings once you reach critical mass.
+- **Expertise moat**: Become the recognized expert in your own library, leading to consulting, speaking, or career leverage.
+
+Both models depend on attention. Human attention. People reading your docs, recognizing your name, and associating you with a solution. LLMs change where attention lives. Documentation trained the models, and the models now answer questions directly. Projects that rely on docs-to-premium conversion are especially exposed. Tailwind is not alone here. Prisma, Drizzle, Strapi and many others face the same structural pressure. I also cannot help wondering if this situation has parallels with the Stack Overflow situation, a platform that depended almost entirely on human questions and answers, and which has seen question volume drop to near all-time lows since its launch in September 2008.
+
+## What Comes Next
+
+When downstream monetization breaks, the only remaining leverage point is access itself. Open Source historically gave away access and hoped to monetize attention later. Agents bypass the later step entirely.
+
+The likely outcome is not the end of shared code, but a shift in form. Libraries start to look more like APIs. Metered usage. Paid access for agents. Closed or semi-closed systems where the gate is explicit. In this context, Cloudflare's [Pay Per Crawl](https://developers.cloudflare.com/ai-crawl-control/features/pay-per-crawl/what-is-pay-per-crawl/) looks like a particularly interesting development. It acknowledges the reality that AI crawlers are already consuming vast amounts of content and attempts to rebalance the relationship by giving content owners a way to control access and get compensated for automated usage, rather than letting value be extracted for free.
+
+The irony is hard to ignore though. Open Source trained the models that now threaten its sustainability. In many ways, it built its own replacement. Whether this leads to a healthier ecosystem or a more fragmented, paywalled future is still unclear. But it does feel like we are standing at the end of one era of Open Source and at the uncomfortable beginning of another.

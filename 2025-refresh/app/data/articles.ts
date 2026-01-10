@@ -7,6 +7,13 @@ export interface Article {
 
 export const articles: Article[] = [
   {
+    title: "Is AI Quietly Killing Open Source?",
+    caption:
+      "How LLMs are reshaping the open source business model and what comes next",
+    publishedDate: new Date("2026-01-11"),
+    slug: "is-ai-quietly-killing-open-source",
+  },
+  {
     title: "Orchestrating AI Agents to create Memes",
     caption:
       "Building an agent orchestrator system using Langchain and MCP servers",
