@@ -1,9 +1,5 @@
-"use client";
-
 import type { ComponentProps, ReactElement } from "react";
-import { useState } from "react";
 import Image from "next/image";
-import { motion } from "motion/react";
 
 type SocialLink = {
   href: string;
@@ -42,22 +38,10 @@ const socialLinks: SocialLink[] = [
 ];
 
 export const Hero = () => {
-  const [isAnimating, setIsAnimating] = useState(false);
-
-  const handleImageClick = () => {
-    setIsAnimating(true);
-    setTimeout(() => setIsAnimating(false), 400);
-  };
-
   return (
     <div className="mx-auto flex w-full max-w-6xl flex-col gap-6 md:flex-row">
       <section className="relative flex flex-1 flex-col gap-6 rounded-[32px] border bg-black p-6 border-white/20 sm:p-10">
-        <motion.header
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.4, ease: "easeOut" }}
-          className="relative flex flex-col md:flex-row items-start gap-4"
-        >
+        <header className="relative flex flex-col md:flex-row items-start gap-4">
           <div className="flex items-center gap-2 flex-1">
             <Image
               src="/mathew-genmoji.png"
@@ -104,12 +88,9 @@ export const Hero = () => {
               </a>
             ))}
           </div>
-        </motion.header>
+        </header>
 
-        <motion.h1
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.4, delay: 0.2, ease: "easeOut" }}
+        <h1
           className="relative text-3xl font-sm text-white"
           style={{ fontFamily: "var(--font-satoshi-regular)" }}
         >
@@ -124,31 +105,12 @@ export const Hero = () => {
             timeless
           </span>{" "}
           solutions with code.
-        </motion.h1>
+        </h1>
 
-        <motion.p
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.4, delay: 0.4, ease: "easeOut" }}
-          className="relative text-sm text-zinc-400 inline-flex items-center gap-1.5"
-        >
+        <p className="relative text-sm text-zinc-400 inline-flex items-center gap-1.5">
           Based in{" "}
           <span className="inline-flex items-center gap-1 pb-2">
-            <motion.span
-              onClick={handleImageClick}
-              className="cursor-pointer inline-block"
-              animate={
-                isAnimating
-                  ? {
-                      scale: [1, 0.9, 1.05, 1],
-                    }
-                  : { scale: 1 }
-              }
-              transition={{
-                duration: 0.4,
-                ease: [0.34, 1.56, 0.64, 1],
-              }}
-            >
+            <span className="inline-block">
               <Image
                 src="/sydney-opera-house.png"
                 alt="Sydney Opera House"
@@ -156,10 +118,10 @@ export const Hero = () => {
                 height={32}
                 className="inline-block"
               />
-            </motion.span>
+            </span>
           </span>
           Australia.
-        </motion.p>
+        </p>
       </section>
     </div>
   );

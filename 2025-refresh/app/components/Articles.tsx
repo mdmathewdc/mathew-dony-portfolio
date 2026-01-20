@@ -1,7 +1,4 @@
-"use client";
-
 import Link from "next/link";
-import { motion } from "motion/react";
 import { Article } from "../data/articles";
 
 interface ArticlesProps {
@@ -11,12 +8,7 @@ interface ArticlesProps {
 export const Articles = ({ articlesWithLikes }: ArticlesProps) => {
   return (
     <div className="mx-auto flex w-full max-w-6xl flex-col gap-8 pl-5 sm:pl-10">
-      <motion.div
-        initial={{ opacity: 0, y: 20 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.4, delay: 0.6, ease: "easeOut" }}
-        className="flex flex-col gap-2"
-      >
+      <div className="flex flex-col gap-2">
         <div className="relative inline-block">
           <h2
             className="text-2xl font-medium text-white"
@@ -33,21 +25,11 @@ export const Articles = ({ articlesWithLikes }: ArticlesProps) => {
             </svg>
           </div>
         </div>
-      </motion.div>
+      </div>
 
       <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
         {articlesWithLikes.map((article, index) => (
-          <motion.article
-            key={index}
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{
-              duration: 0.4,
-              delay: 0.8 + index * 0.1,
-              ease: "easeOut",
-            }}
-            className="flex flex-col gap-4"
-          >
+          <article key={index} className="flex flex-col gap-4">
             <div className="flex flex-col md:flex-row md:items-center md:justify-between gap-2">
               <Link href={`/blog/${article.slug}`}>
                 <h3
@@ -69,16 +51,11 @@ export const Articles = ({ articlesWithLikes }: ArticlesProps) => {
             >
               Read more
             </Link>
-          </motion.article>
+          </article>
         ))}
       </div>
 
-      <motion.div
-        initial={{ opacity: 0, x: -8 }}
-        animate={{ opacity: 1, x: 0 }}
-        transition={{ duration: 0.4, delay: 1.6, ease: "easeOut" }}
-        className="flex justify-start pt-4"
-      >
+      <div className="flex justify-start pt-4">
         <Link
           href="/blog"
           className="text-sm text-zinc-400 hover:text-white transition inline-flex items-center gap-1"
@@ -97,7 +74,7 @@ export const Articles = ({ articlesWithLikes }: ArticlesProps) => {
             <path d="M5 12H19M19 12L13 6M19 12L13 18" />
           </svg>
         </Link>
-      </motion.div>
+      </div>
     </div>
   );
 };
