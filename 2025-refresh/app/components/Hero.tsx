@@ -43,7 +43,7 @@ export const Hero = () => {
       <section className="relative flex flex-1 flex-col gap-6 rounded-[32px] border bg-black p-6 border-white/20 sm:p-10">
         <header className="relative flex flex-col md:flex-row items-start gap-4">
           <div className="flex items-center gap-2 flex-1">
-            <div className="relative shrink-0 w-10 h-10">
+            {/* <div className="relative shrink-0 w-10 h-10"> */}
               <Image
                 src="/mathew-genmoji.png"
                 alt="Mathew Dony"
@@ -53,7 +53,7 @@ export const Hero = () => {
                 className="rounded-full"
                 style={{ width: "40px", height: "40px" }}
               />
-            </div>
+            {/* </div> */}
             <div>
               <p
                 className="text-sm font-medium text-white"
