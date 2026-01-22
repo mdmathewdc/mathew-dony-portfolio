@@ -48,6 +48,7 @@ export const Hero = () => {
               alt="Mathew Dony"
               width={40}
               height={40}
+              priority
               className="rounded-full shrink-0"
             />
             <div>
@@ -116,6 +117,7 @@ export const Hero = () => {
                 alt="Sydney Opera House"
                 width={32}
                 height={32}
+                priority
                 className="inline-block"
               />
             </span>
