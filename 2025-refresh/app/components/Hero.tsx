@@ -49,7 +49,7 @@ export const Hero = () => {
               width={40}
               height={40}
               priority
-              className="rounded-full shrink-0"
+              className="rounded-full"
             />
             <div>
               <p
