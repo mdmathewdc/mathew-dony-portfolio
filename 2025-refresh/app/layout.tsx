@@ -9,8 +9,8 @@ const satoshiLight = localFont({
   variable: "--font-satoshi-light",
   weight: "300",
   fallback: ["Helvetica", "sans-serif"],
-  display: "swap",
-  adjustFontFallback: false,
+  display: "optional",
+  adjustFontFallback: "Arial",
 });
 
 const satoshiRegular = localFont({
@@ -18,8 +18,8 @@ const satoshiRegular = localFont({
   variable: "--font-satoshi-regular",
   weight: "400",
   fallback: ["Helvetica", "sans-serif"],
-  display: "swap",
-  adjustFontFallback: false,
+  display: "optional",
+  adjustFontFallback: "Arial",
 });
 
 const instrumentSerif = localFont({
@@ -37,8 +37,8 @@ const instrumentSerif = localFont({
   ],
   variable: "--font-instrument-serif",
   fallback: ["Georgia", "serif"],
-  display: "swap",
-  adjustFontFallback: false,
+  display: "optional",
+  adjustFontFallback: "Times New Roman",
 });
 
 export const metadata: Metadata = {

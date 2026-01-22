@@ -43,14 +43,17 @@ export const Hero = () => {
       <section className="relative flex flex-1 flex-col gap-6 rounded-[32px] border bg-black p-6 border-white/20 sm:p-10">
         <header className="relative flex flex-col md:flex-row items-start gap-4">
           <div className="flex items-center gap-2 flex-1">
-            <Image
-              src="/mathew-genmoji.png"
-              alt="Mathew Dony"
-              width={40}
-              height={40}
-              priority
-              className="rounded-full"
-            />
+            <div className="relative shrink-0 w-10 h-10">
+              <Image
+                src="/mathew-genmoji.png"
+                alt="Mathew Dony"
+                width={40}
+                height={40}
+                priority
+                className="rounded-full"
+                style={{ width: "40px", height: "40px" }}
+              />
+            </div>
             <div>
               <p
                 className="text-sm font-medium text-white"
@@ -111,7 +114,7 @@ export const Hero = () => {
         <p className="relative text-sm text-zinc-400 inline-flex items-center gap-1.5">
           Based in{" "}
           <span className="inline-flex items-center gap-1 pb-2">
-            <span className="inline-block">
+            <span className="inline-block relative w-8 h-8">
               <Image
                 src="/sydney-opera-house.png"
                 alt="Sydney Opera House"
@@ -119,6 +122,7 @@ export const Hero = () => {
                 height={32}
                 priority
                 className="inline-block"
+                style={{ width: "32px", height: "32px" }}
               />
             </span>
           </span>
