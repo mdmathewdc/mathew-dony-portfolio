@@ -51,7 +51,7 @@ export const Hero = () => {
                 height={40}
                 priority
                 className="rounded-full"
-                style={{ width: "40px", height: "40px" }}
+                style={{ width: "36px", height: "42px" }}
               />
             {/* </div> */}
             <div>
