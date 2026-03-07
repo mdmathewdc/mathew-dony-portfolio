@@ -50,7 +50,7 @@ export const BlogPostLayout = ({
           </div>
         </header>
 
-        <article className="prose prose-invert prose-zinc max-w-none text-justify">
+        <article className="prose prose-invert prose-zinc max-w-none">
           {children}
         </article>
       </div>
