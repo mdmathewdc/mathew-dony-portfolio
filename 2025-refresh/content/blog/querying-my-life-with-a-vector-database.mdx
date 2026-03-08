@@ -7,7 +7,7 @@ image: "/blog/querying-my-life-with-a-vector-database.png"
 
 ---
 
-A few days ago, I found myself wondering what it would take to build a tiny AI that remembers my life. Something simple and practical. Something where I could ask "Where did I eat out over the last 2 years?" and get an answer without digging through notes, calendars and chats.
+A few days ago, I found myself wondering what it would take to build a tiny AI that remembers my life. Something simple and practical. Something where I could ask "Where did I eat out over the last 2 years?" and get an answer without digging through notes, calendars and chats (please don't say "OpenClaw").
 
 So I built a small project called `journal-ai`. The idea is straightforward: I write a few lines of text entries each day and later I can ask questions about my past. The AI answers using my own journal history as context. This article walks through how it works, why I used PostgreSQL + pgvector and some ideas for where this could go next.
 
