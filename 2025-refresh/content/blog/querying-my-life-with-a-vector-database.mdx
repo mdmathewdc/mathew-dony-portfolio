@@ -40,8 +40,6 @@ Instead of storing journal text as plain strings, `journal-ai` converts each ent
 
 This vector is a numeric representation of the meaning of the sentence. When I later ask "Where did I eat out in the last 2 months?", the question is also turned into a vector. From there, the system just finds the stored vectors most similar to the question vector. No more keyword matching, just semantic similarity.
 
-<Embedding3DVisualizer />
-
 ## High-Level Architecture
 
 A journal entry goes through an embedding model, gets stored in Postgres with pgvector and when a question comes in, it runs a semantic search against stored entries and passes the results to an LLM to generate an answer.

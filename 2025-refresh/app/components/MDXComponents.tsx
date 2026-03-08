@@ -3,7 +3,6 @@ import Link from "next/link";
 import { CodeBlock } from "./CodeBlock";
 import { AgentFlowDiagram } from "./AgentFlowDiagram";
 import { MemeGenerator } from "./MemeGenerator";
-import { Embedding3DVisualizer } from "./Embedding3DVisualizer";
 
 // Utility function to generate slug from heading text
 const slugify = (text: string): string => {
@@ -201,6 +200,5 @@ export const MDXComponents = {
   ),
   AgentFlowDiagram,
   MemeGenerator,
-  Embedding3DVisualizer,
 };
 
