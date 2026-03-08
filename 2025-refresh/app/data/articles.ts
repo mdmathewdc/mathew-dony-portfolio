@@ -7,6 +7,13 @@ export interface Article {
 
 export const articles: Article[] = [
   {
+    title: "Querying My Life with a Vector Database",
+    caption:
+      "A hands-on experiment with pgvector, embeddings and RAG",
+    publishedDate: new Date("2026-03-08"),
+    slug: "querying-my-life-with-a-vector-database",
+  },
+  {
     title: "Is AI Quietly Killing Open Source?",
     caption:
       "How LLMs are reshaping the open source business model and what comes next",

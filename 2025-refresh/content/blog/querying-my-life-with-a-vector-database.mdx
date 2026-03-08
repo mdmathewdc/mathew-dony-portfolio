@@ -1,0 +1,119 @@
+---
+title: "Querying My Life with a Vector Database"
+description: "A hands-on experiment with pgvector, embeddings and RAG"
+date: "2026-03-08"
+image: "/blog/querying-my-life-with-a-vector-database.png"
+---
+
+---
+
+A few days ago, I found myself wondering what it would take to build a tiny AI that remembers my life. Something simple and practical. Something where I could ask "Where did I eat out over the last 2 years?" and get an answer without digging through notes, calendars and chats.
+
+So I built a small project called `journal-ai`. The idea is straightforward: I write a few lines of text entries each day and later I can ask questions about my past. The AI answers using my own journal history as context. This article walks through how it works, why I used PostgreSQL + pgvector and some ideas for where this could go next.
+
+## Why Traditional Search is Boring 🥱
+
+When I first hacked on `journal-ai`, I tried a naive keyword search over my entries. It worked fine for ultra literal queries like:
+
+- Search: **"ramen"**
+- Result: `Tried that new cafe on Market Street with Nicey`
+
+But of course it wouldn't work for something like this:
+
+- Search: **"restaurants"**
+- Journal entries:
+  - `Tried that new cafe on Market Street with Nicey`
+  - `30th birthday dinner at Totti's`
+- Result: **No matches**, because the word `"restaurants"` never appears.
+
+Hmmm, but I’m going to use an LLM anyway to process my answer, so why not just dump all the entries in and ask it directly? Well, tokens are expensive and the more text you feed, the higher the chance of hallucinations.
+
+Keyword search is great when you know the exact words you are looking for. But our memories are semantic. We remember ideas, not strings. This gap is exactly what vector databases are designed to close.
+
+## The Core Idea: Turn Entries Into Vectors
+
+Instead of storing journal text as plain strings, `journal-ai` converts each entry into a vector embedding. So a journal line like "Tried that new cafe on Market Street with Nicey" becomes something like:
+
+```text
+[0.023, -0.442, 0.113, ...]
+```
+
+This vector is a numeric representation of the meaning of the sentence. When I later ask "Where did I eat out in the last 2 months?", the question is also turned into a vector. From there, the system just finds the stored vectors most similar to the question vector. No more keyword matching, just semantic similarity.
+
+## High-Level Architecture
+
+A journal entry goes through an embedding model, gets stored in Postgres with pgvector and when a question comes in, it runs a semantic search against stored entries and passes the results to an LLM to generate an answer.
+
+I used Node.js, PostgreSQL with pgvector and OpenAI embeddings.
+## Storing Journal Entries
+
+Entries are sent to the backend via a simple `POST /journal` endpoint:
+
+```json
+{
+  "entry": "Tried that new cafe on Market Street with Nicey"
+}
+```
+
+The backend generates an embedding for the text, stores the raw text and stores the vector in PostgreSQL. The schema is minimal:
+
+```sql
+CREATE TABLE journal_entries (
+  id SERIAL PRIMARY KEY,
+  content TEXT,
+  embedding VECTOR(1536),
+  created_at TIMESTAMP DEFAULT NOW()
+);
+```
+
+The embedding column is where the magic lives - `VECTOR(1536)` means each entry is turned into a 1536-dimensional vector - You can think of it as a point in a massive 1536‑dimensional space where similar entries end up close together. You can even visualize this in the 2D space using the t-SNE algorithm which I found in this old [OpenAI article](https://developers.openai.com/cookbook/examples/visualizing_embeddings_in_2d).
+
+## Semantic Search with pgvector
+
+You can ask a question through the `POST /ask` endpoint. It first embeds the question using the same embedding model, search for similar vectors in the `journal_entries` table and returns the closest matches. The query looks like this:
+
+```sql
+SELECT content
+  FROM journal_entries
+  ORDER BY embedding <-> $1
+  LIMIT 5;
+```
+
+The `embedding <-> $1` expression uses pgvector's distance operator to compute similarity between stored entries and the question vector and `LIMIT 5` grabs the top 5 likely relevant candidates. At this point, you have a small bundle of journal lines that are semantically related to your question.
+
+## Letting the LLM Answer
+
+Once we have relevant journal entries, we pass them to an LLM with a simple prompt:
+
+```text
+Question:
+Where did I eat out in the last 2 months?
+
+LLM prompt:
+Based on the following journal entries, answer the question.
+Journal entries:
+- Tried that new cafe on Market Street with Nicey
+- 30th birthday dinner at Totti's
+- Had a nice home cooked meal yesterday
+
+Provide a clear, concise answer.
+```
+
+The model generates something like "You went to a cafe on Market Street and had a birthday dinner at Totti's." The key detail is that the model is not hallucinating and is grounded in the exact entries retrieved via vector search. The LLM's job is just to summarise and synthesise what we passed into its context.
+
+## Playing with Possibilities
+
+There are plenty of dedicated vector databases today, but I picked pgvector inside PostgreSQL because it look simple enough: Install the extension, add a vector column, done. With pgvector, Postgres becomes a semantic search engine which feels a bit magical when you first see it working. I would probably look into [Pinecone](https://www.pinecone.io/) and [turbopuffer](https://www.turbopuffer.com/) next as they looked like "AI-first" databases.
+
+If we strip down this app to its essentials, the logic is just embed, store, search and answer. Once you have embeddings, almost everything becomes a similarity problem - "What's like this?", "What's related to X?" or "What else feels similar to this idea?". That mental model made vector databases finally click for me.
+
+`journal-ai` is a small project, but building it turned out to be a fun playground to learn about embeddings, vector search and semantic retrieval. It all started from a very human question: _Man, what was I doing last week?_.
+
+## Links
+
+- [journal-ai](https://github.com/mdmathewdc/journal-ai)
+- [pgvector](https://github.com/pgvector/pgvector)
+
+---
+
+_So this is what Cursor and Copilot does, huh?_
