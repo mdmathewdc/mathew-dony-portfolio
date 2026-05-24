@@ -11,7 +11,7 @@ A few days ago, I found myself wondering what it would take to build a tiny AI t
 
 So I built a small project called `journal-ai`. The idea is straightforward: I write a few lines of text entries each day and later I can ask questions about my past. The AI answers using my own journal history as context. This article walks through how it works, why I used PostgreSQL + pgvector and some ideas for where this could go next.
 
-## Why Traditional Search is Boring 🥱
+## Traditional Search is Boring 🥱
 
 When I first hacked on `journal-ai`, I tried a naive keyword search over my entries. It worked fine for ultra literal queries like:
 
