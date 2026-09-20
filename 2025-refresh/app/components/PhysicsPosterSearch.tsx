@@ -22,11 +22,17 @@ type Flight = {
   delay: number;
 };
 
+type ScaleFall = {
+  fromScale: number;
+  startedAt: number;
+};
+
 type PhysicsWorld = {
   engine: Matter.Engine;
   bodies: Map<string, Matter.Body>;
   targets: Map<string, Matter.Vector>;
   flights: Map<string, Flight>;
+  scaleFalls: Map<string, ScaleFall>;
   scales: Map<string, number>;
   animationFrame: number;
   width: number;
@@ -163,7 +169,7 @@ export function PhysicsPosterSearch() {
     });
 
     Matter.Composite.add(engine.world, [floor, leftWall, rightWall, ...bodies.values()]);
-    const physics: PhysicsWorld = { engine, bodies, targets: new Map(), flights: new Map(), scales: new Map(), animationFrame: 0, width: stageSize.width, height: stageSize.height, draggedId: null };
+    const physics: PhysicsWorld = { engine, bodies, targets: new Map(), flights: new Map(), scaleFalls: new Map(), scales: new Map(), animationFrame: 0, width: stageSize.width, height: stageSize.height, draggedId: null };
     physicsRef.current = physics;
     initialLiftRef.current = false;
 
@@ -181,6 +187,7 @@ export function PhysicsPosterSearch() {
     const tick = () => {
       const now = window.performance.now();
       const flights = physics.flights ?? (physics.flights = new Map());
+      const scaleFalls = physics.scaleFalls ?? (physics.scaleFalls = new Map());
       const scales = physics.scales ?? (physics.scales = new Map());
       flights.forEach((flight, movieId) => {
         const body = bodies.get(movieId);
@@ -205,6 +212,13 @@ export function PhysicsPosterSearch() {
           scales.set(movieId, flight.targetScale);
           flights.delete(movieId);
         }
+      });
+
+      scaleFalls.forEach((fall, movieId) => {
+        const progress = Math.min(1, (now - fall.startedAt) / 520);
+        const eased = 1 - Math.pow(1 - progress, 3);
+        scales.set(movieId, fall.fromScale + (1 - fall.fromScale) * eased);
+        if (progress === 1) scaleFalls.delete(movieId);
       });
 
       Matter.Engine.update(engine, 1000 / 60);
@@ -234,19 +248,26 @@ export function PhysicsPosterSearch() {
       const resultPosterWidth = posterWidth * resultScale;
       const rowWidth = results.length * resultPosterWidth + Math.max(0, results.length - 1) * gap;
       const flights = physics.flights ?? (physics.flights = new Map());
+      const scaleFalls = physics.scaleFalls ?? (physics.scaleFalls = new Map());
       const scales = physics.scales ?? (physics.scales = new Map());
 
       physics.bodies.forEach((body, movieId) => {
         if (!activeIds.has(movieId)) {
           const wasTargeted = physics.targets.delete(movieId);
           flights.delete(movieId);
-          scales.set(movieId, 1);
+          scaleFalls.delete(movieId);
           if (body.isStatic) Matter.Body.setStatic(body, false);
           body.collisionFilter.mask = 0xFFFFFFFF;
           body.frictionAir = 0.012;
           if (wasTargeted) {
+            scaleFalls.set(movieId, {
+              fromScale: scales.get(movieId) ?? 1,
+              startedAt: window.performance.now(),
+            });
             Matter.Body.setVelocity(body, { x: (Math.random() - 0.5) * 2.5, y: 1.6 });
             Matter.Body.setAngularVelocity(body, (Math.random() - 0.5) * 0.12);
+          } else {
+            scales.set(movieId, 1);
           }
           return;
         }
@@ -259,6 +280,7 @@ export function PhysicsPosterSearch() {
         const previousTarget = physics.targets.get(movieId);
         physics.targets.set(movieId, target);
         if (!previousTarget || Math.hypot(previousTarget.x - target.x, previousTarget.y - target.y) > 2) {
+          scaleFalls.delete(movieId);
           flights.set(movieId, {
             from: { x: body.position.x, y: body.position.y },
             target,
