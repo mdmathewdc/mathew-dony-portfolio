@@ -121,6 +121,11 @@ export function PhysicsPosterSearch() {
   const posterHeight = posterWidth * 1.5;
   const showNoResults = input.trim().length > 0 && input === query && results.length === 0;
 
+  const clearSearch = () => {
+    setInput("");
+    setQuery("");
+  };
+
   useEffect(() => {
     const timeout = window.setTimeout(() => setQuery(input), 300);
     return () => window.clearTimeout(timeout);
@@ -386,12 +391,12 @@ export function PhysicsPosterSearch() {
         <div className="relative mx-auto w-full max-w-[590px]">
           <label className="flex h-11 items-center rounded-[16px] border border-[#aac5b8] bg-[#fffdf7] px-4 shadow-[0_12px_28px_rgba(34,73,61,0.12)] transition focus-within:border-[#e6533c] focus-within:shadow-[0_14px_32px_rgba(230,83,60,0.16)] sm:h-12 sm:px-5">
             <Search className="mr-3 h-3.5 w-3.5 shrink-0 text-[#e6533c] sm:mr-4 sm:h-4 sm:w-4" strokeWidth={1.8} aria-hidden="true" />
-            <input value={input} onChange={(event) => setInput(event.target.value)} className="h-full min-w-0 flex-1 bg-transparent py-0 text-base leading-none text-[#173b33] outline-none placeholder:text-[#78958b] sm:text-lg md:text-xl" placeholder="What do you feel like watching?" aria-label="Search for movies" />
-            {input && <button type="button" onClick={() => setInput("")} className="ml-2 grid h-6 w-6 shrink-0 place-items-center rounded-full bg-[#e8f0ea] text-[#49766a] transition hover:bg-[#e6533c] hover:text-white sm:h-7 sm:w-7" aria-label="Clear movie search"><X className="h-3 w-3" strokeWidth={2} /></button>}
+            <input value={input} onChange={(event) => setInput(event.target.value)} onKeyDown={(event) => { if (event.key === "Escape") clearSearch(); }} className="h-full min-w-0 flex-1 bg-transparent py-0 text-base leading-none text-[#173b33] outline-none placeholder:text-[#78958b] sm:text-lg md:text-xl" placeholder="What do you feel like watching?" aria-label="Search for movies" />
+            {input && <button type="button" onClick={clearSearch} className="ml-2 grid h-6 w-6 shrink-0 place-items-center rounded-full bg-[#e8f0ea] text-[#49766a] transition hover:bg-[#e6533c] hover:text-white sm:h-7 sm:w-7" aria-label="Clear movie search"><X className="h-3 w-3" strokeWidth={2} /></button>}
           </label>
         </div>
 
-        <div ref={stageRef} onPointerDown={handlePointerDown} onPointerMove={handlePointerMove} onPointerUp={releasePointer} onPointerCancel={releasePointer} className="relative mx-auto mt-5 min-h-[240px] w-full flex-1 touch-none select-none overflow-hidden sm:mt-2">
+        <div ref={stageRef} onPointerDown={handlePointerDown} onPointerMove={handlePointerMove} onPointerUp={releasePointer} onPointerCancel={releasePointer} className="relative mx-auto mt-10 min-h-[240px] w-full flex-1 touch-none select-none overflow-hidden sm:mt-7">
           <p className="sr-only" aria-live="polite">{results.length} movies found</p>
           {movies.map((movie) => (
             <article key={movie.id} ref={(node) => { if (node) posterRefs.current.set(movie.id, node); else posterRefs.current.delete(movie.id); }} className="absolute left-0 top-0 aspect-[2/3] overflow-hidden rounded-[3px] bg-zinc-300 shadow-[0_3px_5px_rgba(20,59,49,0.28)] will-change-transform" style={{ width: posterWidth }}>
