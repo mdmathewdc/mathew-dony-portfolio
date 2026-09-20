@@ -347,7 +347,7 @@ export function PhysicsPosterSearch() {
   };
 
   return (
-    <section className="relative flex min-h-screen flex-col overflow-hidden bg-[#e8f0ea] px-4 pb-0 pt-8 text-[#173b33] sm:pt-10">
+    <section className="relative flex min-h-dvh flex-1 flex-col overflow-hidden bg-[#e8f0ea] px-4 pb-0 pt-8 text-[#173b33] sm:pt-10">
       <button
         type="button"
         onClick={() => setShowTestControls((visible) => !visible)}
@@ -396,7 +396,7 @@ export function PhysicsPosterSearch() {
           </label>
         </div>
 
-        <div ref={stageRef} onPointerDown={handlePointerDown} onPointerMove={handlePointerMove} onPointerUp={releasePointer} onPointerCancel={releasePointer} className="relative mx-auto mt-10 min-h-[240px] w-full flex-1 touch-none select-none overflow-hidden pb-[max(3.5rem,env(safe-area-inset-bottom))] sm:mt-7 sm:pb-0">
+        <div ref={stageRef} onPointerDown={handlePointerDown} onPointerMove={handlePointerMove} onPointerUp={releasePointer} onPointerCancel={releasePointer} className="relative mx-auto mt-10 min-h-[240px] w-full flex-1 touch-none select-none overflow-hidden pb-[env(safe-area-inset-bottom)] sm:mt-7 sm:pb-0">
           <p className="sr-only" aria-live="polite">{results.length} movies found</p>
           {movies.map((movie) => (
             <article key={movie.id} ref={(node) => { if (node) posterRefs.current.set(movie.id, node); else posterRefs.current.delete(movie.id); }} className="absolute left-0 top-0 aspect-[2/3] overflow-hidden rounded-[3px] bg-zinc-300 shadow-[0_3px_5px_rgba(20,59,49,0.28)] will-change-transform" style={{ width: posterWidth }}>
