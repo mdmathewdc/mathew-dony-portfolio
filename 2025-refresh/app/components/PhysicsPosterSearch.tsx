@@ -347,7 +347,7 @@ export function PhysicsPosterSearch() {
   };
 
   return (
-    <section className="relative flex min-h-screen flex-col overflow-hidden bg-[#e8f0ea] px-4 pb-0 pt-8 text-[#173b33] sm:pt-10">
+    <section className="relative flex min-h-screen flex-col overflow-hidden bg-[#e8f0ea] px-4 pb-[max(1rem,env(safe-area-inset-bottom))] pt-8 text-[#173b33] sm:pb-0 sm:pt-10">
       <button
         type="button"
         onClick={() => setShowTestControls((visible) => !visible)}
