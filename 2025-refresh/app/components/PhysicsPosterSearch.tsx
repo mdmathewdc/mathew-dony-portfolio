@@ -110,6 +110,7 @@ export function PhysicsPosterSearch() {
   const [query, setQuery] = useState(INITIAL_QUERY);
   const [showTestControls, setShowTestControls] = useState(true);
   const [stageSize, setStageSize] = useState({ width: 900, height: 505 });
+  const [viewportBottomInset, setViewportBottomInset] = useState(0);
   const stageRef = useRef<HTMLDivElement>(null);
   const posterRefs = useRef(new Map<string, HTMLElement>());
   const physicsRef = useRef<PhysicsWorld | null>(null);
@@ -130,6 +131,29 @@ export function PhysicsPosterSearch() {
     const timeout = window.setTimeout(() => setQuery(input), 300);
     return () => window.clearTimeout(timeout);
   }, [input]);
+
+  useEffect(() => {
+    const viewport = window.visualViewport;
+    const isAndroid = /Android/i.test(navigator.userAgent);
+
+    const updateInset = () => {
+      const obscuredHeight = viewport
+        ? Math.max(0, window.innerHeight - viewport.height - viewport.offsetTop)
+        : 0;
+      setViewportBottomInset(Math.ceil(Math.max(obscuredHeight, isAndroid ? 48 : 0)));
+    };
+
+    updateInset();
+    viewport?.addEventListener("resize", updateInset);
+    viewport?.addEventListener("scroll", updateInset);
+    window.addEventListener("resize", updateInset);
+
+    return () => {
+      viewport?.removeEventListener("resize", updateInset);
+      viewport?.removeEventListener("scroll", updateInset);
+      window.removeEventListener("resize", updateInset);
+    };
+  }, []);
 
   useLayoutEffect(() => {
     const stage = stageRef.current;
@@ -396,7 +420,7 @@ export function PhysicsPosterSearch() {
           </label>
         </div>
 
-        <div ref={stageRef} onPointerDown={handlePointerDown} onPointerMove={handlePointerMove} onPointerUp={releasePointer} onPointerCancel={releasePointer} className="relative mx-auto mt-10 min-h-[240px] w-full flex-1 touch-none select-none overflow-hidden pb-[env(safe-area-inset-bottom)] sm:mt-7 sm:pb-0">
+        <div ref={stageRef} onPointerDown={handlePointerDown} onPointerMove={handlePointerMove} onPointerUp={releasePointer} onPointerCancel={releasePointer} className="relative mx-auto mt-10 min-h-[240px] w-full flex-1 touch-none select-none overflow-hidden pb-[env(safe-area-inset-bottom)] sm:mt-7 sm:pb-0" style={isCompact && viewportBottomInset ? { paddingBottom: `${viewportBottomInset}px` } : undefined}>
           <p className="sr-only" aria-live="polite">{results.length} movies found</p>
           {movies.map((movie) => (
             <article key={movie.id} ref={(node) => { if (node) posterRefs.current.set(movie.id, node); else posterRefs.current.delete(movie.id); }} className="absolute left-0 top-0 aspect-[2/3] overflow-hidden rounded-[3px] bg-zinc-300 shadow-[0_3px_5px_rgba(20,59,49,0.28)] will-change-transform" style={{ width: posterWidth }}>
