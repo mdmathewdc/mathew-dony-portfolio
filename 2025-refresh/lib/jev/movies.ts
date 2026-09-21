@@ -5,6 +5,7 @@ export type JevMovie = {
   poster: string;
   tags: string[];
   summary: string;
+  actors: string[];
 };
 
 export const jevMovies: JevMovie[] = [
@@ -18,7 +19,12 @@ export const jevMovies: JevMovie[] = [
       "adventure",
       "family"
     ],
-    "summary": "During her family's move to the suburbs, a sullen 10-year-old girl wanders into a world ruled by gods, witches, and spirits, and where humans are changed into beasts."
+    "summary": "During her family's move to the suburbs, a sullen 10-year-old girl wanders into a world ruled by gods, witches, and spirits, and where humans are changed into beasts.",
+    "actors": [
+      "Daveigh Chase",
+      "Suzanne Pleshette",
+      "Miyu Irino"
+    ]
   },
   {
     "id": "tt0110357",
@@ -30,7 +36,12 @@ export const jevMovies: JevMovie[] = [
       "adventure",
       "drama"
     ],
-    "summary": "Lion prince Simba and his father are targeted by his bitter uncle, who wants to ascend the throne himself."
+    "summary": "Lion prince Simba and his father are targeted by his bitter uncle, who wants to ascend the throne himself.",
+    "actors": [
+      "Matthew Broderick",
+      "Jeremy Irons",
+      "James Earl Jones"
+    ]
   },
   {
     "id": "tt0910970",
@@ -42,7 +53,12 @@ export const jevMovies: JevMovie[] = [
       "adventure",
       "family"
     ],
-    "summary": "In the distant future, a small waste-collecting robot inadvertently embarks on a space journey that will ultimately decide the fate of mankind."
+    "summary": "In the distant future, a small waste-collecting robot inadvertently embarks on a space journey that will ultimately decide the fate of mankind.",
+    "actors": [
+      "Ben Burtt",
+      "Elissa Knight",
+      "Jeff Garlin"
+    ]
   },
   {
     "id": "tt0095327",
@@ -54,7 +70,12 @@ export const jevMovies: JevMovie[] = [
       "drama",
       "war"
     ],
-    "summary": "A young boy and his little sister struggle to survive in Japan during World War II."
+    "summary": "A young boy and his little sister struggle to survive in Japan during World War II.",
+    "actors": [
+      "Tsutomu Tatsumi",
+      "Ayano Shiraishi",
+      "Akemi Yamaguchi"
+    ]
   },
   {
     "id": "tt4633694",
@@ -66,7 +87,12 @@ export const jevMovies: JevMovie[] = [
       "action",
       "adventure"
     ],
-    "summary": "Teen Miles Morales becomes the Spider-Man of his universe, and must join with five spider-powered individuals from other dimensions to stop a threat for all realities."
+    "summary": "Teen Miles Morales becomes the Spider-Man of his universe, and must join with five spider-powered individuals from other dimensions to stop a threat for all realities.",
+    "actors": [
+      "Shameik Moore",
+      "Jake Johnson",
+      "Hailee Steinfeld"
+    ]
   },
   {
     "id": "tt2380307",
@@ -78,7 +104,12 @@ export const jevMovies: JevMovie[] = [
       "adventure",
       "comedy"
     ],
-    "summary": "Aspiring musician Miguel, confronted with his family's ancestral ban on music, enters the Land of the Dead to find his great-great-grandfather, a legendary singer."
+    "summary": "Aspiring musician Miguel, confronted with his family's ancestral ban on music, enters the Land of the Dead to find his great-great-grandfather, a legendary singer.",
+    "actors": [
+      "Anthony Gonzalez",
+      "Gael García Bernal",
+      "Benjamin Bratt"
+    ]
   },
   {
     "id": "tt0119698",
@@ -90,7 +121,12 @@ export const jevMovies: JevMovie[] = [
       "action",
       "adventure"
     ],
-    "summary": "On a journey to find the cure for a Tatarigami's curse, Ashitaka finds himself in the middle of a war between the forest gods and Tatara, a mining colony. In this quest he also meets San, the Mononoke Hime."
+    "summary": "On a journey to find the cure for a Tatarigami's curse, Ashitaka finds himself in the middle of a war between the forest gods and Tatara, a mining colony. In this quest he also meets San, the Mononoke Hime.",
+    "actors": [
+      "Yôji Matsuda",
+      "Yuriko Ishida",
+      "Yûko Tanaka"
+    ]
   },
   {
     "id": "tt0078748",
@@ -101,7 +137,12 @@ export const jevMovies: JevMovie[] = [
       "horror",
       "sci-fi"
     ],
-    "summary": "The crew of a commercial spacecraft encounter a deadly lifeform after investigating an unknown transmission."
+    "summary": "The crew of a commercial spacecraft encounter a deadly lifeform after investigating an unknown transmission.",
+    "actors": [
+      "Sigourney Weaver",
+      "Tom Skerritt",
+      "John Hurt"
+    ]
   },
   {
     "id": "tt0054215",
@@ -113,7 +154,12 @@ export const jevMovies: JevMovie[] = [
       "mystery",
       "thriller"
     ],
-    "summary": "A Phoenix secretary embezzles $40,000 from her employer's client, goes on the run and checks into a remote motel run by a young man under the domination of his mother."
+    "summary": "A Phoenix secretary embezzles $40,000 from her employer's client, goes on the run and checks into a remote motel run by a young man under the domination of his mother.",
+    "actors": [
+      "Anthony Perkins",
+      "Janet Leigh",
+      "Vera Miles"
+    ]
   },
   {
     "id": "tt0081505",
@@ -124,7 +170,12 @@ export const jevMovies: JevMovie[] = [
       "drama",
       "horror"
     ],
-    "summary": "A family heads to an isolated hotel for the winter where a sinister presence influences the father into violence, while his psychic son sees horrific forebodings from both past and future."
+    "summary": "A family heads to an isolated hotel for the winter where a sinister presence influences the father into violence, while his psychic son sees horrific forebodings from both past and future.",
+    "actors": [
+      "Jack Nicholson",
+      "Shelley Duvall",
+      "Danny Lloyd"
+    ]
   },
   {
     "id": "tt0084787",
@@ -136,7 +187,12 @@ export const jevMovies: JevMovie[] = [
       "mystery",
       "sci-fi"
     ],
-    "summary": "A research team in Antarctica is hunted by a shape-shifting alien that assumes the appearance of its victims."
+    "summary": "A research team in Antarctica is hunted by a shape-shifting alien that assumes the appearance of its victims.",
+    "actors": [
+      "Kurt Russell",
+      "Wilford Brimley",
+      "Keith David"
+    ]
   },
   {
     "id": "tt0070047",
@@ -146,7 +202,12 @@ export const jevMovies: JevMovie[] = [
     "tags": [
       "horror"
     ],
-    "summary": "When a teenage girl is possessed by a mysterious entity, her mother seeks the help of two priests to save her daughter."
+    "summary": "When a teenage girl is possessed by a mysterious entity, her mother seeks the help of two priests to save her daughter.",
+    "actors": [
+      "Ellen Burstyn",
+      "Max von Sydow",
+      "Linda Blair"
+    ]
   },
   {
     "id": "tt1375666",
@@ -158,7 +219,12 @@ export const jevMovies: JevMovie[] = [
       "adventure",
       "sci-fi"
     ],
-    "summary": "A thief who steals corporate secrets through the use of dream-sharing technology is given the inverse task of planting an idea into the mind of a C.E.O., but his tragic past may doom the project and his team to disaster."
+    "summary": "A thief who steals corporate secrets through the use of dream-sharing technology is given the inverse task of planting an idea into the mind of a C.E.O., but his tragic past may doom the project and his team to disaster.",
+    "actors": [
+      "Leonardo DiCaprio",
+      "Joseph Gordon-Levitt",
+      "Elliot Page"
+    ]
   },
   {
     "id": "tt0133093",
@@ -169,7 +235,12 @@ export const jevMovies: JevMovie[] = [
       "action",
       "sci-fi"
     ],
-    "summary": "When a beautiful stranger leads computer hacker Neo to a forbidding underworld, he discovers the shocking truth--the life he knows is the elaborate deception of an evil cyber-intelligence."
+    "summary": "When a beautiful stranger leads computer hacker Neo to a forbidding underworld, he discovers the shocking truth--the life he knows is the elaborate deception of an evil cyber-intelligence.",
+    "actors": [
+      "Keanu Reeves",
+      "Laurence Fishburne",
+      "Carrie-Anne Moss"
+    ]
   },
   {
     "id": "tt0816692",
@@ -181,7 +252,12 @@ export const jevMovies: JevMovie[] = [
       "drama",
       "sci-fi"
     ],
-    "summary": "A team of explorers travel through a wormhole in space in an attempt to ensure humanity's survival."
+    "summary": "A team of explorers travel through a wormhole in space in an attempt to ensure humanity's survival.",
+    "actors": [
+      "Matthew McConaughey",
+      "Anne Hathaway",
+      "Jessica Chastain"
+    ]
   },
   {
     "id": "tt0103064",
@@ -192,7 +268,12 @@ export const jevMovies: JevMovie[] = [
       "action",
       "sci-fi"
     ],
-    "summary": "A cyborg, identical to the one who failed to kill Sarah Connor, must now protect her 10-year old adolescent son John from an even more advanced and powerful cyborg."
+    "summary": "A cyborg, identical to the one who failed to kill Sarah Connor, must now protect her 10-year old adolescent son John from an even more advanced and powerful cyborg.",
+    "actors": [
+      "Arnold Schwarzenegger",
+      "Linda Hamilton",
+      "Edward Furlong"
+    ]
   },
   {
     "id": "tt0482571",
@@ -204,7 +285,12 @@ export const jevMovies: JevMovie[] = [
       "mystery",
       "sci-fi"
     ],
-    "summary": "After a tragic accident, two stage magicians in 1890s London engage in a battle to create the ultimate illusion while sacrificing everything they have to outwit each other."
+    "summary": "After a tragic accident, two stage magicians in 1890s London engage in a battle to create the ultimate illusion while sacrificing everything they have to outwit each other.",
+    "actors": [
+      "Christian Bale",
+      "Hugh Jackman",
+      "Scarlett Johansson"
+    ]
   },
   {
     "id": "tt0088763",
@@ -216,7 +302,12 @@ export const jevMovies: JevMovie[] = [
       "comedy",
       "sci-fi"
     ],
-    "summary": "Marty McFly, a 17-year-old high school student, is accidentally sent 30 years into the past in a time-traveling DeLorean invented by his close friend, the maverick scientist Doc Brown."
+    "summary": "Marty McFly, a 17-year-old high school student, is accidentally sent 30 years into the past in a time-traveling DeLorean invented by his close friend, the maverick scientist Doc Brown.",
+    "actors": [
+      "Michael J. Fox",
+      "Christopher Lloyd",
+      "Lea Thompson"
+    ]
   },
   {
     "id": "tt4154756",
@@ -228,7 +319,12 @@ export const jevMovies: JevMovie[] = [
       "adventure",
       "sci-fi"
     ],
-    "summary": "The Avengers and their allies must be willing to sacrifice all in an attempt to defeat the powerful Thanos before his blitz of devastation and ruin puts an end to the universe."
+    "summary": "The Avengers and their allies must be willing to sacrifice all in an attempt to defeat the powerful Thanos before his blitz of devastation and ruin puts an end to the universe.",
+    "actors": [
+      "Robert Downey Jr.",
+      "Chris Hemsworth",
+      "Mark Ruffalo"
+    ]
   },
   {
     "id": "tt0090605",
@@ -240,7 +336,12 @@ export const jevMovies: JevMovie[] = [
       "adventure",
       "sci-fi"
     ],
-    "summary": "Fifty-seven years after surviving an apocalyptic attack aboard her space vessel by merciless space creatures, Officer Ripley awakens from hyper-sleep and tries to warn anyone who will listen about the predators."
+    "summary": "Fifty-seven years after surviving an apocalyptic attack aboard her space vessel by merciless space creatures, Officer Ripley awakens from hyper-sleep and tries to warn anyone who will listen about the predators.",
+    "actors": [
+      "Sigourney Weaver",
+      "Michael Biehn",
+      "Carrie Henn"
+    ]
   },
   {
     "id": "tt0338013",
@@ -252,7 +353,12 @@ export const jevMovies: JevMovie[] = [
       "romance",
       "sci-fi"
     ],
-    "summary": "When their relationship turns sour, a couple undergoes a medical procedure to have each other erased from their memories for ever."
+    "summary": "When their relationship turns sour, a couple undergoes a medical procedure to have each other erased from their memories for ever.",
+    "actors": [
+      "Jim Carrey",
+      "Kate Winslet",
+      "Tom Wilkinson"
+    ]
   },
   {
     "id": "tt0066921",
@@ -263,7 +369,12 @@ export const jevMovies: JevMovie[] = [
       "crime",
       "sci-fi"
     ],
-    "summary": "In the future, a sadistic gang leader is imprisoned and volunteers for a conduct-aversion experiment, but it doesn't go as planned."
+    "summary": "In the future, a sadistic gang leader is imprisoned and volunteers for a conduct-aversion experiment, but it doesn't go as planned.",
+    "actors": [
+      "Malcolm McDowell",
+      "Patrick Magee",
+      "Michael Bates"
+    ]
   },
   {
     "id": "tt0118799",
@@ -275,7 +386,12 @@ export const jevMovies: JevMovie[] = [
       "drama",
       "romance"
     ],
-    "summary": "When an open-minded Jewish waiter and his son become victims of the Holocaust, he uses a perfect mixture of will, humor, and imagination to protect his son from the dangers around their camp."
+    "summary": "When an open-minded Jewish waiter and his son become victims of the Holocaust, he uses a perfect mixture of will, humor, and imagination to protect his son from the dangers around their camp.",
+    "actors": [
+      "Roberto Benigni",
+      "Nicoletta Braschi",
+      "Giorgio Cantarini"
+    ]
   },
   {
     "id": "tt1675434",
@@ -287,7 +403,12 @@ export const jevMovies: JevMovie[] = [
       "comedy",
       "drama"
     ],
-    "summary": "After he becomes a quadriplegic from a paragliding accident, an aristocrat hires a young man from the projects to be his caregiver."
+    "summary": "After he becomes a quadriplegic from a paragliding accident, an aristocrat hires a young man from the projects to be his caregiver.",
+    "actors": [
+      "François Cluzet",
+      "Omar Sy",
+      "Anne Le Ny"
+    ]
   },
   {
     "id": "tt0027977",
@@ -299,7 +420,12 @@ export const jevMovies: JevMovie[] = [
       "drama",
       "romance"
     ],
-    "summary": "The Tramp struggles to live in modern industrial society with the help of a young homeless woman."
+    "summary": "The Tramp struggles to live in modern industrial society with the help of a young homeless woman.",
+    "actors": [
+      "Charles Chaplin",
+      "Paulette Goddard",
+      "Henry Bergman"
+    ]
   },
   {
     "id": "tt0057012",
@@ -310,7 +436,12 @@ export const jevMovies: JevMovie[] = [
       "comedy",
       "war"
     ],
-    "summary": "An insane American general orders a bombing attack on the Soviet Union, triggering a path to nuclear holocaust that a war room full of politicians and generals frantically tries to stop."
+    "summary": "An insane American general orders a bombing attack on the Soviet Union, triggering a path to nuclear holocaust that a war room full of politicians and generals frantically tries to stop.",
+    "actors": [
+      "Peter Sellers",
+      "George C. Scott",
+      "Sterling Hayden"
+    ]
   },
   {
     "id": "tt1187043",
@@ -321,7 +452,12 @@ export const jevMovies: JevMovie[] = [
       "comedy",
       "drama"
     ],
-    "summary": "Two friends are searching for their long lost companion. They revisit their college days and recall the memories of their friend who inspired them to think differently, even as the rest of the world called them \"idiots\"."
+    "summary": "Two friends are searching for their long lost companion. They revisit their college days and recall the memories of their friend who inspired them to think differently, even as the rest of the world called them \"idiots\".",
+    "actors": [
+      "Aamir Khan",
+      "Madhavan",
+      "Mona Singh"
+    ]
   },
   {
     "id": "tt0114709",
@@ -333,7 +469,12 @@ export const jevMovies: JevMovie[] = [
       "adventure",
       "comedy"
     ],
-    "summary": "A cowboy doll is profoundly threatened and jealous when a new spaceman action figure supplants him as top toy in a boy's bedroom."
+    "summary": "A cowboy doll is profoundly threatened and jealous when a new spaceman action figure supplants him as top toy in a boy's bedroom.",
+    "actors": [
+      "Tom Hanks",
+      "Tim Allen",
+      "Don Rickles"
+    ]
   },
   {
     "id": "tt0435761",
@@ -345,7 +486,12 @@ export const jevMovies: JevMovie[] = [
       "adventure",
       "comedy"
     ],
-    "summary": "The toys are mistakenly delivered to a day-care center instead of the attic right before Andy leaves for college, and it's up to Woody to convince the other toys that they weren't abandoned and to return home."
+    "summary": "The toys are mistakenly delivered to a day-care center instead of the attic right before Andy leaves for college, and it's up to Woody to convince the other toys that they weren't abandoned and to return home.",
+    "actors": [
+      "Tom Hanks",
+      "Tim Allen",
+      "Joan Cusack"
+    ]
   },
   {
     "id": "tt0211915",
@@ -356,7 +502,12 @@ export const jevMovies: JevMovie[] = [
       "comedy",
       "romance"
     ],
-    "summary": "Amélie is an innocent and naive girl in Paris with her own sense of justice. She decides to help those around her and, along the way, discovers love."
+    "summary": "Amélie is an innocent and naive girl in Paris with her own sense of justice. She decides to help those around her and, along the way, discovers love.",
+    "actors": [
+      "Audrey Tautou",
+      "Mathieu Kassovitz",
+      "Rufus"
+    ]
   },
   {
     "id": "tt0032553",
@@ -368,7 +519,12 @@ export const jevMovies: JevMovie[] = [
       "drama",
       "war"
     ],
-    "summary": "Dictator Adenoid Hynkel tries to expand his empire while a poor Jewish barber tries to avoid persecution from Hynkel's regime."
+    "summary": "Dictator Adenoid Hynkel tries to expand his empire while a poor Jewish barber tries to avoid persecution from Hynkel's regime.",
+    "actors": [
+      "Charles Chaplin",
+      "Paulette Goddard",
+      "Jack Oakie"
+    ]
   },
   {
     "id": "tt0109830",
@@ -379,7 +535,12 @@ export const jevMovies: JevMovie[] = [
       "drama",
       "romance"
     ],
-    "summary": "The presidencies of Kennedy and Johnson, the Vietnam War, the Watergate scandal and other historical events unfold from the perspective of an Alabama man with an IQ of 75, whose only desire is to be reunited with his childhood swe..."
+    "summary": "The presidencies of Kennedy and Johnson, the Vietnam War, the Watergate scandal and other historical events unfold from the perspective of an Alabama man with an IQ of 75, whose only desire is to be reunited with his childhood swe...",
+    "actors": [
+      "Tom Hanks",
+      "Robin Wright",
+      "Gary Sinise"
+    ]
   },
   {
     "id": "tt0034583",
@@ -391,7 +552,12 @@ export const jevMovies: JevMovie[] = [
       "romance",
       "war"
     ],
-    "summary": "A cynical expatriate American cafe owner struggles to decide whether or not to help his former lover and her fugitive husband escape the Nazis in French Morocco."
+    "summary": "A cynical expatriate American cafe owner struggles to decide whether or not to help his former lover and her fugitive husband escape the Nazis in French Morocco.",
+    "actors": [
+      "Humphrey Bogart",
+      "Ingrid Bergman",
+      "Paul Henreid"
+    ]
   },
   {
     "id": "tt0095765",
@@ -402,7 +568,12 @@ export const jevMovies: JevMovie[] = [
       "drama",
       "romance"
     ],
-    "summary": "A filmmaker recalls his childhood when falling in love with the pictures at the cinema of his home village and forms a deep friendship with the cinema's projectionist."
+    "summary": "A filmmaker recalls his childhood when falling in love with the pictures at the cinema of his home village and forms a deep friendship with the cinema's projectionist.",
+    "actors": [
+      "Philippe Noiret",
+      "Enzo Cannavale",
+      "Antonella Attili"
+    ]
   },
   {
     "id": "tt0119217",
@@ -413,7 +584,12 @@ export const jevMovies: JevMovie[] = [
       "drama",
       "romance"
     ],
-    "summary": "Will Hunting, a janitor at M.I.T., has a gift for mathematics, but needs help from a psychologist to find direction in his life."
+    "summary": "Will Hunting, a janitor at M.I.T., has a gift for mathematics, but needs help from a psychologist to find direction in his life.",
+    "actors": [
+      "Robin Williams",
+      "Matt Damon",
+      "Ben Affleck"
+    ]
   },
   {
     "id": "tt0052357",
@@ -425,7 +601,12 @@ export const jevMovies: JevMovie[] = [
       "romance",
       "thriller"
     ],
-    "summary": "A former San Francisco police detective juggles wrestling with his personal demons and becoming obsessed with the hauntingly beautiful woman he has been hired to trail, who may be deeply disturbed."
+    "summary": "A former San Francisco police detective juggles wrestling with his personal demons and becoming obsessed with the hauntingly beautiful woman he has been hired to trail, who may be deeply disturbed.",
+    "actors": [
+      "James Stewart",
+      "Kim Novak",
+      "Barbara Bel Geddes"
+    ]
   },
   {
     "id": "tt0045152",
@@ -437,7 +618,12 @@ export const jevMovies: JevMovie[] = [
       "musical",
       "romance"
     ],
-    "summary": "A silent film star falls for a chorus girl just as he and his delusionally jealous screen partner are trying to make the difficult transition to talking pictures in 1920s Hollywood."
+    "summary": "A silent film star falls for a chorus girl just as he and his delusionally jealous screen partner are trying to make the difficult transition to talking pictures in 1920s Hollywood.",
+    "actors": [
+      "Gene Kelly",
+      "Donald O'Connor",
+      "Debbie Reynolds"
+    ]
   },
   {
     "id": "tt0053604",
@@ -449,7 +635,12 @@ export const jevMovies: JevMovie[] = [
       "drama",
       "romance"
     ],
-    "summary": "A Manhattan insurance clerk tries to rise in his company by letting its executives use his apartment for trysts, but complications and a romance of his own ensue."
+    "summary": "A Manhattan insurance clerk tries to rise in his company by letting its executives use his apartment for trysts, but complications and a romance of his own ensue.",
+    "actors": [
+      "Jack Lemmon",
+      "Shirley MacLaine",
+      "Fred MacMurray"
+    ]
   },
   {
     "id": "tt0031381",
@@ -461,7 +652,12 @@ export const jevMovies: JevMovie[] = [
       "romance",
       "war"
     ],
-    "summary": "The manipulative daughter of a Georgia plantation owner conducts a turbulent romance with a roguish profiteer during the American Civil War and Reconstruction periods."
+    "summary": "The manipulative daughter of a Georgia plantation owner conducts a turbulent romance with a roguish profiteer during the American Civil War and Reconstruction periods.",
+    "actors": [
+      "Clark Gable",
+      "Vivien Leigh",
+      "Thomas Mitchell"
+    ]
   },
   {
     "id": "tt0468569",
@@ -473,7 +669,12 @@ export const jevMovies: JevMovie[] = [
       "crime",
       "drama"
     ],
-    "summary": "When the menace known as the Joker wreaks havoc and chaos on the people of Gotham, Batman must accept one of the greatest psychological and physical tests of his ability to fight injustice."
+    "summary": "When the menace known as the Joker wreaks havoc and chaos on the people of Gotham, Batman must accept one of the greatest psychological and physical tests of his ability to fight injustice.",
+    "actors": [
+      "Christian Bale",
+      "Heath Ledger",
+      "Aaron Eckhart"
+    ]
   },
   {
     "id": "tt0167260",
@@ -485,7 +686,12 @@ export const jevMovies: JevMovie[] = [
       "adventure",
       "drama"
     ],
-    "summary": "Gandalf and Aragorn lead the World of Men against Sauron's army to draw his gaze from Frodo and Sam as they approach Mount Doom with the One Ring."
+    "summary": "Gandalf and Aragorn lead the World of Men against Sauron's army to draw his gaze from Frodo and Sam as they approach Mount Doom with the One Ring.",
+    "actors": [
+      "Elijah Wood",
+      "Viggo Mortensen",
+      "Ian McKellen"
+    ]
   },
   {
     "id": "tt0120737",
@@ -497,7 +703,12 @@ export const jevMovies: JevMovie[] = [
       "adventure",
       "drama"
     ],
-    "summary": "A meek Hobbit from the Shire and eight companions set out on a journey to destroy the powerful One Ring and save Middle-earth from the Dark Lord Sauron."
+    "summary": "A meek Hobbit from the Shire and eight companions set out on a journey to destroy the powerful One Ring and save Middle-earth from the Dark Lord Sauron.",
+    "actors": [
+      "Elijah Wood",
+      "Ian McKellen",
+      "Orlando Bloom"
+    ]
   },
   {
     "id": "tt0167261",
@@ -509,7 +720,12 @@ export const jevMovies: JevMovie[] = [
       "adventure",
       "drama"
     ],
-    "summary": "While Frodo and Sam edge closer to Mordor with the help of the shifty Gollum, the divided fellowship makes a stand against Sauron's new ally, Saruman, and his hordes of Isengard."
+    "summary": "While Frodo and Sam edge closer to Mordor with the help of the shifty Gollum, the divided fellowship makes a stand against Sauron's new ally, Saruman, and his hordes of Isengard.",
+    "actors": [
+      "Elijah Wood",
+      "Ian McKellen",
+      "Viggo Mortensen"
+    ]
   },
   {
     "id": "tt0080684",
@@ -521,7 +737,12 @@ export const jevMovies: JevMovie[] = [
       "adventure",
       "fantasy"
     ],
-    "summary": "After the Rebels are brutally overpowered by the Empire on the ice planet Hoth, Luke Skywalker begins Jedi training with Yoda, while his friends are pursued across the galaxy by Darth Vader and bounty hunter Boba Fett."
+    "summary": "After the Rebels are brutally overpowered by the Empire on the ice planet Hoth, Luke Skywalker begins Jedi training with Yoda, while his friends are pursued across the galaxy by Darth Vader and bounty hunter Boba Fett.",
+    "actors": [
+      "Mark Hamill",
+      "Harrison Ford",
+      "Carrie Fisher"
+    ]
   },
   {
     "id": "tt0076759",
@@ -533,7 +754,12 @@ export const jevMovies: JevMovie[] = [
       "adventure",
       "fantasy"
     ],
-    "summary": "Luke Skywalker joins forces with a Jedi Knight, a cocky pilot, a Wookiee and two droids to save the galaxy from the Empire's world-destroying battle station, while also attempting to rescue Princess Leia from the mysterious Darth ..."
+    "summary": "Luke Skywalker joins forces with a Jedi Knight, a cocky pilot, a Wookiee and two droids to save the galaxy from the Empire's world-destroying battle station, while also attempting to rescue Princess Leia from the mysterious Darth ...",
+    "actors": [
+      "Mark Hamill",
+      "Harrison Ford",
+      "Carrie Fisher"
+    ]
   },
   {
     "id": "tt0172495",
@@ -545,7 +771,12 @@ export const jevMovies: JevMovie[] = [
       "adventure",
       "drama"
     ],
-    "summary": "A former Roman General sets out to exact vengeance against the corrupt emperor who murdered his family and sent him into slavery."
+    "summary": "A former Roman General sets out to exact vengeance against the corrupt emperor who murdered his family and sent him into slavery.",
+    "actors": [
+      "Russell Crowe",
+      "Joaquin Phoenix",
+      "Connie Nielsen"
+    ]
   },
   {
     "id": "tt0110413",
@@ -557,7 +788,12 @@ export const jevMovies: JevMovie[] = [
       "crime",
       "drama"
     ],
-    "summary": "12-year-old Mathilda is reluctantly taken in by Léon, a professional assassin, after her family is murdered. An unusual relationship forms as she becomes his protégée and learns the assassin's trade."
+    "summary": "12-year-old Mathilda is reluctantly taken in by Léon, a professional assassin, after her family is murdered. An unusual relationship forms as she becomes his protégée and learns the assassin's trade.",
+    "actors": [
+      "Jean Reno",
+      "Gary Oldman",
+      "Natalie Portman"
+    ]
   },
   {
     "id": "tt1345836",
@@ -568,7 +804,12 @@ export const jevMovies: JevMovie[] = [
       "action",
       "drama"
     ],
-    "summary": "Eight years after the Joker's reign of anarchy, Batman, with the help of the enigmatic Selina Kyle, is forced from his exile to save Gotham City from the brutal guerrilla terrorist Bane."
+    "summary": "Eight years after the Joker's reign of anarchy, Batman, with the help of the enigmatic Selina Kyle, is forced from his exile to save Gotham City from the brutal guerrilla terrorist Bane.",
+    "actors": [
+      "Christian Bale",
+      "Tom Hardy",
+      "Anne Hathaway"
+    ]
   },
   {
     "id": "tt0068646",
@@ -579,7 +820,12 @@ export const jevMovies: JevMovie[] = [
       "crime",
       "drama"
     ],
-    "summary": "The aging patriarch of an organized crime dynasty in postwar New York City transfers control of his clandestine empire to his reluctant youngest son."
+    "summary": "The aging patriarch of an organized crime dynasty in postwar New York City transfers control of his clandestine empire to his reluctant youngest son.",
+    "actors": [
+      "Marlon Brando",
+      "Al Pacino",
+      "James Caan"
+    ]
   },
   {
     "id": "tt0071562",
@@ -590,7 +836,12 @@ export const jevMovies: JevMovie[] = [
       "crime",
       "drama"
     ],
-    "summary": "The early life and career of Vito Corleone in 1920s New York City is portrayed, while his son, Michael, expands and tightens his grip on the family crime syndicate."
+    "summary": "The early life and career of Vito Corleone in 1920s New York City is portrayed, while his son, Michael, expands and tightens his grip on the family crime syndicate.",
+    "actors": [
+      "Al Pacino",
+      "Robert De Niro",
+      "Robert Duvall"
+    ]
   },
   {
     "id": "tt0050083",
@@ -601,7 +852,12 @@ export const jevMovies: JevMovie[] = [
       "crime",
       "drama"
     ],
-    "summary": "The jury in a New York City murder trial is frustrated by a single member whose skeptical caution forces them to more carefully consider the evidence before jumping to a hasty verdict."
+    "summary": "The jury in a New York City murder trial is frustrated by a single member whose skeptical caution forces them to more carefully consider the evidence before jumping to a hasty verdict.",
+    "actors": [
+      "Henry Fonda",
+      "Lee J. Cobb",
+      "Martin Balsam"
+    ]
   },
   {
     "id": "tt0110912",
@@ -612,7 +868,12 @@ export const jevMovies: JevMovie[] = [
       "crime",
       "drama"
     ],
-    "summary": "The lives of two mob hitmen, a boxer, a gangster and his wife, and a pair of diner bandits intertwine in four tales of violence and redemption."
+    "summary": "The lives of two mob hitmen, a boxer, a gangster and his wife, and a pair of diner bandits intertwine in four tales of violence and redemption.",
+    "actors": [
+      "John Travolta",
+      "Uma Thurman",
+      "Samuel L. Jackson"
+    ]
   },
   {
     "id": "tt0099685",
@@ -624,7 +885,12 @@ export const jevMovies: JevMovie[] = [
       "crime",
       "drama"
     ],
-    "summary": "The story of Henry Hill and his life in the mob, covering his relationship with his wife Karen Hill and his mob partners Jimmy Conway and Tommy DeVito in the Italian-American crime syndicate."
+    "summary": "The story of Henry Hill and his life in the mob, covering his relationship with his wife Karen Hill and his mob partners Jimmy Conway and Tommy DeVito in the Italian-American crime syndicate.",
+    "actors": [
+      "Robert De Niro",
+      "Ray Liotta",
+      "Joe Pesci"
+    ]
   },
   {
     "id": "tt0114369",
@@ -636,7 +902,12 @@ export const jevMovies: JevMovie[] = [
       "drama",
       "mystery"
     ],
-    "summary": "Two detectives, a rookie and a veteran, hunt a serial killer who uses the seven deadly sins as his motives."
+    "summary": "Two detectives, a rookie and a veteran, hunt a serial killer who uses the seven deadly sins as his motives.",
+    "actors": [
+      "Morgan Freeman",
+      "Brad Pitt",
+      "Kevin Spacey"
+    ]
   },
   {
     "id": "tt0102926",
@@ -648,7 +919,12 @@ export const jevMovies: JevMovie[] = [
       "drama",
       "thriller"
     ],
-    "summary": "A young F.B.I. cadet must receive the help of an incarcerated and manipulative cannibal killer to help catch another serial killer, a madman who skins his victims."
+    "summary": "A young F.B.I. cadet must receive the help of an incarcerated and manipulative cannibal killer to help catch another serial killer, a madman who skins his victims.",
+    "actors": [
+      "Jodie Foster",
+      "Anthony Hopkins",
+      "Lawrence A. Bonney"
+    ]
   },
   {
     "id": "tt0120689",
@@ -660,7 +936,12 @@ export const jevMovies: JevMovie[] = [
       "drama",
       "fantasy"
     ],
-    "summary": "The lives of guards on Death Row are affected by one of their charges: a black man accused of child murder and rape, yet who has a mysterious gift."
+    "summary": "The lives of guards on Death Row are affected by one of their charges: a black man accused of child murder and rape, yet who has a mysterious gift.",
+    "actors": [
+      "Tom Hanks",
+      "Michael Clarke Duncan",
+      "David Morse"
+    ]
   },
   {
     "id": "tt0317248",
@@ -671,7 +952,12 @@ export const jevMovies: JevMovie[] = [
       "crime",
       "drama"
     ],
-    "summary": "In the slums of Rio, two kids' paths diverge as one struggles to become a photographer and the other a kingpin."
+    "summary": "In the slums of Rio, two kids' paths diverge as one struggles to become a photographer and the other a kingpin.",
+    "actors": [
+      "Alexandre Rodrigues",
+      "Leandro Firmino",
+      "Matheus Nachtergaele"
+    ]
   },
   {
     "id": "tt0114814",
@@ -683,7 +969,12 @@ export const jevMovies: JevMovie[] = [
       "drama",
       "mystery"
     ],
-    "summary": "A sole survivor tells of the twisty events leading up to a horrific gun battle on a boat, which began when five criminals met at a seemingly random police lineup."
+    "summary": "A sole survivor tells of the twisty events leading up to a horrific gun battle on a boat, which began when five criminals met at a seemingly random police lineup.",
+    "actors": [
+      "Kevin Spacey",
+      "Gabriel Byrne",
+      "Chazz Palminteri"
+    ]
   },
   {
     "id": "tt0078788",
@@ -695,7 +986,12 @@ export const jevMovies: JevMovie[] = [
       "mystery",
       "war"
     ],
-    "summary": "A U.S. Army officer serving in Vietnam is tasked with assassinating a renegade Special Forces Colonel who sees himself as a god."
+    "summary": "A U.S. Army officer serving in Vietnam is tasked with assassinating a renegade Special Forces Colonel who sees himself as a god.",
+    "actors": [
+      "Martin Sheen",
+      "Marlon Brando",
+      "Robert Duvall"
+    ]
   },
   {
     "id": "tt0047396",
@@ -706,7 +1002,12 @@ export const jevMovies: JevMovie[] = [
       "mystery",
       "thriller"
     ],
-    "summary": "A wheelchair-bound photographer spies on his neighbors from his Greenwich Village courtyard apartment window, and becomes convinced one of them has committed murder, despite the skepticism of his fashion-model girlfriend."
+    "summary": "A wheelchair-bound photographer spies on his neighbors from his Greenwich Village courtyard apartment window, and becomes convinced one of them has committed murder, despite the skepticism of his fashion-model girlfriend.",
+    "actors": [
+      "James Stewart",
+      "Grace Kelly",
+      "Wendell Corey"
+    ]
   },
   {
     "id": "tt0209144",
@@ -717,7 +1018,12 @@ export const jevMovies: JevMovie[] = [
       "mystery",
       "thriller"
     ],
-    "summary": "A man with short-term memory loss attempts to track down his wife's murderer."
+    "summary": "A man with short-term memory loss attempts to track down his wife's murderer.",
+    "actors": [
+      "Guy Pearce",
+      "Carrie-Anne Moss",
+      "Joe Pantoliano"
+    ]
   },
   {
     "id": "tt0364569",
@@ -729,7 +1035,12 @@ export const jevMovies: JevMovie[] = [
       "drama",
       "mystery"
     ],
-    "summary": "After being kidnapped and imprisoned for fifteen years, Oh Dae-Su is released, only to find that he must find his captor in five days."
+    "summary": "After being kidnapped and imprisoned for fifteen years, Oh Dae-Su is released, only to find that he must find his captor in five days.",
+    "actors": [
+      "Choi Min-sik",
+      "Yoo Ji-tae",
+      "Kang Hye-jeong"
+    ]
   },
   {
     "id": "tt0056058",
@@ -741,7 +1052,12 @@ export const jevMovies: JevMovie[] = [
       "drama",
       "mystery"
     ],
-    "summary": "When a ronin requesting seppuku at a feudal lord's palace is told of the brutal suicide of another ronin who previously visited, he reveals how their pasts are intertwined - and in doing so challenges the clan's integrity."
+    "summary": "When a ronin requesting seppuku at a feudal lord's palace is told of the brutal suicide of another ronin who previously visited, he reveals how their pasts are intertwined - and in doing so challenges the clan's integrity.",
+    "actors": [
+      "Tatsuya Nakadai",
+      "Akira Ishihama",
+      "Shima Iwashita"
+    ]
   },
   {
     "id": "tt0405094",
@@ -753,7 +1069,12 @@ export const jevMovies: JevMovie[] = [
       "mystery",
       "thriller"
     ],
-    "summary": "In 1984 East Berlin, an agent of the secret police, conducting surveillance on a writer and his lover, finds himself becoming increasingly absorbed by their lives."
+    "summary": "In 1984 East Berlin, an agent of the secret police, conducting surveillance on a writer and his lover, finds himself becoming increasingly absorbed by their lives.",
+    "actors": [
+      "Ulrich Mühe",
+      "Martina Gedeck",
+      "Sebastian Koch"
+    ]
   },
   {
     "id": "tt0033467",
@@ -764,7 +1085,12 @@ export const jevMovies: JevMovie[] = [
       "drama",
       "mystery"
     ],
-    "summary": "Following the death of publishing tycoon Charles Foster Kane, reporters scramble to uncover the meaning of his final utterance: 'Rosebud.'"
+    "summary": "Following the death of publishing tycoon Charles Foster Kane, reporters scramble to uncover the meaning of his final utterance: 'Rosebud.'",
+    "actors": [
+      "Orson Welles",
+      "Joseph Cotten",
+      "Dorothy Comingore"
+    ]
   },
   {
     "id": "tt0120815",
@@ -775,7 +1101,12 @@ export const jevMovies: JevMovie[] = [
       "drama",
       "war"
     ],
-    "summary": "Following the Normandy Landings, a group of U.S. soldiers go behind enemy lines to retrieve a paratrooper whose brothers have been killed in action."
+    "summary": "Following the Normandy Landings, a group of U.S. soldiers go behind enemy lines to retrieve a paratrooper whose brothers have been killed in action.",
+    "actors": [
+      "Tom Hanks",
+      "Matt Damon",
+      "Tom Sizemore"
+    ]
   },
   {
     "id": "tt0361748",
@@ -787,7 +1118,12 @@ export const jevMovies: JevMovie[] = [
       "drama",
       "war"
     ],
-    "summary": "In Nazi-occupied France during World War II, a plan to assassinate Nazi leaders by a group of Jewish U.S. soldiers coincides with a theatre owner's vengeful plans for the same."
+    "summary": "In Nazi-occupied France during World War II, a plan to assassinate Nazi leaders by a group of Jewish U.S. soldiers coincides with a theatre owner's vengeful plans for the same.",
+    "actors": [
+      "Brad Pitt",
+      "Diane Kruger",
+      "Eli Roth"
+    ]
   },
   {
     "id": "tt0082096",
@@ -798,7 +1134,12 @@ export const jevMovies: JevMovie[] = [
       "drama",
       "war"
     ],
-    "summary": "A German U-boat stalks the frigid waters of the North Atlantic as its young crew experience the sheer terror and claustrophobic life of a submariner in World War II."
+    "summary": "A German U-boat stalks the frigid waters of the North Atlantic as its young crew experience the sheer terror and claustrophobic life of a submariner in World War II.",
+    "actors": [
+      "Jürgen Prochnow",
+      "Herbert Grönemeyer",
+      "Klaus Wennemann"
+    ]
   },
   {
     "id": "tt0093058",
@@ -809,7 +1150,12 @@ export const jevMovies: JevMovie[] = [
       "drama",
       "war"
     ],
-    "summary": "A pragmatic U.S. Marine observes the dehumanizing effects the Vietnam War has on his fellow recruits from their brutal boot camp training to the bloody street fighting in Hue."
+    "summary": "A pragmatic U.S. Marine observes the dehumanizing effects the Vietnam War has on his fellow recruits from their brutal boot camp training to the bloody street fighting in Hue.",
+    "actors": [
+      "Matthew Modine",
+      "R. Lee Ermey",
+      "Vincent D'Onofrio"
+    ]
   },
   {
     "id": "tt0060196",
@@ -820,7 +1166,12 @@ export const jevMovies: JevMovie[] = [
       "adventure",
       "western"
     ],
-    "summary": "A bounty hunting scam joins two men in an uneasy alliance against a third in a race to find a fortune in gold buried in a remote cemetery."
+    "summary": "A bounty hunting scam joins two men in an uneasy alliance against a third in a race to find a fortune in gold buried in a remote cemetery.",
+    "actors": [
+      "Clint Eastwood",
+      "Eli Wallach",
+      "Lee Van Cleef"
+    ]
   },
   {
     "id": "tt1853728",
@@ -831,7 +1182,12 @@ export const jevMovies: JevMovie[] = [
       "drama",
       "western"
     ],
-    "summary": "With the help of a German bounty-hunter, a freed slave sets out to rescue his wife from a brutal plantation-owner in Mississippi."
+    "summary": "With the help of a German bounty-hunter, a freed slave sets out to rescue his wife from a brutal plantation-owner in Mississippi.",
+    "actors": [
+      "Jamie Foxx",
+      "Christoph Waltz",
+      "Leonardo DiCaprio"
+    ]
   },
   {
     "id": "tt0105695",
@@ -842,7 +1198,12 @@ export const jevMovies: JevMovie[] = [
       "drama",
       "western"
     ],
-    "summary": "Retired Old West gunslinger William Munny reluctantly takes on one last job, with the help of his old partner Ned Logan and a young man, The \"Schofield Kid.\""
+    "summary": "Retired Old West gunslinger William Munny reluctantly takes on one last job, with the help of his old partner Ned Logan and a young man, The \"Schofield Kid.\"",
+    "actors": [
+      "Clint Eastwood",
+      "Gene Hackman",
+      "Morgan Freeman"
+    ]
   },
   {
     "id": "tt0038650",
@@ -854,7 +1215,12 @@ export const jevMovies: JevMovie[] = [
       "family",
       "fantasy"
     ],
-    "summary": "An angel is sent from Heaven to help a desperately frustrated businessman by showing him what life would have been like if he had never existed."
+    "summary": "An angel is sent from Heaven to help a desperately frustrated businessman by showing him what life would have been like if he had never existed.",
+    "actors": [
+      "James Stewart",
+      "Donna Reed",
+      "Lionel Barrymore"
+    ]
   },
   {
     "id": "tt0986264",
@@ -865,7 +1231,12 @@ export const jevMovies: JevMovie[] = [
       "drama",
       "family"
     ],
-    "summary": "An eight-year-old boy is thought to be a lazy trouble-maker, until the new art teacher has the patience and compassion to discover the real problem behind his struggles in school."
+    "summary": "An eight-year-old boy is thought to be a lazy trouble-maker, until the new art teacher has the patience and compassion to discover the real problem behind his struggles in school.",
+    "actors": [
+      "Darsheel Safary",
+      "Aamir Khan",
+      "Tisca Chopra"
+    ]
   },
   {
     "id": "tt0012349",
@@ -877,7 +1248,12 @@ export const jevMovies: JevMovie[] = [
       "drama",
       "family"
     ],
-    "summary": "The Tramp cares for an abandoned child, but events put their relationship in jeopardy."
+    "summary": "The Tramp cares for an abandoned child, but events put their relationship in jeopardy.",
+    "actors": [
+      "Charles Chaplin",
+      "Edna Purviance",
+      "Jackie Coogan"
+    ]
   },
   {
     "id": "tt0347149",
@@ -889,7 +1265,12 @@ export const jevMovies: JevMovie[] = [
       "adventure",
       "family"
     ],
-    "summary": "When an unconfident young woman is cursed with an old body by a spiteful witch, her only chance of breaking the spell lies with a self-indulgent yet insecure young wizard and his companions in his legged, walking castle."
+    "summary": "When an unconfident young woman is cursed with an old body by a spiteful witch, her only chance of breaking the spell lies with a self-indulgent yet insecure young wizard and his companions in his legged, walking castle.",
+    "actors": [
+      "Chieko Baishô",
+      "Takuya Kimura",
+      "Tatsuya Gashûin"
+    ]
   },
   {
     "id": "tt1201607",
@@ -901,7 +1282,12 @@ export const jevMovies: JevMovie[] = [
       "family",
       "fantasy"
     ],
-    "summary": "Harry, Ron, and Hermione search for Voldemort's remaining Horcruxes in their effort to destroy the Dark Lord as the final battle rages on at Hogwarts."
+    "summary": "Harry, Ron, and Hermione search for Voldemort's remaining Horcruxes in their effort to destroy the Dark Lord as the final battle rages on at Hogwarts.",
+    "actors": [
+      "Daniel Radcliffe",
+      "Emma Watson",
+      "Rupert Grint"
+    ]
   },
   {
     "id": "tt2582802",
@@ -912,7 +1298,12 @@ export const jevMovies: JevMovie[] = [
       "drama",
       "music"
     ],
-    "summary": "A promising young drummer enrolls at a cut-throat music conservatory where his dreams of greatness are mentored by an instructor who will stop at nothing to realize a student's potential."
+    "summary": "A promising young drummer enrolls at a cut-throat music conservatory where his dreams of greatness are mentored by an instructor who will stop at nothing to realize a student's potential.",
+    "actors": [
+      "Miles Teller",
+      "J.K. Simmons",
+      "Melissa Benoist"
+    ]
   },
   {
     "id": "tt0253474",
@@ -924,7 +1315,12 @@ export const jevMovies: JevMovie[] = [
       "drama",
       "music"
     ],
-    "summary": "A Polish Jewish musician struggles to survive the destruction of the Warsaw ghetto of World War II."
+    "summary": "A Polish Jewish musician struggles to survive the destruction of the Warsaw ghetto of World War II.",
+    "actors": [
+      "Adrien Brody",
+      "Thomas Kretschmann",
+      "Frank Finlay"
+    ]
   },
   {
     "id": "tt0086879",
@@ -936,7 +1332,12 @@ export const jevMovies: JevMovie[] = [
       "drama",
       "music"
     ],
-    "summary": "The life, success and troubles of Wolfgang Amadeus Mozart, as told by Antonio Salieri, the contemporaneous composer who was deeply jealous of Mozart's talent and claimed to have murdered him."
+    "summary": "The life, success and troubles of Wolfgang Amadeus Mozart, as told by Antonio Salieri, the contemporaneous composer who was deeply jealous of Mozart's talent and claimed to have murdered him.",
+    "actors": [
+      "F. Murray Abraham",
+      "Tom Hulce",
+      "Elizabeth Berridge"
+    ]
   },
   {
     "id": "tt0053291",
@@ -948,7 +1349,12 @@ export const jevMovies: JevMovie[] = [
       "music",
       "romance"
     ],
-    "summary": "After two male musicians witness a mob hit, they flee the state in an all-female band disguised as women, but further complications set in."
+    "summary": "After two male musicians witness a mob hit, they flee the state in an all-female band disguised as women, but further complications set in.",
+    "actors": [
+      "Marilyn Monroe",
+      "Tony Curtis",
+      "Jack Lemmon"
+    ]
   },
   {
     "id": "tt1291584",
@@ -960,7 +1366,12 @@ export const jevMovies: JevMovie[] = [
       "drama",
       "sport"
     ],
-    "summary": "The youngest son of an alcoholic former boxer returns home, where he's trained by his father for competition in a mixed martial arts tournament - a path that puts the fighter on a collision course with his estranged, older brother."
+    "summary": "The youngest son of an alcoholic former boxer returns home, where he's trained by his father for competition in a mixed martial arts tournament - a path that puts the fighter on a collision course with his estranged, older brother.",
+    "actors": [
+      "Tom Hardy",
+      "Nick Nolte",
+      "Joel Edgerton"
+    ]
   },
   {
     "id": "tt0081398",
@@ -972,7 +1383,12 @@ export const jevMovies: JevMovie[] = [
       "drama",
       "sport"
     ],
-    "summary": "The life of boxer Jake LaMotta, whose violence and temper that led him to the top in the ring destroyed his life outside of it."
+    "summary": "The life of boxer Jake LaMotta, whose violence and temper that led him to the top in the ring destroyed his life outside of it.",
+    "actors": [
+      "Robert De Niro",
+      "Cathy Moriarty",
+      "Joe Pesci"
+    ]
   },
   {
     "id": "tt0405159",
@@ -983,7 +1399,12 @@ export const jevMovies: JevMovie[] = [
       "drama",
       "sport"
     ],
-    "summary": "A determined woman works with a hardened boxing trainer to become a professional."
+    "summary": "A determined woman works with a hardened boxing trainer to become a professional.",
+    "actors": [
+      "Hilary Swank",
+      "Clint Eastwood",
+      "Morgan Freeman"
+    ]
   },
   {
     "id": "tt0075148",
@@ -994,7 +1415,12 @@ export const jevMovies: JevMovie[] = [
       "drama",
       "sport"
     ],
-    "summary": "A small-time Philadelphia boxer gets a supremely rare chance to fight the world heavyweight champion in a bout in which he strives to go the distance for his self-respect."
+    "summary": "A small-time Philadelphia boxer gets a supremely rare chance to fight the world heavyweight champion in a bout in which he strives to go the distance for his self-respect.",
+    "actors": [
+      "Sylvester Stallone",
+      "Talia Shire",
+      "Burt Young"
+    ]
   },
   {
     "id": "tt0086190",
@@ -1006,7 +1432,12 @@ export const jevMovies: JevMovie[] = [
       "adventure",
       "fantasy"
     ],
-    "summary": "After a daring mission to rescue Han Solo from Jabba the Hutt, the Rebels dispatch to Endor to destroy the second Death Star. Meanwhile, Luke struggles to help Darth Vader back from the dark side without falling into the Emperor's..."
+    "summary": "After a daring mission to rescue Han Solo from Jabba the Hutt, the Rebels dispatch to Endor to destroy the second Death Star. Meanwhile, Luke struggles to help Darth Vader back from the dark side without falling into the Emperor's...",
+    "actors": [
+      "Mark Hamill",
+      "Harrison Ford",
+      "Carrie Fisher"
+    ]
   },
   {
     "id": "tt5311514",
@@ -1018,7 +1449,12 @@ export const jevMovies: JevMovie[] = [
       "drama",
       "fantasy"
     ],
-    "summary": "Two strangers find themselves linked in a bizarre way. When a connection forms, will distance be the only thing to keep them apart?"
+    "summary": "Two strangers find themselves linked in a bizarre way. When a connection forms, will distance be the only thing to keep them apart?",
+    "actors": [
+      "Ryûnosuke Kamiki",
+      "Mone Kamishiraishi",
+      "Ryô Narita"
+    ]
   },
   {
     "id": "tt10872600",
@@ -1030,7 +1466,12 @@ export const jevMovies: JevMovie[] = [
       "adventure",
       "fantasy"
     ],
-    "summary": "With Spider-Man's identity now revealed, Peter asks Doctor Strange for help. When a spell goes wrong, dangerous foes from other worlds start to appear, forcing Peter to discover what it truly means to be Spider-Man."
+    "summary": "With Spider-Man's identity now revealed, Peter asks Doctor Strange for help. When a spell goes wrong, dangerous foes from other worlds start to appear, forcing Peter to discover what it truly means to be Spider-Man.",
+    "actors": [
+      "Tom Holland",
+      "Zendaya",
+      "Benedict Cumberbatch"
+    ]
   },
   {
     "id": "tt0457430",
@@ -1042,7 +1483,12 @@ export const jevMovies: JevMovie[] = [
       "fantasy",
       "war"
     ],
-    "summary": "In the Falangist Spain of 1944, the bookish young stepdaughter of a sadistic army officer escapes into an eerie but captivating fantasy world."
+    "summary": "In the Falangist Spain of 1944, the bookish young stepdaughter of a sadistic army officer escapes into an eerie but captivating fantasy world.",
+    "actors": [
+      "Ivana Baquero",
+      "Ariadna Gil",
+      "Sergi López"
+    ]
   },
   {
     "id": "tt0071853",
@@ -1054,7 +1500,12 @@ export const jevMovies: JevMovie[] = [
       "comedy",
       "fantasy"
     ],
-    "summary": "King Arthur and his Knights of the Round Table embark on a surreal, low-budget search for the Holy Grail, encountering many, very silly obstacles."
+    "summary": "King Arthur and his Knights of the Round Table embark on a surreal, low-budget search for the Holy Grail, encountering many, very silly obstacles.",
+    "actors": [
+      "Graham Chapman",
+      "John Cleese",
+      "Eric Idle"
+    ]
   },
   {
     "id": "tt0111161",
@@ -1064,7 +1515,12 @@ export const jevMovies: JevMovie[] = [
     "tags": [
       "drama"
     ],
-    "summary": "Two imprisoned men bond over a number of years, finding solace and eventual redemption through acts of common decency."
+    "summary": "Two imprisoned men bond over a number of years, finding solace and eventual redemption through acts of common decency.",
+    "actors": [
+      "Tim Robbins",
+      "Morgan Freeman",
+      "Bob Gunton"
+    ]
   },
   {
     "id": "tt0108052",
@@ -1076,7 +1532,12 @@ export const jevMovies: JevMovie[] = [
       "drama",
       "history"
     ],
-    "summary": "In German-occupied Poland during World War II, industrialist Oskar Schindler gradually becomes concerned for his Jewish workforce after witnessing their persecution by the Nazis."
+    "summary": "In German-occupied Poland during World War II, industrialist Oskar Schindler gradually becomes concerned for his Jewish workforce after witnessing their persecution by the Nazis.",
+    "actors": [
+      "Liam Neeson",
+      "Ralph Fiennes",
+      "Ben Kingsley"
+    ]
   },
   {
     "id": "tt0137523",
@@ -1086,7 +1547,12 @@ export const jevMovies: JevMovie[] = [
     "tags": [
       "drama"
     ],
-    "summary": "An insomniac office worker and a devil-may-care soap maker form an underground fight club that evolves into much more."
+    "summary": "An insomniac office worker and a devil-may-care soap maker form an underground fight club that evolves into much more.",
+    "actors": [
+      "Brad Pitt",
+      "Edward Norton",
+      "Meat Loaf"
+    ]
   },
   {
     "id": "tt0073486",
@@ -1096,7 +1562,12 @@ export const jevMovies: JevMovie[] = [
     "tags": [
       "drama"
     ],
-    "summary": "In the Fall of 1963, a Korean War veteran and criminal pleads insanity and is admitted to a mental institution, where he rallies up the scared patients against the tyrannical nurse."
+    "summary": "In the Fall of 1963, a Korean War veteran and criminal pleads insanity and is admitted to a mental institution, where he rallies up the scared patients against the tyrannical nurse.",
+    "actors": [
+      "Jack Nicholson",
+      "Louise Fletcher",
+      "Michael Berryman"
+    ]
   },
   {
     "id": "tt0407887",
@@ -1108,7 +1579,12 @@ export const jevMovies: JevMovie[] = [
       "drama",
       "thriller"
     ],
-    "summary": "An undercover cop and a mole in the police attempt to identify each other while infiltrating an Irish gang in South Boston."
+    "summary": "An undercover cop and a mole in the police attempt to identify each other while infiltrating an Irish gang in South Boston.",
+    "actors": [
+      "Leonardo DiCaprio",
+      "Matt Damon",
+      "Jack Nicholson"
+    ]
   },
   {
     "id": "tt0120586",
@@ -1119,7 +1595,12 @@ export const jevMovies: JevMovie[] = [
       "crime",
       "drama"
     ],
-    "summary": "A former neo-nazi skinhead tries to prevent his younger brother from going down the same wrong path that he did."
+    "summary": "A former neo-nazi skinhead tries to prevent his younger brother from going down the same wrong path that he did.",
+    "actors": [
+      "Edward Norton",
+      "Edward Furlong",
+      "Beverly D'Angelo"
+    ]
   },
   {
     "id": "tt6751668",
@@ -1130,7 +1611,12 @@ export const jevMovies: JevMovie[] = [
       "drama",
       "thriller"
     ],
-    "summary": "Greed and class discrimination threaten the newly formed symbiotic relationship between the wealthy Park family and the destitute Kim clan."
+    "summary": "Greed and class discrimination threaten the newly formed symbiotic relationship between the wealthy Park family and the destitute Kim clan.",
+    "actors": [
+      "Song Kang-ho",
+      "Lee Sun-kyun",
+      "Cho Yeo-jeong"
+    ]
   },
   {
     "id": "tt7286456",
@@ -1142,7 +1628,12 @@ export const jevMovies: JevMovie[] = [
       "drama",
       "thriller"
     ],
-    "summary": "A mentally troubled stand-up comedian embarks on a downward spiral that leads to the creation of an iconic villain."
+    "summary": "A mentally troubled stand-up comedian embarks on a downward spiral that leads to the creation of an iconic villain.",
+    "actors": [
+      "Joaquin Phoenix",
+      "Robert De Niro",
+      "Zazie Beetz"
+    ]
   },
   {
     "id": "tt0169547",
@@ -1152,7 +1643,12 @@ export const jevMovies: JevMovie[] = [
     "tags": [
       "drama"
     ],
-    "summary": "A sexually frustrated suburban father has a mid-life crisis after becoming infatuated with his daughter's best friend."
+    "summary": "A sexually frustrated suburban father has a mid-life crisis after becoming infatuated with his daughter's best friend.",
+    "actors": [
+      "Kevin Spacey",
+      "Annette Bening",
+      "Thora Birch"
+    ]
   },
   {
     "id": "tt4154796",
@@ -1164,12 +1660,20 @@ export const jevMovies: JevMovie[] = [
       "adventure",
       "drama"
     ],
-    "summary": "After the devastating events of Avengers: Infinity War (2018), the universe is in ruins. With the help of remaining allies, the Avengers assemble once more in order to reverse Thanos' actions and restore balance to the universe."
+    "summary": "After the devastating events of Avengers: Infinity War (2018), the universe is in ruins. With the help of remaining allies, the Avengers assemble once more in order to reverse Thanos' actions and restore balance to the universe.",
+    "actors": [
+      "Robert Downey Jr.",
+      "Chris Evans",
+      "Mark Ruffalo"
+    ]
   }
 ];
 
 export const jevMovieById = new Map(jevMovies.map((movie) => [movie.id, movie]));
 
 export const jevCatalogState = jevMovies
-  .map((movie) => `${movie.id}| ${movie.title} (${movie.year}). ${movie.tags.join(", ")}. ${movie.summary}`)
+  .map(
+    (movie) =>
+      `${movie.id}| ${movie.title} (${movie.year}). Genres: ${movie.tags.join(", ")}. Cast: ${movie.actors.join(", ")}. ${movie.summary}`,
+  )
   .join("\n");
