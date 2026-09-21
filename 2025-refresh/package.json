@@ -15,6 +15,7 @@
     "@next/mdx": "^16.0.3",
     "@types/matter-js": "^0.20.2",
     "@types/mdx": "^2.0.13",
+    "@typesafe-ai/sdk": "^0.6.0",
     "@upstash/redis": "^1.35.6",
     "@vercel/analytics": "^1.5.0",
     "@vercel/speed-insights": "^1.2.0",
