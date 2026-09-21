@@ -169,7 +169,7 @@ export function PhysicsPosterSearch() {
   const results = searchMovies(query);
   const resultKey = results.map((movie) => movie.id).join(",");
   const isCompact = stageSize.width < 600;
-  const posterWidth = isCompact ? 38 : 58;
+  const posterWidth = isCompact ? 10 : 40;
   const posterHeight = posterWidth * 1.5;
   const showNoResults = input.trim().length > 0 && input === query && results.length === 0;
 
