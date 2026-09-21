@@ -168,7 +168,7 @@ export function PhysicsPosterSearch() {
       const column = index % columns;
       const row = Math.floor(index / columns);
       const body = Matter.Bodies.rectangle(
-        stageSize.width * (0.08 + (column / Math.max(columns - 1, 1)) * 0.84) + (row % 2) * 8,
+        stageSize.width * (0.02 + (column / Math.max(columns - 1, 1)) * 0.96) + (row % 2) * 8,
         posterHeight * 0.55 + row * 10,
         posterWidth,
         posterHeight,
@@ -358,7 +358,7 @@ export function PhysicsPosterSearch() {
   };
 
   return (
-    <section className="relative flex min-h-dvh flex-1 flex-col overflow-hidden bg-[#e8f0ea] px-4 pb-0 pt-8 text-[#173b33] sm:pt-10">
+    <section className="relative flex min-h-dvh flex-1 flex-col overflow-hidden bg-[#e8f0ea] pb-0 pt-8 text-[#173b33] sm:pt-10">
       <button
         type="button"
         onClick={() => setShowTestControls((visible) => !visible)}
@@ -369,8 +369,8 @@ export function PhysicsPosterSearch() {
         <Bug className="h-3.5 w-3.5" aria-hidden="true" />
         Debug
       </button>
-      <div className="mx-auto flex w-full max-w-[1180px] flex-1 flex-col">
-        {showTestControls && <div className="mx-auto mb-4 flex max-w-[440px] flex-wrap justify-center gap-2 sm:mb-5">
+      <div className="flex w-full flex-1 flex-col">
+        {showTestControls && <div className="mx-auto mb-4 flex max-w-[440px] flex-wrap justify-center gap-2 px-4 sm:mb-5">
           <button
             type="button"
             onClick={() => setInput("")}
@@ -399,7 +399,7 @@ export function PhysicsPosterSearch() {
             </button>
           ))}
         </div>}
-        <div className="relative mx-auto w-full max-w-[590px]">
+        <div className="relative mx-auto w-full max-w-[622px] px-4">
           <label className="flex h-11 items-center rounded-[16px] border border-[#aac5b8] bg-[#fffdf7] px-4 shadow-[0_12px_28px_rgba(34,73,61,0.12)] transition focus-within:border-[#e6533c] focus-within:shadow-[0_14px_32px_rgba(230,83,60,0.16)] sm:h-12 sm:px-5">
             <Search className="mr-3 h-3.5 w-3.5 shrink-0 text-[#e6533c] sm:mr-4 sm:h-4 sm:w-4" strokeWidth={1.8} aria-hidden="true" />
             <input value={input} onChange={(event) => setInput(event.target.value)} onKeyDown={(event) => { if (event.key === "Escape") clearSearch(); }} className="h-full min-w-0 flex-1 bg-transparent py-0 text-base leading-none text-[#173b33] outline-none placeholder:text-[#78958b] sm:text-lg md:text-xl" placeholder="What do you feel like watching?" aria-label="Search for movies" />
