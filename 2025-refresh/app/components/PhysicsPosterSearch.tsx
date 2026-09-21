@@ -164,9 +164,12 @@ export function PhysicsPosterSearch() {
     const rightWall = Matter.Bodies.rectangle(stageSize.width + 34, stageSize.height / 2, 68, stageSize.height * 2, { isStatic: true });
 
     movies.forEach((movie, index) => {
+      const columns = Math.max(8, Math.floor(stageSize.width / Math.max(posterWidth * 1.4, 16)));
+      const column = index % columns;
+      const row = Math.floor(index / columns);
       const body = Matter.Bodies.rectangle(
-        stageSize.width * (0.2 + ((index * 0.17) % 0.6)),
-        posterHeight * 0.8 + (index % 4) * 12,
+        stageSize.width * (0.08 + (column / Math.max(columns - 1, 1)) * 0.84) + (row % 2) * 8,
+        posterHeight * 0.55 + row * 10,
         posterWidth,
         posterHeight,
         {
