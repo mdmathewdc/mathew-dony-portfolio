@@ -2,7 +2,7 @@
 
 import { useEffect, useLayoutEffect, useMemo, useRef, useState } from "react";
 import Matter from "matter-js";
-import { Bug, Search, X } from "lucide-react";
+import { Search, X } from "lucide-react";
 import { jevMovies as movies, type JevMovie as Movie } from "@/lib/jev/movies";
 
 type Flight = {
@@ -34,12 +34,6 @@ type PhysicsWorld = {
 };
 
 const INITIAL_QUERY = "";
-const NO_RESULTS_QUERY = "underwater musicals";
-const testQueries = [
-  "mind bending sci-fi movies",
-  "mind bending sci-fi movies after 2003",
-  "animated movies before 2003",
-];
 
 function Poster({ movie }: { movie: Movie }) {
   const [hasFailed, setHasFailed] = useState(false);
@@ -61,7 +55,6 @@ export function PhysicsPosterSearch() {
   const [results, setResults] = useState<Movie[]>([]);
   const [completedQuery, setCompletedQuery] = useState("");
   const [searchError, setSearchError] = useState<string | null>(null);
-  const [showTestControls, setShowTestControls] = useState(true);
   const [stageSize, setStageSize] = useState({ width: 900, height: 505 });
   const [viewportBottomInset, setViewportBottomInset] = useState(0);
   const stageRef = useRef<HTMLDivElement>(null);
@@ -359,46 +352,7 @@ export function PhysicsPosterSearch() {
 
   return (
     <section className="relative flex min-h-dvh flex-1 flex-col overflow-hidden bg-[#e8f0ea] pb-0 pt-8 text-[#173b33] sm:pt-10">
-      <button
-        type="button"
-        onClick={() => setShowTestControls((visible) => !visible)}
-        aria-pressed={showTestControls}
-        className="absolute right-4 top-3 z-40 flex h-8 items-center gap-1.5 border border-[#aac5b8] bg-[#fffdf7]/80 px-2.5 text-xs text-[#49766a] transition hover:border-[#e6533c] hover:text-[#e6533c]"
-        title="Toggle debug query controls"
-      >
-        <Bug className="h-3.5 w-3.5" aria-hidden="true" />
-        Debug
-      </button>
       <div className="flex w-full flex-1 flex-col">
-        {showTestControls && <div className="mx-auto mb-4 flex max-w-[440px] flex-wrap justify-center gap-2 px-4 sm:mb-5">
-          <button
-            type="button"
-            onClick={() => setInput("")}
-            aria-pressed={!input}
-            className="border border-[#aac5b8] bg-[#fffdf7]/65 px-3 py-1.5 text-xs text-[#49766a] transition hover:border-[#e6533c] hover:text-[#e6533c] aria-pressed:border-[#e6533c] aria-pressed:bg-[#e6533c] aria-pressed:text-white"
-          >
-            Empty
-          </button>
-          <button
-            type="button"
-            onClick={() => setInput(NO_RESULTS_QUERY)}
-            aria-pressed={input === NO_RESULTS_QUERY}
-            className="border border-[#aac5b8] bg-[#fffdf7]/65 px-3 py-1.5 text-xs text-[#49766a] transition hover:border-[#e6533c] hover:text-[#e6533c] aria-pressed:border-[#e6533c] aria-pressed:bg-[#e6533c] aria-pressed:text-white"
-          >
-            No results
-          </button>
-          {testQueries.map((testQuery) => (
-            <button
-              key={testQuery}
-              type="button"
-              onClick={() => setInput(testQuery)}
-              aria-pressed={input === testQuery}
-              className="border border-[#aac5b8] bg-[#fffdf7]/65 px-3 py-1.5 text-xs text-[#49766a] transition hover:border-[#e6533c] hover:text-[#e6533c] aria-pressed:border-[#e6533c] aria-pressed:bg-[#e6533c] aria-pressed:text-white"
-            >
-              {testQuery}
-            </button>
-          ))}
-        </div>}
         <div className="relative mx-auto w-full max-w-[622px] px-4">
           <label className="flex h-11 items-center rounded-[16px] border border-[#aac5b8] bg-[#fffdf7] px-4 shadow-[0_12px_28px_rgba(34,73,61,0.12)] transition focus-within:border-[#e6533c] focus-within:shadow-[0_14px_32px_rgba(230,83,60,0.16)] sm:h-12 sm:px-5">
             <Search className="mr-3 h-3.5 w-3.5 shrink-0 text-[#e6533c] sm:mr-4 sm:h-4 sm:w-4" strokeWidth={1.8} aria-hidden="true" />
