@@ -1,6 +1,6 @@
 import { PhysicsPosterSearch } from "@/app/components/PhysicsPosterSearch";
 
-export default function JevPage() {
+export default function JevMoviePickerPage() {
   return (
     <main className="flex min-h-screen flex-col bg-[#e8f0ea]">
       <PhysicsPosterSearch />
