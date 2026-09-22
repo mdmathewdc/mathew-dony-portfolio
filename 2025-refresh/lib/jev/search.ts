@@ -2,8 +2,10 @@ import { choice, noul, TypeSafeClient } from "@typesafe-ai/sdk";
 import { jevCatalogState, jevMovieById, jevMovies, type JevMovie } from "@/lib/jev/movies";
 
 const TOP_K = 5;
+const SHORTLIST_LIMIT = 8;
 const EXISTS_THRESHOLD = 0.35;
-const MIN_RELEVANCE = 0.03;
+const SHORTLIST_THRESHOLD = 0.02;
+const MATCH_THRESHOLD = 0.7;
 
 const movieCriteria = Object.fromEntries(jevMovies.map((movie) => [movie.id, null]));
 
@@ -39,14 +41,41 @@ export async function searchJevMovies(query: string, signal?: AbortSignal): Prom
   const exists = response.answers.exists.noul;
   if (exists < EXISTS_THRESHOLD) return { movies: [], exists };
 
-  const movies = Object.entries(response.answers.where.probabilities)
+  const shortlist = Object.entries(response.answers.where.probabilities)
     .sort(([, first], [, second]) => second - first)
-    .filter(([, score]) => score >= MIN_RELEVANCE)
-    .slice(0, TOP_K)
+    .filter(([, score]) => score >= SHORTLIST_THRESHOLD)
+    .slice(0, SHORTLIST_LIMIT)
     .flatMap(([id]) => {
       const movie = jevMovieById.get(id);
       return movie ? [movie] : [];
     });
+
+  if (shortlist.length === 0) return { movies: [], exists };
+
+  const verification = await client.systemOne(
+    {
+      state: shortlist
+        .map((movie) => `${movie.id}| ${movie.title} (${movie.year}). Cast: ${movie.actors.join(", ")}. ${movie.tags.join(", ")}. ${movie.summary}`)
+        .join("\n"),
+      questions: Object.fromEntries(
+        shortlist.map((movie) => [
+          movie.id,
+          noul(`Does "${movie.title}" directly satisfy this request: "${trimmed}"?`, {
+            true: "This specific movie satisfies the actor, genre, plot, and year constraints",
+            false: "This movie is only loosely associated or misses a stated constraint",
+          }),
+        ]),
+      ),
+    },
+    { signal },
+  );
+
+  const movies = shortlist
+    .filter((movie) => {
+      const answer = verification.answers[movie.id];
+      return answer?.type === "noul" && answer.noul >= MATCH_THRESHOLD;
+    })
+    .slice(0, TOP_K);
 
   return { movies, exists };
 }
