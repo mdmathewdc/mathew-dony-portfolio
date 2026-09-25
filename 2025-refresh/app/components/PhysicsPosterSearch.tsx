@@ -76,7 +76,7 @@ export function PhysicsPosterSearch() {
   };
 
   useEffect(() => {
-    const timeout = window.setTimeout(() => setQuery(input), 300);
+    const timeout = window.setTimeout(() => setQuery(input), 500);
     return () => window.clearTimeout(timeout);
   }, [input]);
 
