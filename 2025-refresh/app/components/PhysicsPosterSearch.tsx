@@ -188,7 +188,12 @@ export function PhysicsPosterSearch() {
         if (!poster) return;
         const scales = physics.scales ?? (physics.scales = new Map());
         const scale = scales.get(movieId) ?? 1;
-        poster.style.transform = `translate3d(${body.position.x - posterWidth / 2}px, ${body.position.y - posterHeight / 2}px, 0) rotate(${body.angle}rad) scale(${scale})`;
+        // Size the element instead of scaling a small layer, so the poster is painted at the size on screen.
+        const visualWidth = posterWidth * scale;
+        const visualHeight = posterHeight * scale;
+        const widthPx = `${visualWidth}px`;
+        if (poster.style.width !== widthPx) poster.style.width = widthPx;
+        poster.style.transform = `translate3d(${body.position.x - visualWidth / 2}px, ${body.position.y - visualHeight / 2}px, 0) rotate(${body.angle}rad)`;
         poster.style.zIndex = physics.targets.has(movieId) ? "30" : "10";
       });
     };
@@ -253,7 +258,7 @@ export function PhysicsPosterSearch() {
     const liftResults = () => {
       const activeIds = new Set(displayedResults.map((movie) => movie.id));
       const gap = isCompact ? 10 : 18;
-      const resultScale = 1.5;
+      const resultScale = 2;
       const resultPosterWidth = posterWidth * resultScale;
       const rowWidth = displayedResults.length * resultPosterWidth + Math.max(0, displayedResults.length - 1) * gap;
       const flights = physics.flights ?? (physics.flights = new Map());
@@ -284,7 +289,7 @@ export function PhysicsPosterSearch() {
         const resultIndex = displayedResults.findIndex((movie) => movie.id === movieId);
         const target = {
           x: physics.width / 2 - rowWidth / 2 + resultPosterWidth / 2 + resultIndex * (resultPosterWidth + gap),
-          y: posterHeight * 0.75 + 4,
+          y: (posterHeight * resultScale) / 2 + 8,
         };
         const previousTarget = physics.targets.get(movieId);
         physics.targets.set(movieId, target);
@@ -364,7 +369,7 @@ export function PhysicsPosterSearch() {
         <div ref={stageRef} onPointerDown={handlePointerDown} onPointerMove={handlePointerMove} onPointerUp={releasePointer} onPointerCancel={releasePointer} className="relative mx-auto mt-10 min-h-[240px] w-full flex-1 touch-none select-none overflow-hidden pb-[env(safe-area-inset-bottom)] sm:mt-7 sm:pb-0" style={isCompact && viewportBottomInset ? { paddingBottom: `${viewportBottomInset}px` } : undefined}>
           <p className="sr-only" aria-live="polite">{displayedResults.length} movies found</p>
           {movies.map((movie) => (
-            <article key={movie.id} ref={(node) => { if (node) posterRefs.current.set(movie.id, node); else posterRefs.current.delete(movie.id); }} className="absolute left-0 top-0 aspect-[2/3] overflow-hidden rounded-[3px] bg-zinc-300 shadow-[0_3px_5px_rgba(20,59,49,0.28)] will-change-transform" style={{ width: posterWidth }}>
+            <article key={movie.id} ref={(node) => { if (node) posterRefs.current.set(movie.id, node); else posterRefs.current.delete(movie.id); }} className="absolute left-0 top-0 aspect-[2/3] overflow-hidden rounded-[3px] bg-zinc-300 shadow-[0_3px_5px_rgba(20,59,49,0.28)]" style={{ width: posterWidth }}>
               <Poster movie={movie} />
             </article>
           ))}
