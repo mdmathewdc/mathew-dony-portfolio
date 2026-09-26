@@ -29,46 +29,46 @@ The catalog is 100 movies, each with a title, year, genres, main cast and a one-
 The [TypeSafe docs](https://docs.typesafe.ai/concepts/how-to-build-with-system-one) suggest asking many narrow, independent questions together and then composing their answers in code. Questions over the same state run in parallel, so asking more of them doesn't add extra round trips. So the whole search is a single request made up of yes/no questions:
 
 ```ts
-const matchQuestions = Object.fromEntries(
-  movies.map((movie) => [
+const questions = Object.fromEntries([
+  ...movies.map((movie) => [
     movie.id,
     noul(`Does "${movie.title}" (${movie.year}) directly satisfy this viewing request: "${query}"?`, {
       true: "This specific movie satisfies the actor, genre, plot, and year constraints",
       false: "This movie is only loosely associated or misses a stated constraint",
     }),
   ]),
-);
-
-const response = await client.systemOne({
-  state: catalog,
-  questions: {
-    ...matchQuestions,
-    exists: noul(`Does any movie in the catalog reasonably match this viewing request: "${query}"?`, {
+  [
+    "exists",
+    noul(`Does any movie in the catalog reasonably match this viewing request: "${query}"?`, {
       true: "At least one listed movie fits the genre, tone, and any year constraints",
       false: "No listed movie addresses this request",
     }),
-  },
-});
+  ],
+]);
+
+const response = await client.systemOne({ state: catalog, questions });
 ```
 
-- **`exists`** asks if anything in the catalog fits at all. It's a cheap guard against showing the least-bad movies when nothing really matches.
-- **One `noul` per movie** asks whether that specific movie satisfies the request. This is the strict check: a movie with a similar vibe but the wrong actor or year won't pass.
+That's 101 questions in one call, and every answer comes back keyed by the same name it was asked under.
+
+- **One `noul` per movie**, keyed by its ID, asks whether that specific movie satisfies the request. This is the strict check: a movie with a similar vibe but the wrong actor or year won't pass.
+- **`exists`** asks if anything in the catalog fits at all. If nothing does, the search comes back empty instead of showing weak matches.
 
 ## Composing in Code
 
 Once the answers come back, the rest is plain filtering and sorting:
 
 1. If `exists` is below `0.35`, return nothing.
-2. Keep every movie whose own `noul` is at least `0.7`.
+2. Look up each movie's answer by its ID and keep the ones scoring at least `0.7`.
 3. Sort by that score and show the top 5.
 
 Each question does one small job, and the code decides how they fit together. No parsing, no retries for malformed JSON and just one model call.
 
 ## Thinking in Questions
 
-What I liked most about building with Jev is that it changes how you think about the problem. Instead of prompting a model and hoping for the right shape of answer, you design the questions. "Does anything match?" and "Does this one really fit?" are simple questions, and asked together in one request they make a decent search engine for a small catalog.
+What I liked most about building with Jev is that it changes how you think about the problem. Usually, to get an LLM to output some kind of DSL or structured format, you describe the schema in the prompt and then parse and validate whatever comes back. With Jev, you just design the questions. "Does anything match?" and "Does this one really fit?" are simple questions, and asked together in one request they make a decent classifier engine for a state.
 
-It's not a replacement for a proper search index once you have millions of items. But for small, well-described sets like a product catalog, support ticket routing or a list of movies, it's a surprisingly clean way to get a model to make decisions.
+This movie picker is just a fun demo though - The more interesting use cases are the small decisions that sit inside other AI systems. It can be used as a model router, picking a cheap model for simple requests and a more powerful one for hard ones. Others use it to guardrail an agent's tool calls, allowing, confirming or blocking a shell command before it runs, or to check whether an LLM's draft is actually grounded in the source text. All of these are decisions too fuzzy for a hand-written `if` statement, but too small to be worth paying frontier LLM prices for, and that's exactly the gap Jev fills.
 
 ## Links
 
@@ -77,4 +77,4 @@ It's not a replacement for a proper search index once you have millions of items
 
 ---
 
-_I had more fun making the ragdoll posters than setting up Jev._
+_I found it more difficult building the ragdoll posters than setting up Jev._
