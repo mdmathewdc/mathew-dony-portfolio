@@ -103,7 +103,7 @@ export function SpringPosterSearch() {
   const results = searchMovies(query);
 
   useEffect(() => {
-    const timeout = window.setTimeout(() => setQuery(input), 400);
+    const timeout = window.setTimeout(() => setQuery(input), 300);
     return () => window.clearTimeout(timeout);
   }, [input]);
 
