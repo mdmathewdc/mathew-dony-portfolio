@@ -93,7 +93,7 @@ function useStageWidth() {
   return width;
 }
 
-export function RagdollMovieSearch() {
+export function SpringPosterSearch() {
   const [input, setInput] = useState(INITIAL_QUERY);
   const [query, setQuery] = useState(INITIAL_QUERY);
   const stageWidth = useStageWidth();

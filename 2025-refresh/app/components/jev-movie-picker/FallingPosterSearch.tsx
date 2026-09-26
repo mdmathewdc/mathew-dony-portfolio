@@ -49,7 +49,7 @@ function Poster({ movie }: { movie: Movie }) {
   );
 }
 
-export function PhysicsPosterSearch() {
+export function FallingPosterSearch() {
   const [input, setInput] = useState(INITIAL_QUERY);
   const [query, setQuery] = useState(INITIAL_QUERY);
   const [results, setResults] = useState<Movie[]>([]);
