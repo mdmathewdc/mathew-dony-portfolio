@@ -3,7 +3,7 @@
 import * as React from "react";
 import { Heart } from "lucide-react";
 import { motion, AnimatePresence } from "motion/react";
-import { Button } from "@/app/components/ui/button";
+import { Button } from "@/app/components/blog/ui/button";
 import { cn } from "@/lib/utils";
 
 type HeartButtonProps = {

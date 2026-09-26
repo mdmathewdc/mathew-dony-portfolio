@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { Article } from "../data/articles";
+import { Article } from "../../data/articles";
 
 interface ArticlesProps {
   articlesWithLikes: (Article & { likes: number })[];

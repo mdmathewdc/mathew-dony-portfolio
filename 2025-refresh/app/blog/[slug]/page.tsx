@@ -1,8 +1,8 @@
 import { notFound } from "next/navigation";
 import { MDXRemote } from "next-mdx-remote/rsc";
 import { getBlogPost, getAllBlogSlugs } from "@/lib/mdx";
-import { BlogPostLayout } from "@/app/components/BlogPostLayout";
-import { MDXComponents } from "@/app/components/MDXComponents";
+import { BlogPostLayout } from "@/app/components/blog/BlogPostLayout";
+import { MDXComponents } from "@/app/components/blog/MDXComponents";
 import { getLikes } from "@/lib/likes";
 import remarkGfm from "remark-gfm";
 import rehypeHighlight from "rehype-highlight";

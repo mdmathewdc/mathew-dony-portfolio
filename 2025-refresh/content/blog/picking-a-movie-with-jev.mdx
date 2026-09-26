@@ -1,0 +1,63 @@
+---
+title: "Picking a Movie with Jev"
+date: "2026-09-26"
+caption: "Turning a classifier model into a movie picker"
+---
+
+---
+
+<video src="/blog/jev-movie-picker.mp4" autoPlay loop muted playsInline className="mx-auto mb-6 max-h-[360px] max-w-full rounded-lg" />
+
+Choosing what to watch sometimes takes longer than watching it. After seeing [this post on X](https://x.com/heystefan_/status/2101369117496521042) of what a designer built with Jev, I wanted to try something similar myself. So I built a small movie picker: type what you feel like watching, and the matching movie posters climb out of a pile. [Check it out here](/apps/jev-movie-picker).
+
+The search behind it isn't keyword matching or a vector database. It runs on a model called Jev.
+
+## Jev?
+
+Jev is [TypeSafe AI](https://typesafe.ai)'s first System One Model, built to make fast, structured decisions. Unlike most LLMs, Jev gives up text entirely: unstructured state goes in, and typed decisions with calibrated probabilities come out.
+
+There are three question types:
+
+- **`noul`**: A yes/no question. The answer is the probability of "yes", from 0 to 1.
+- **`choice`**: Pick between named options. You get the top pick plus a probability for every option.
+- **`score`**: Rate something against a rubric you define.
+
+Because every answer is a number, the output is always valid and you get a confidence value for free.
+
+## Searching 100 Movies
+
+The catalog is 100 movies, each with a title, year, genres, main cast and a one-line plot summary. The whole catalog is flattened into plain text and passed to Jev as `state`.
+
+The [TypeSafe docs](https://docs.typesafe.ai/concepts/how-to-build-with-system-one) suggest asking many narrow, independent questions together and then composing their answers in code. Questions over the same state run in parallel, so asking more of them doesn't add extra round trips. So the whole search is a single request made up of yes/no questions:
+
+<JevSearchDiagram />
+
+That's 101 questions in one call, and every answer comes back keyed by the same name it was asked under.
+
+- **One `noul` per movie**, keyed by its ID, asks whether that specific movie satisfies the request. This is the strict check: a movie with a similar vibe but the wrong actor or year won't pass.
+- **`exists`** asks if anything in the catalog fits at all. If nothing does, the search comes back empty instead of showing weak matches.
+
+## Composing in Code
+
+Once the answers come back, the rest is plain filtering and sorting:
+
+1. If `exists` is below `0.35`, return nothing.
+2. Look up each movie's answer by its ID and keep the ones scoring at least `0.7`.
+3. Sort by that score and show the top 5.
+
+Each question does one small job, and the code decides how they fit together. No parsing, no retries for malformed JSON and just one model call.
+
+## Thinking in Questions
+
+What I liked most about building with Jev is that it changes how you think about the problem. Usually, to get an LLM to output some kind of DSL or structured format, you describe the schema in the prompt and then parse and validate whatever comes back. With Jev, you just design the questions. "Does anything match?" and "Does this one really fit?" are simple questions, and asked together in one request they make a decent classifier engine for a state.
+
+This movie picker is just a fun demo though - The more interesting use cases are the small decisions that sit inside other AI systems. It can be used as a model router, picking a cheap model for simple requests and a more powerful one for hard ones. Others use it to guardrail an agent's tool calls, allowing, confirming or blocking a shell command before it runs, or to check whether an LLM's draft is actually grounded in the source text. All of these are decisions too fuzzy for a hand-written `if` statement, but too small to be worth paying frontier LLM prices for, and that's exactly the gap Jev fills.
+
+## Links
+
+- [Jev Movie Picker](/apps/jev-movie-picker)
+- [TypeSafe AI](https://typesafe.ai)
+
+---
+
+_I found it more difficult building the ragdoll posters than setting up Jev._

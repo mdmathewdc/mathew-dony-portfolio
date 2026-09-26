@@ -7,6 +7,13 @@ export interface Article {
 
 export const articles: Article[] = [
   {
+    title: "Picking a Movie with Jev",
+    caption:
+      "Turning a classifier model into a movie picker",
+    publishedDate: new Date("2026-09-26"),
+    slug: "picking-a-movie-with-jev",
+  },
+  {
     title: "Querying My Life with a Vector Database",
     caption:
       "A hands-on experiment with pgvector, embeddings and RAG",
