@@ -30,26 +30,7 @@ The catalog is 100 movies, each with a title, year, genres, main cast and a one-
 
 The [TypeSafe docs](https://docs.typesafe.ai/concepts/how-to-build-with-system-one) suggest asking many narrow, independent questions together and then composing their answers in code. Questions over the same state run in parallel, so asking more of them doesn't add extra round trips. So the whole search is a single request made up of yes/no questions:
 
-```ts
-const questions = Object.fromEntries([
-  ...movies.map((movie) => [
-    movie.id,
-    noul(`Does "${movie.title}" (${movie.year}) directly satisfy this viewing request: "${query}"?`, {
-      true: "This specific movie satisfies the actor, genre, plot, and year constraints",
-      false: "This movie is only loosely associated or misses a stated constraint",
-    }),
-  ]),
-  [
-    "exists",
-    noul(`Does any movie in the catalog reasonably match this viewing request: "${query}"?`, {
-      true: "At least one listed movie fits the genre, tone, and any year constraints",
-      false: "No listed movie addresses this request",
-    }),
-  ],
-]);
-
-const response = await client.systemOne({ state: catalog, questions });
-```
+<JevSearchDiagram />
 
 That's 101 questions in one call, and every answer comes back keyed by the same name it was asked under.
 

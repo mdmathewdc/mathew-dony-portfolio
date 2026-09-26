@@ -2,6 +2,7 @@ import React from "react";
 import Link from "next/link";
 import { CodeBlock } from "./CodeBlock";
 import { AgentFlowDiagram } from "./AgentFlowDiagram";
+import { JevSearchDiagram } from "./JevSearchDiagram";
 import { MemeGenerator } from "./MemeGenerator";
 
 // Utility function to generate slug from heading text
@@ -199,6 +200,7 @@ export const MDXComponents = {
     </em>
   ),
   AgentFlowDiagram,
+  JevSearchDiagram,
   MemeGenerator,
 };
 
