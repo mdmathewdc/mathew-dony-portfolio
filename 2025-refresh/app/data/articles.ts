@@ -9,7 +9,7 @@ export const articles: Article[] = [
   {
     title: "Picking a Movie with Jev",
     caption:
-      "Building a movie search with a model that answers in probabilities",
+      "Turning a classifier model into a movie search engine",
     publishedDate: new Date("2026-09-26"),
     slug: "picking-a-movie-with-jev",
   },
