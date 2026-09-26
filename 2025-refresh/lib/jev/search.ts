@@ -1,10 +1,8 @@
-import { choice, noul, TypeSafeClient } from "@typesafe-ai/sdk";
-import { jevCatalogState, jevMovieById, jevMovies, type JevMovie } from "@/lib/jev/movies";
+import { choice, noul, TypeSafeClient, type ChoiceResponse, type NoulResponse } from "@typesafe-ai/sdk";
+import { jevCatalogState, jevMovies, type JevMovie } from "@/lib/jev/movies";
 
 const TOP_K = 5;
-const SHORTLIST_LIMIT = 8;
 const EXISTS_THRESHOLD = 0.35;
-const SHORTLIST_THRESHOLD = 0.02;
 const MATCH_THRESHOLD = 0.7;
 
 const movieCriteria = Object.fromEntries(jevMovies.map((movie) => [movie.id, null]));
@@ -24,10 +22,21 @@ export async function searchJevMovies(query: string, signal?: AbortSignal): Prom
     timeout: 30_000,
   });
 
+  const matchQuestions = Object.fromEntries(
+    jevMovies.map((movie) => [
+      movie.id,
+      noul(`Does "${movie.title}" (${movie.year}) directly satisfy this viewing request: "${trimmed}"?`, {
+        true: "This specific movie satisfies the actor, genre, plot, and year constraints",
+        false: "This movie is only loosely associated or misses a stated constraint",
+      }),
+    ]),
+  );
+
   const response = await client.systemOne(
     {
       state: jevCatalogState,
       questions: {
+        ...matchQuestions,
         where: choice(`Which movie best matches this viewing request: "${trimmed}"?`, movieCriteria),
         exists: noul(`Does any movie in the catalog reasonably match this viewing request: "${trimmed}"?`, {
           true: "At least one listed movie fits the genre, tone, and any year constraints",
@@ -38,44 +47,21 @@ export async function searchJevMovies(query: string, signal?: AbortSignal): Prom
     { signal },
   );
 
-  const exists = response.answers.exists.noul;
-  if (exists < EXISTS_THRESHOLD) return { movies: [], exists };
+  const { where, exists } = response.answers;
+  if (exists.noul < EXISTS_THRESHOLD) return { movies: [], exists: exists.noul };
 
-  const shortlist = Object.entries(response.answers.where.probabilities)
-    .sort(([, first], [, second]) => second - first)
-    .filter(([, score]) => score >= SHORTLIST_THRESHOLD)
-    .slice(0, SHORTLIST_LIMIT)
-    .flatMap(([id]) => {
-      const movie = jevMovieById.get(id);
-      return movie ? [movie] : [];
-    });
-
-  if (shortlist.length === 0) return { movies: [], exists };
-
-  const verification = await client.systemOne(
-    {
-      state: shortlist
-        .map((movie) => `${movie.id}| ${movie.title} (${movie.year}). Cast: ${movie.actors.join(", ")}. ${movie.tags.join(", ")}. ${movie.summary}`)
-        .join("\n"),
-      questions: Object.fromEntries(
-        shortlist.map((movie) => [
-          movie.id,
-          noul(`Does "${movie.title}" directly satisfy this request: "${trimmed}"?`, {
-            true: "This specific movie satisfies the actor, genre, plot, and year constraints",
-            false: "This movie is only loosely associated or misses a stated constraint",
-          }),
-        ]),
-      ),
-    },
-    { signal },
-  );
-
-  const movies = shortlist
-    .filter((movie) => {
-      const answer = verification.answers[movie.id];
-      return answer?.type === "noul" && answer.noul >= MATCH_THRESHOLD;
+  const answers: Record<string, ChoiceResponse | NoulResponse | undefined> = response.answers;
+  const movies = jevMovies
+    .flatMap((movie) => {
+      const answer = answers[movie.id];
+      return answer?.type === "noul" && answer.noul >= MATCH_THRESHOLD ? [{ movie, match: answer.noul }] : [];
     })
-    .slice(0, TOP_K);
+    .sort(
+      (first, second) =>
+        second.match - first.match || (where.probabilities[second.movie.id] ?? 0) - (where.probabilities[first.movie.id] ?? 0),
+    )
+    .slice(0, TOP_K)
+    .map(({ movie }) => movie);
 
-  return { movies, exists };
+  return { movies, exists: exists.noul };
 }
