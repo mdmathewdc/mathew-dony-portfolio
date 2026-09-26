@@ -2,7 +2,7 @@
 
 import { useState, useEffect, useRef } from "react";
 import { addLike } from "@/app/actions/likes";
-import { HeartButton } from "@/app/components/ui/heart-button";
+import { HeartButton } from "@/app/components/blog/ui/heart-button";
 
 interface LikeButtonProps {
   slug: string;

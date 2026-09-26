@@ -1,5 +1,5 @@
-import { Hero } from "./components/Hero";
-import { Articles } from "./components/Articles";
+import { Hero } from "./components/home/Hero";
+import { Articles } from "./components/home/Articles";
 import { articles } from "./data/articles";
 import { getLikes } from "@/lib/likes";
 

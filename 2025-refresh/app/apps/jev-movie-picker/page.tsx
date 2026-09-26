@@ -1,4 +1,4 @@
-import { PhysicsPosterSearch } from "@/app/components/PhysicsPosterSearch";
+import { PhysicsPosterSearch } from "@/app/components/jev-movie-picker/PhysicsPosterSearch";
 
 export default function JevMoviePickerPage() {
   return (
