@@ -35,7 +35,7 @@ export const articles: Article[] = [
     slug: "orchestrating-ai-agents-to-create-memes",
   },
   {
-    title: "Rewriting my website from scratch",
+    title: "Rewriting My Website from Scratch",
     caption: "It was time to add a blog!",
     publishedDate: new Date("2025-11-16"),
     slug: "rewriting-my-website-from-scratch",
