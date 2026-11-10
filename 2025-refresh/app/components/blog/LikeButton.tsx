@@ -15,7 +15,6 @@ const MAX_CLICKS = 6;
 export const LikeButton = ({ slug, initialLikes }: LikeButtonProps) => {
   const [likes, setLikes] = useState(initialLikes);
   const [userLikes, setUserLikes] = useState(0);
-  const [isLiking, setIsLiking] = useState(false);
   const [pendingLikes, setPendingLikes] = useState(0);
   const batchTimerRef = useRef<NodeJS.Timeout | null>(null);
 
@@ -29,7 +28,6 @@ export const LikeButton = ({ slug, initialLikes }: LikeButtonProps) => {
 
       // Set new timer to batch the request
       batchTimerRef.current = setTimeout(async () => {
-        setIsLiking(true);
         const result = await addLike(slug, pendingLikes);
 
         if (result.success) {
@@ -42,7 +40,6 @@ export const LikeButton = ({ slug, initialLikes }: LikeButtonProps) => {
         }
 
         setPendingLikes(0);
-        setIsLiking(false);
       }, BATCH_DELAY);
     }
 

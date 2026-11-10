@@ -26,7 +26,7 @@ export async function getBlogPost(slug: string): Promise<BlogPost | null> {
       frontmatter: {
         title: data.title,
         date: data.date,
-        caption: data.caption,
+        caption: data.caption || data.description || "",
         image: data.image,
       },
       content,
@@ -58,7 +58,7 @@ export function getAllBlogPosts(): BlogPost[] {
           frontmatter: {
             title: data.title,
             date: data.date,
-            caption: data.caption,
+            caption: data.caption || data.description || "",
             image: data.image,
           },
           content,

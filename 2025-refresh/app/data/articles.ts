@@ -1,3 +1,5 @@
+import { getAllBlogPosts } from "@/lib/mdx";
+
 export interface Article {
   title: string;
   caption: string;
@@ -5,39 +7,9 @@ export interface Article {
   slug: string;
 }
 
-export const articles: Article[] = [
-  {
-    title: "Picking a Movie with Jev",
-    caption:
-      "Turning a classifier model into a movie picker",
-    publishedDate: new Date("2026-09-26"),
-    slug: "picking-a-movie-with-jev",
-  },
-  {
-    title: "Querying My Life with a Vector Database",
-    caption:
-      "A hands-on experiment with pgvector, embeddings and RAG",
-    publishedDate: new Date("2026-03-08"),
-    slug: "querying-my-life-with-a-vector-database",
-  },
-  {
-    title: "Is AI Quietly Killing Open Source?",
-    caption:
-      "How LLMs are reshaping the open source business model and what comes next",
-    publishedDate: new Date("2026-01-11"),
-    slug: "is-ai-quietly-killing-open-source",
-  },
-  {
-    title: "Orchestrating AI Agents to create Memes",
-    caption:
-      "Building an agent orchestrator system using Langchain and MCP servers",
-    publishedDate: new Date("2025-12-05"),
-    slug: "orchestrating-ai-agents-to-create-memes",
-  },
-  {
-    title: "Rewriting My Website from Scratch",
-    caption: "It was time to add a blog!",
-    publishedDate: new Date("2025-11-16"),
-    slug: "rewriting-my-website-from-scratch",
-  },
-];
+export const articles: Article[] = getAllBlogPosts().map((post) => ({
+  title: post.frontmatter.title,
+  caption: post.frontmatter.caption,
+  publishedDate: new Date(post.frontmatter.date),
+  slug: post.slug,
+}));
