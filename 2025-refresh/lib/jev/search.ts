@@ -14,6 +14,10 @@ export async function searchJevMovies(query: string, signal?: AbortSignal): Prom
   const trimmed = query.trim();
   if (!trimmed) return { movies: [], exists: 0 };
 
+  if (!process.env.TYPESAFE_API_KEY) {
+    return { movies: [], exists: 0 };
+  }
+
   const client = new TypeSafeClient({
     apiKey: process.env.TYPESAFE_API_KEY,
     defaultModel: process.env.TYPESAFE_DEFAULT_MODEL ?? "jev-latest",

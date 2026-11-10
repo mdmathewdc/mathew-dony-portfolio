@@ -42,6 +42,7 @@ const instrumentSerif = localFont({
 });
 
 export const metadata: Metadata = {
+  metadataBase: new URL(process.env.NEXT_PUBLIC_SITE_URL || "https://mathewdony.com"),
   title: "Mathew Dony | Software Engineer",
   description: "Portfolio of Mathew Dony",
   icons: {
